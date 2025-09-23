@@ -1,0 +1,512 @@
+/**
+ * Frontend Styles for Arta Consult RX
+ *
+ * @package Arta_Consult_RX
+ * @since 1.0.0
+ */
+
+/* Container */
+.arta-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Programs Grid */
+.arta-programs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.arta-program-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.arta-program-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.arta-program-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.arta-program-content {
+    padding: 20px;
+}
+
+.arta-program-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.arta-program-excerpt {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.arta-program-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.arta-program-duration {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.arta-program-price {
+    font-weight: 600;
+    color: #0073aa;
+}
+
+.arta-program-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.arta-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.arta-btn-primary {
+    background: #0073aa;
+    color: #fff;
+}
+
+.arta-btn-primary:hover {
+    background: #005a87;
+    color: #fff;
+}
+
+.arta-btn-secondary {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.arta-btn-secondary:hover {
+    background: #e0e0e0;
+    color: #333;
+}
+
+/* Consultation Form */
+.arta-consultation-form {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 30px;
+    margin: 30px 0;
+}
+
+.arta-form-section {
+    margin-bottom: 30px;
+}
+
+.arta-form-section h3 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: #333;
+    border-bottom: 2px solid #0073aa;
+    padding-bottom: 10px;
+}
+
+.arta-form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.arta-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.arta-form-group label {
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.arta-form-group input,
+.arta-form-group select,
+.arta-form-group textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.arta-form-group input:focus,
+.arta-form-group select:focus,
+.arta-form-group textarea:focus {
+    outline: none;
+    border-color: #0073aa;
+    box-shadow: 0 0 0 2px rgba(0,115,170,0.2);
+}
+
+.arta-form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.arta-form-group .required {
+    color: #e74c3c;
+}
+
+.arta-checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.arta-checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
+.arta-form-submit {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.arta-form-submit .arta-btn {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+}
+
+/* Appointment Booking */
+.arta-appointment-booking {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 30px;
+    margin: 30px 0;
+}
+
+.arta-calendar-container {
+    margin: 20px 0;
+}
+
+.arta-time-slots {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.arta-time-slot {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.arta-time-slot:hover {
+    background: #f0f0f0;
+}
+
+.arta-time-slot.available {
+    background: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.arta-time-slot.available:hover {
+    background: #c3e6cb;
+}
+
+.arta-time-slot.booked {
+    background: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+    cursor: not-allowed;
+}
+
+.arta-time-slot.selected {
+    background: #0073aa;
+    border-color: #0073aa;
+    color: #fff;
+}
+
+/* Doctor Info */
+.arta-doctor-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 30px;
+    margin: 30px 0;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+.arta-doctor-photo {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.arta-doctor-info h2 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.arta-doctor-credentials {
+    color: #0073aa;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.arta-doctor-specialties {
+    margin: 15px 0;
+}
+
+.arta-specialty-tag {
+    display: inline-block;
+    background: #e3f2fd;
+    color: #1976d2;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    margin: 2px;
+}
+
+.arta-doctor-contact {
+    margin: 20px 0;
+}
+
+.arta-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+    color: #666;
+}
+
+/* User Dashboard */
+.arta-user-dashboard {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 30px;
+    margin: 30px 0;
+}
+
+.arta-dashboard-section {
+    margin-bottom: 40px;
+}
+
+.arta-dashboard-section h3 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: #333;
+    border-bottom: 2px solid #0073aa;
+    padding-bottom: 10px;
+}
+
+.arta-dashboard-item {
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.arta-dashboard-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.arta-dashboard-item-title {
+    font-weight: 600;
+    color: #333;
+}
+
+.arta-dashboard-item-status {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.arta-dashboard-item-meta {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Status Colors */
+.arta-status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.arta-status-approved {
+    background: #d4edda;
+    color: #155724;
+}
+
+.arta-status-rejected {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.arta-status-scheduled {
+    background: #cce5ff;
+    color: #004085;
+}
+
+.arta-status-completed {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+/* Loading States */
+.arta-loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #0073aa;
+    border-radius: 50%;
+    animation: arta-spin 1s linear infinite;
+}
+
+@keyframes arta-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.arta-loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Messages */
+.arta-message {
+    padding: 15px 20px;
+    border-radius: 4px;
+    margin: 20px 0;
+    font-weight: 500;
+}
+
+.arta-message-success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.arta-message-error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.arta-message-warning {
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+}
+
+.arta-message-info {
+    background: #cce5ff;
+    color: #004085;
+    border: 1px solid #99d3ff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .arta-container {
+        padding: 0 15px;
+    }
+    
+    .arta-programs-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .arta-form-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .arta-doctor-card {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .arta-doctor-photo {
+        max-width: 200px;
+        margin: 0 auto;
+    }
+    
+    .arta-time-slots {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+    
+    .arta-dashboard-item-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
+
+/* RTL Support */
+.rtl .arta-form-row {
+    direction: rtl;
+}
+
+.rtl .arta-doctor-card {
+    grid-template-columns: 1fr 200px;
+}
+
+.rtl .arta-contact-item {
+    flex-direction: row-reverse;
+}
+
+.rtl .arta-dashboard-item-header {
+    flex-direction: row-reverse;
+}
