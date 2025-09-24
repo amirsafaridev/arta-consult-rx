@@ -1,0 +1,568 @@
+/* Single Program Page - Single Column Layout */
+
+/* Reset and Base */
+.arta-single-program * {
+    box-sizing: border-box;
+}
+
+.arta-single-program {
+    background: #fafafa;
+    min-height: 100vh;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Container */
+.arta-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Program Article */
+.arta-program-article {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+.arta-program-header {
+    margin-bottom: 30px;
+}
+
+.arta-program-hero {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+    border-top: 4px solid #2196f3;
+}
+
+.arta-program-featured-image {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+
+.arta-featured-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.arta-program-hero:hover .arta-featured-img {
+    transform: scale(1.05);
+}
+
+.arta-program-info {
+    padding: 30px;
+    text-align: center;
+}
+
+.arta-program-title {
+    font-size: 2.2rem;
+    font-weight: 300;
+    margin: 0 0 20px 0;
+    color: #333;
+    line-height: 1.3;
+}
+
+.arta-program-meta {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.arta-program-meta span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    color: #666;
+    background: #f5f5f5;
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+
+.arta-icon {
+    font-size: 1rem;
+}
+
+/* Program Actions */
+.arta-program-actions {
+    margin-top: 20px;
+}
+
+/* Sections */
+.arta-program-section {
+    margin-bottom: 30px;
+}
+
+/* Cards */
+.arta-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.arta-card:hover {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+.arta-card-header {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 20px 24px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.arta-card-title {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 0;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.arta-card-content {
+    padding: 24px;
+}
+
+/* Program Description */
+.arta-program-description {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #555;
+}
+
+.arta-program-description p {
+    margin-bottom: 16px;
+}
+
+.arta-program-description p:last-child {
+    margin-bottom: 0;
+}
+
+/* Goals & Benefits */
+.arta-program-goals,
+.arta-program-benefits {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+.arta-program-goals p,
+.arta-program-benefits p {
+    margin-bottom: 12px;
+}
+
+.arta-program-goals p:last-child,
+.arta-program-benefits p:last-child {
+    margin-bottom: 0;
+}
+
+/* Doctors Grid */
+.arta-doctors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.arta-doctor-box {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.arta-doctor-box:hover {
+    background: #e9ecef;
+    border-color: #2196f3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.2);
+}
+
+.arta-doctor-avatar {
+    margin-bottom: 15px;
+}
+
+.arta-doctor-avatar img {
+    border-radius: 50%;
+    border: 3px solid #2196f3;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.arta-doctor-info {
+    text-align: center;
+}
+
+.arta-doctor-name {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0 0 5px 0;
+    color: #333;
+}
+
+.arta-doctor-id {
+    font-size: 0.85rem;
+    color: #666;
+    background: #e9ecef;
+    padding: 4px 8px;
+    border-radius: 12px;
+    display: inline-block;
+}
+
+/* Products Grid */
+.arta-products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.arta-product-box {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.arta-product-box:hover {
+    background: #e9ecef;
+    border-color: #2196f3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.2);
+}
+
+.arta-product-image {
+    margin-bottom: 15px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.arta-product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.arta-product-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e9ecef;
+    border-radius: 8px;
+    font-size: 2rem;
+    color: #666;
+}
+
+.arta-product-info {
+    flex: 1;
+    margin-bottom: 15px;
+}
+
+.arta-product-name {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0 0 8px 0;
+    color: #333;
+    line-height: 1.3;
+}
+
+.arta-product-id {
+    font-size: 0.85rem;
+    color: #666;
+    background: #e9ecef;
+    padding: 4px 8px;
+    border-radius: 12px;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.arta-product-price {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2196f3;
+    margin-top: 8px;
+}
+
+.arta-product-action {
+    margin-top: auto;
+}
+
+/* Buttons */
+.arta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+    text-align: center;
+    justify-content: center;
+    min-width: 120px;
+}
+
+.arta-btn-primary {
+    background: #2196f3;
+    color: white;
+    border-color: #2196f3;
+}
+
+.arta-btn-primary:hover {
+    background: #1976d2;
+    border-color: #1976d2;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+}
+
+.arta-btn-outline {
+    background: transparent;
+    color: #2196f3;
+    border-color: #2196f3;
+}
+
+.arta-btn-outline:hover {
+    background: #2196f3;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+}
+
+.arta-btn-reservation {
+    font-size: 1.1rem;
+    padding: 15px 30px;
+    min-width: 160px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .arta-container {
+        padding: 16px;
+    }
+    
+    .arta-program-info {
+        padding: 24px 20px;
+    }
+    
+    .arta-program-title {
+        font-size: 1.8rem;
+    }
+    
+    .arta-program-meta {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .arta-card-content {
+        padding: 20px;
+    }
+    
+    .arta-card-header {
+        padding: 16px 20px;
+    }
+    
+    .arta-doctors-grid,
+    .arta-products-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .arta-doctor-box,
+    .arta-product-box {
+        padding: 16px;
+    }
+    
+    .arta-featured-img {
+        height: 200px;
+    }
+    
+    .arta-product-image {
+        height: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .arta-program-info {
+        padding: 20px 16px;
+    }
+    
+    .arta-program-title {
+        font-size: 1.6rem;
+    }
+    
+    .arta-card-content {
+        padding: 16px;
+    }
+    
+    .arta-card-header {
+        padding: 12px 16px;
+    }
+    
+    .arta-doctor-box,
+    .arta-product-box {
+        padding: 12px;
+    }
+    
+    .arta-btn {
+        width: 100%;
+    }
+}
+
+/* RTL Support */
+body.rtl .arta-program-meta {
+    direction: rtl;
+}
+
+/* WordPress Content Styling */
+.arta-program-description h1,
+.arta-program-description h2,
+.arta-program-description h3,
+.arta-program-description h4,
+.arta-program-description h5,
+.arta-program-description h6 {
+    color: #333;
+    margin-top: 20px;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.arta-program-description h1:first-child,
+.arta-program-description h2:first-child,
+.arta-program-description h3:first-child,
+.arta-program-description h4:first-child,
+.arta-program-description h5:first-child,
+.arta-program-description h6:first-child {
+    margin-top: 0;
+}
+
+.arta-program-description ul,
+.arta-program-description ol {
+    margin: 12px 0;
+    padding-right: 20px;
+}
+
+.arta-program-description li {
+    margin-bottom: 6px;
+}
+
+.arta-program-description blockquote {
+    border-right: 3px solid #2196f3;
+    background: #f8f9fa;
+    padding: 16px 20px;
+    margin: 16px 0;
+    border-radius: 0 4px 4px 0;
+    font-style: italic;
+}
+
+.arta-program-description img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin: 12px 0;
+}
+
+.arta-program-description a {
+    color: #2196f3;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.arta-program-description a:hover {
+    border-bottom-color: #2196f3;
+}
+
+/* Goals & Benefits Content */
+.arta-program-goals h1,
+.arta-program-goals h2,
+.arta-program-goals h3,
+.arta-program-goals h4,
+.arta-program-goals h5,
+.arta-program-goals h6,
+.arta-program-benefits h1,
+.arta-program-benefits h2,
+.arta-program-benefits h3,
+.arta-program-benefits h4,
+.arta-program-benefits h5,
+.arta-program-benefits h6 {
+    color: #333;
+    margin-top: 16px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.arta-program-goals h1:first-child,
+.arta-program-goals h2:first-child,
+.arta-program-goals h3:first-child,
+.arta-program-goals h4:first-child,
+.arta-program-goals h5:first-child,
+.arta-program-goals h6:first-child,
+.arta-program-benefits h1:first-child,
+.arta-program-benefits h2:first-child,
+.arta-program-benefits h3:first-child,
+.arta-program-benefits h4:first-child,
+.arta-program-benefits h5:first-child,
+.arta-program-benefits h6:first-child {
+    margin-top: 0;
+}
+
+.arta-program-goals ul,
+.arta-program-goals ol,
+.arta-program-benefits ul,
+.arta-program-benefits ol {
+    margin: 10px 0;
+    padding-right: 18px;
+}
+
+.arta-program-goals li,
+.arta-program-benefits li {
+    margin-bottom: 4px;
+}
+
+.arta-program-goals a,
+.arta-program-benefits a {
+    color: #2196f3;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.arta-program-goals a:hover,
+.arta-program-benefits a:hover {
+    border-bottom-color: #2196f3;
+}

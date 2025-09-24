@@ -1,0 +1,246 @@
+/**
+ * My Account Styles for Arta Consult RX
+ */
+
+.arta-my-requests {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.arta-my-requests h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* No Requests State */
+.arta-no-requests {
+    text-align: center;
+    padding: 40px 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.arta-no-requests p {
+    color: #6c757d;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* Requests List */
+.arta-requests-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Request Item */
+.arta-request-item {
+    background: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: box-shadow 0.2s ease;
+}
+
+.arta-request-item:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Request Header */
+.arta-request-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.arta-request-info h4 {
+    margin: 0 0 8px 0;
+    color: #2c3e50;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.arta-request-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.arta-request-meta span {
+    color: #6c757d;
+    font-size: 14px;
+}
+
+.arta-appointment-date {
+    color: #007cba !important;
+    font-weight: 500;
+}
+
+/* Status Badge */
+.arta-status-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    min-width: 100px;
+}
+
+.arta-status-badge.status-pending {
+    background: #fff3e0;
+    color: #f57c00;
+    border: 1px solid #ffcc02;
+}
+
+.arta-status-badge.status-approved {
+    background: #e8f5e8;
+    color: #388e3c;
+    border: 1px solid #c8e6c9;
+}
+
+.arta-status-badge.status-rejected {
+    background: #ffebee;
+    color: #d32f2f;
+    border: 1px solid #ffcdd2;
+}
+
+/* Request Details */
+.arta-request-details {
+    margin-bottom: 15px;
+}
+
+.arta-detail-row {
+    display: flex;
+    margin-bottom: 8px;
+    align-items: center;
+}
+
+.arta-detail-row strong {
+    color: #495057;
+    font-weight: 600;
+    min-width: 80px;
+    margin-left: 10px;
+}
+
+.arta-detail-row span {
+    color: #6c757d;
+}
+
+/* Rejection Reason */
+.arta-rejection-reason {
+    background: #ffebee;
+    border: 1px solid #ffcdd2;
+    border-radius: 6px;
+    padding: 12px;
+    margin-top: 10px;
+}
+
+.arta-rejection-reason strong {
+    color: #d32f2f;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.arta-rejection-reason p {
+    color: #c62828;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* Request Actions */
+.arta-request-actions {
+    padding-top: 15px;
+    border-top: 1px solid #e9ecef;
+}
+
+/* Buttons */
+.arta-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    text-align: center;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.arta-btn-primary {
+    background: #007cba;
+    color: white;
+}
+
+.arta-btn-primary:hover {
+    background: #005a87;
+    color: white;
+    text-decoration: none;
+}
+
+.arta-btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.arta-btn-secondary:hover {
+    background: #545b62;
+    color: white;
+    text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .arta-request-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .arta-request-meta {
+        flex-direction: row;
+        gap: 15px;
+    }
+    
+    .arta-detail-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+    
+    .arta-detail-row strong {
+        min-width: auto;
+        margin-left: 0;
+    }
+}
+
+/* Loading State */
+.arta-loading {
+    text-align: center;
+    padding: 40px;
+    color: #6c757d;
+}
+
+.arta-loading::after {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #007cba;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

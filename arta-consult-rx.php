@@ -5,7 +5,7 @@
  * Version: 1.0.0
  * Author: Amir Safari
  * Author URI: https://amirsafaridev.github.io/
- * Text Domain: arta-reserve-ordermate
+ * Text Domain: arta-consult-rx
  * Domain Path: /languages
  * License: GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -27,26 +27,20 @@ define('ARTA_CONSULT_RX_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('ARTA_CONSULT_RX_PLUGIN_BASENAME', plugin_basename(__FILE__));
 
 // Include the main plugin class
-require_once ARTA_CONSULT_RX_PLUGIN_DIR . 'includes/class-arta-main.php';
+require_once ARTA_CONSULT_RX_PLUGIN_DIR . 'includes/class/arta-consult-rx.php';
 
-// Initialize the plugin
-function arta_consult_rx_init() {
-    return Arta_Consult_RX_Main::instance();
+/**
+ * Main instance of Arta_Consult_RX
+ *
+ * @return Arta_Consult_RX
+ */
+function arta_consult_rx() {
+    return Arta_Consult_RX::instance();
 }
 
-// Hook into WordPress
-add_action('plugins_loaded', 'arta_consult_rx_init');
+// Initialize the plugin
+arta_consult_rx();
 
-// Activation hook
-register_activation_hook(__FILE__, array('Arta_Consult_RX_Main', 'activate'));
-
-// Deactivation hook
-register_deactivation_hook(__FILE__, array('Arta_Consult_RX_Main', 'deactivate'));
- 
- 
- 
- 
- 
- 
- 
- 
+// Register activation and deactivation hooks
+register_activation_hook(__FILE__, array(arta_consult_rx(), 'activate'));
+register_deactivation_hook(__FILE__, array(arta_consult_rx(), 'deactivate'));

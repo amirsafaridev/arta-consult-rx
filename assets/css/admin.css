@@ -1,263 +1,730 @@
-/**
- * Admin Styles for Arta Consult RX
- *
- * @package Arta_Consult_RX
- * @since 1.0.0
- */
+/* Arta Consult RX - Material Design Admin Styles */
 
-/* Dashboard Styles */
-.arta-dashboard-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    margin: 20px 0;
+/* Reset and Base Styles */
+.arta-admin * {
+    box-sizing: border-box;
 }
 
-.arta-stat-box {
-    background: #fff;
-    border: 1px solid #ccd0d4;
-    border-radius: 4px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 1px 1px rgba(0,0,0,.04);
-    transition: box-shadow 0.2s ease;
+.arta-admin {
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Arial, sans-serif;
+    direction: rtl;
+    text-align: right;
+    line-height: 1.6;
+    color: #212121;
+    background: #fafafa;
 }
 
-.arta-stat-box:hover {
-    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+/* Material Design Color Palette */
+:root {
+    --arta-primary: #1976d2;
+    --arta-primary-dark: #1565c0;
+    --arta-primary-light: #42a5f5;
+    --arta-accent: #ff4081;
+    --arta-success: #4caf50;
+    --arta-warning: #ff9800;
+    --arta-error: #f44336;
+    --arta-info: #2196f3;
+    --arta-surface: #ffffff;
+    --arta-background: #fafafa;
+    --arta-on-surface: #212121;
+    --arta-on-primary: #ffffff;
+    --arta-divider: #e0e0e0;
+    --arta-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    --arta-shadow-elevated: 0 4px 8px rgba(0,0,0,0.12);
 }
 
-.arta-stat-box h3 {
-    margin: 0 0 10px 0;
-    color: #23282d;
+/* Material Design Cards */
+.arta-card {
+    background: var(--arta-surface);
+    border-radius: 8px;
+    box-shadow: var(--arta-shadow);
+    margin: 16px 0;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.arta-card:hover {
+    box-shadow: var(--arta-shadow-elevated);
+}
+
+.arta-card-header {
+    padding: 24px 24px 16px;
+    border-bottom: 1px solid var(--arta-divider);
+    background: var(--arta-surface);
+}
+
+.arta-card-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--arta-on-surface);
+    margin: 0;
+    line-height: 1.2;
+}
+
+.arta-card-subtitle {
     font-size: 14px;
-    font-weight: 600;
+    color: rgba(33, 33, 33, 0.6);
+    margin: 4px 0 0;
+}
+
+.arta-card-content {
+    padding: 24px;
+}
+
+.arta-card-actions {
+    padding: 16px 24px;
+    border-top: 1px solid var(--arta-divider);
+    background: var(--arta-background);
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+/* Material Design Buttons */
+.arta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-}
-
-.arta-stat-number {
-    font-size: 32px;
-    font-weight: bold;
-    color: #0073aa;
-    margin: 10px 0;
-    line-height: 1;
-}
-
-.arta-stat-detail {
-    color: #666;
-    font-size: 12px;
-    margin-top: 5px;
-}
-
-/* Action Buttons */
-.arta-action-buttons {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin: 20px 0;
-}
-
-.arta-action-buttons .button {
-    margin: 0;
-}
-
-/* Recent Activity */
-.arta-recent-activity {
-    background: #fff;
-    border: 1px solid #ccd0d4;
-    border-radius: 4px;
-    padding: 20px;
-    min-height: 200px;
-}
-
-/* Settings Page */
-.arta-settings-info {
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid #ccd0d4;
-}
-
-.arta-settings-info h2 {
-    margin-bottom: 20px;
-    color: #23282d;
-}
-
-/* Consultations List */
-.arta-consultations-list {
-    background: #fff;
-    border: 1px solid #ccd0d4;
-    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    min-height: 36px;
+    position: relative;
     overflow: hidden;
 }
 
-.arta-consultations-list table {
-    width: 100%;
-    border-collapse: collapse;
+.arta-btn:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
 }
 
-.arta-consultations-list th,
-.arta-consultations-list td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #f0f0f1;
+.arta-btn:active:before {
+    width: 300px;
+    height: 300px;
 }
 
-.arta-consultations-list th {
-    background: #f9f9f9;
-    font-weight: 600;
-    color: #23282d;
+.arta-btn-primary {
+    background: var(--arta-primary);
+    color: var(--arta-on-primary);
+    box-shadow: 0 2px 4px rgba(25, 118, 210, 0.3);
 }
 
-.arta-consultations-list tr:hover {
-    background: #f9f9f9;
+.arta-btn-primary:hover {
+    background: var(--arta-primary-dark);
+    box-shadow: 0 4px 8px rgba(25, 118, 210, 0.4);
+    transform: translateY(-1px);
 }
 
-/* Status Badges */
-.arta-status-badge {
-    display: inline-block;
-    padding: 4px 8px;
-    border-radius: 3px;
-    font-size: 11px;
-    font-weight: 600;
+.arta-btn-secondary {
+    background: transparent;
+    color: var(--arta-primary);
+    border: 1px solid var(--arta-primary);
+}
+
+.arta-btn-secondary:hover {
+    background: rgba(25, 118, 210, 0.04);
+}
+
+.arta-btn-success {
+    background: var(--arta-success);
+    color: white;
+}
+
+.arta-btn-warning {
+    background: var(--arta-warning);
+    color: white;
+}
+
+.arta-btn-error {
+    background: var(--arta-error);
+    color: white;
+}
+
+.arta-btn-flat {
+    background: transparent;
+    color: var(--arta-primary);
+    box-shadow: none;
+}
+
+.arta-btn-flat:hover {
+    background: rgba(25, 118, 210, 0.04);
+}
+
+/* Material Design Form Elements */
+.arta-form-group {
+    margin-bottom: 24px;
+    position: relative;
+}
+
+.arta-form-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(33, 33, 33, 0.6);
+    margin-bottom: 8px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
-.arta-status-pending {
-    background: #fff3cd;
-    color: #856404;
-    border: 1px solid #ffeaa7;
+.arta-form-input,
+.arta-form-select,
+.arta-form-textarea {
+    width: 100%;
+    padding: 16px 12px 8px;
+    border: none;
+    border-bottom: 2px solid var(--arta-divider);
+    background: transparent;
+    font-size: 16px;
+    color: var(--arta-on-surface);
+    transition: border-color 0.3s ease;
+    outline: none;
 }
 
-.arta-status-approved {
-    background: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+.arta-form-input:focus,
+.arta-form-select:focus,
+.arta-form-textarea:focus {
+    border-bottom-color: var(--arta-primary);
 }
 
-.arta-status-rejected {
-    background: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+.arta-form-input:focus + .arta-form-label,
+.arta-form-select:focus + .arta-form-label,
+.arta-form-textarea:focus + .arta-form-label {
+    color: var(--arta-primary);
 }
 
-.arta-status-scheduled {
-    background: #cce5ff;
-    color: #004085;
-    border: 1px solid #99d3ff;
+.arta-form-textarea {
+    min-height: 120px;
+    resize: vertical;
 }
 
-.arta-status-completed {
-    background: #d1ecf1;
-    color: #0c5460;
-    border: 1px solid #bee5eb;
+/* Material Design Select2 Customization */
+.select2-container {
+    width: 100% !important;
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Arial, sans-serif;
 }
 
-/* Bulk Scheduler */
-.arta-bulk-scheduler {
-    background: #fff;
-    border: 1px solid #ccd0d4;
-    border-radius: 4px;
-    padding: 20px;
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-selection--multiple {
+    border: none !important;
+    border-bottom: 2px solid #e0e0e0 !important;
+    border-radius: 0 !important;
+    padding: 8px 0 !important;
+    background: transparent !important;
+    min-height: 36px !important;
+    font-size: 16px !important;
+    color: #212121 !important;
+    transition: border-color 0.3s ease !important;
 }
 
-.arta-bulk-scheduler .form-table {
-    margin-top: 0;
+.select2-container--default.select2-container--focus .select2-selection--single,
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+    border-bottom-color: #1976d2 !important;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
-.arta-bulk-scheduler .form-table th {
-    width: 200px;
-    padding: 15px 10px 15px 0;
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #212121 !important;
+    padding: 0 !important;
+    line-height: 20px !important;
 }
 
-.arta-bulk-scheduler .form-table td {
-    padding: 15px 10px;
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+    color: rgba(33, 33, 33, 0.6) !important;
 }
 
-.arta-bulk-scheduler .days-of-week {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 36px !important;
+    right: 8px !important;
+    top: 0 !important;
 }
 
-.arta-bulk-scheduler .days-of-week label {
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+    border-color: #666 transparent transparent transparent !important;
+    border-style: solid !important;
+    border-width: 5px 4px 0 4px !important;
+    height: 0 !important;
+    left: 50% !important;
+    margin-left: -4px !important;
+    margin-top: -2px !important;
+    position: absolute !important;
+    top: 50% !important;
+    width: 0 !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background: #1976d2 !important;
+    border: none !important;
+    border-radius: 16px !important;
+    color: white !important;
+    padding: 4px 12px !important;
+    margin: 2px 4px 2px 0 !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    color: white !important;
+    margin-left: 8px !important;
+    border: none !important;
+    background: none !important;
+    font-size: 16px !important;
+    line-height: 1 !important;
+    cursor: pointer !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__placeholder {
+    color: rgba(33, 33, 33, 0.6) !important;
+    margin-top: 8px !important;
+}
+
+.select2-dropdown {
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 4px !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.12) !important;
+    background: #ffffff !important;
+    z-index: 999999 !important;
+}
+
+.select2-container--default .select2-results__option {
+    padding: 12px 16px !important;
+    color: #212121 !important;
+    font-size: 14px !important;
+    transition: background-color 0.3s ease !important;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background: rgba(25, 118, 210, 0.1) !important;
+    color: #1976d2 !important;
+}
+
+.select2-container--default .select2-results__option[aria-selected=true] {
+    background: #1976d2 !important;
+    color: white !important;
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field {
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 4px !important;
+    padding: 8px 12px !important;
+    font-size: 14px !important;
+    color: #212121 !important;
+    width: 100% !important;
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field:focus {
+    border-color: #1976d2 !important;
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2) !important;
+}
+
+/* RTL Support for Select2 */
+body.rtl .select2-container--default .select2-selection--single .select2-selection__arrow {
+    left: 8px !important;
+    right: auto !important;
+}
+
+body.rtl .select2-container--default .select2-selection--multiple .select2-selection__choice {
+    margin: 2px 0 2px 4px !important;
+}
+
+body.rtl .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    margin-left: 0 !important;
+    margin-right: 8px !important;
+}
+
+/* Force RTL for all Select2 elements */
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    left: 8px !important;
+    right: auto !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    margin: 2px 0 2px 4px !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    margin-left: 0 !important;
+    margin-right: 8px !important;
+}
+
+/* Material Design Tables */
+.arta-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--arta-surface);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--arta-shadow);
+}
+
+.arta-table th {
+    background: var(--arta-background);
+    color: rgba(33, 33, 33, 0.6);
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 16px;
+    text-align: right;
+    border-bottom: 1px solid var(--arta-divider);
+}
+
+.arta-table td {
+    padding: 16px;
+    border-bottom: 1px solid var(--arta-divider);
+    color: var(--arta-on-surface);
+}
+
+.arta-table tbody tr:hover {
+    background: rgba(25, 118, 210, 0.04);
+}
+
+.arta-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Material Design Status Badges */
+.arta-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.arta-badge-success {
+    background: rgba(76, 175, 80, 0.1);
+    color: var(--arta-success);
+}
+
+.arta-badge-warning {
+    background: rgba(255, 152, 0, 0.1);
+    color: var(--arta-warning);
+}
+
+.arta-badge-error {
+    background: rgba(244, 67, 54, 0.1);
+    color: var(--arta-error);
+}
+
+.arta-badge-info {
+    background: rgba(33, 150, 243, 0.1);
+    color: var(--arta-info);
+}
+
+/* Material Design Stats Cards */
+.arta-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin: 24px 0;
+}
+
+.arta-stat-card {
+    background: var(--arta-surface);
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: var(--arta-shadow);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.arta-stat-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--arta-primary);
+}
+
+.arta-stat-card:hover {
+    box-shadow: var(--arta-shadow-elevated);
+    transform: translateY(-2px);
+}
+
+.arta-stat-number {
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--arta-primary);
+    margin: 0;
+    line-height: 1;
+}
+
+.arta-stat-label {
+    font-size: 14px;
+    color: rgba(33, 33, 33, 0.6);
+    margin: 8px 0 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.arta-stat-icon {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    width: 48px;
+    height: 48px;
+    background: rgba(25, 118, 210, 0.1);
+    border-radius: 50%;
     display: flex;
     align-items: center;
-    gap: 5px;
-    font-weight: normal;
+    justify-content: center;
+    color: var(--arta-primary);
+    font-size: 24px;
 }
 
-/* Calendar Styles */
+/* Material Design Calendar */
 .arta-calendar {
-    background: #fff;
-    border: 1px solid #ccd0d4;
-    border-radius: 4px;
-    padding: 20px;
+    background: var(--arta-surface);
+    border-radius: 8px;
+    box-shadow: var(--arta-shadow);
+    overflow: hidden;
+    margin: 24px 0;
 }
 
 .arta-calendar-header {
+    background: var(--arta-primary);
+    color: var(--arta-on-primary);
+    padding: 16px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #f0f0f1;
+}
+
+.arta-calendar-title {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
 }
 
 .arta-calendar-nav {
     display: flex;
-    gap: 10px;
+    gap: 8px;
+}
+
+.arta-calendar-nav-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--arta-on-primary);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.arta-calendar-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .arta-calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 1px;
-    background: #f0f0f1;
-    border: 1px solid #f0f0f1;
-}
-
-.arta-calendar-day {
-    background: #fff;
-    padding: 10px;
-    min-height: 100px;
-    position: relative;
 }
 
 .arta-calendar-day-header {
-    background: #f9f9f9;
-    font-weight: 600;
+    background: var(--arta-background);
+    padding: 12px;
     text-align: center;
-    padding: 10px;
-    color: #23282d;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(33, 33, 33, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--arta-divider);
 }
 
-.arta-calendar-day.today {
-    background: #e3f2fd;
-}
-
-.arta-calendar-day.has-appointments {
-    background: #fff3e0;
-}
-
-.arta-calendar-appointment {
-    background: #0073aa;
-    color: #fff;
-    padding: 2px 6px;
-    border-radius: 3px;
-    font-size: 11px;
-    margin: 2px 0;
+.arta-calendar-day {
+    min-height: 120px;
+    padding: 8px;
+    border-right: 1px solid var(--arta-divider);
+    border-bottom: 1px solid var(--arta-divider);
+    position: relative;
     cursor: pointer;
+    transition: background 0.3s ease;
 }
 
-/* Loading States */
+.arta-calendar-day:hover {
+    background: rgba(25, 118, 210, 0.04);
+}
+
+.arta-calendar-day.arta-other-month {
+    background: var(--arta-background);
+    color: rgba(33, 33, 33, 0.3);
+}
+
+.arta-calendar-day.arta-today {
+    background: rgba(25, 118, 210, 0.1);
+}
+
+.arta-calendar-day.arta-today .arta-day-number {
+    background: var(--arta-primary);
+    color: var(--arta-on-primary);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+}
+
+.arta-day-number {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.arta-appointment-indicators {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    display: flex;
+    gap: 2px;
+}
+
+.arta-appointment-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.arta-appointment-indicator.arta-available {
+    background: var(--arta-success);
+}
+
+.arta-appointment-indicator.arta-booked {
+    background: var(--arta-warning);
+}
+
+.arta-appointment-indicator.arta-completed {
+    background: var(--arta-info);
+}
+
+.arta-appointment-indicator.arta-cancelled {
+    background: var(--arta-error);
+}
+
+/* Material Design Filters */
+.arta-filters {
+    background: var(--arta-surface);
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: var(--arta-shadow);
+    margin: 24px 0;
+    display: flex;
+    gap: 16px;
+    align-items: end;
+    flex-wrap: wrap;
+}
+
+.arta-filter-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Material Design Notices */
+.arta-notice {
+    padding: 16px 24px;
+    margin: 16px 0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.arta-notice:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+}
+
+.arta-notice-success {
+    background: rgba(76, 175, 80, 0.1);
+    color: var(--arta-success);
+}
+
+.arta-notice-success:before {
+    background: var(--arta-success);
+}
+
+.arta-notice-error {
+    background: rgba(244, 67, 54, 0.1);
+    color: var(--arta-error);
+}
+
+.arta-notice-error:before {
+    background: var(--arta-error);
+}
+
+.arta-notice-warning {
+    background: rgba(255, 152, 0, 0.1);
+    color: var(--arta-warning);
+}
+
+.arta-notice-warning:before {
+    background: var(--arta-warning);
+}
+
+.arta-notice-info {
+    background: rgba(33, 150, 243, 0.1);
+    color: var(--arta-info);
+}
+
+.arta-notice-info:before {
+    background: var(--arta-info);
+}
+
+/* Material Design Loading */
 .arta-loading {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #f3f3f3;
-    border-top: 2px solid #0073aa;
+    position: relative;
+    pointer-events: none;
+}
+
+.arta-loading:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin: -12px 0 0 -12px;
+    border: 2px solid var(--arta-divider);
+    border-top: 2px solid var(--arta-primary);
     border-radius: 50%;
     animation: arta-spin 1s linear infinite;
 }
@@ -267,24 +734,965 @@
     100% { transform: rotate(360deg); }
 }
 
+/* Material Design Help Box */
+.arta-help-box {
+    background: rgba(33, 150, 243, 0.1);
+    border: 1px solid rgba(33, 150, 243, 0.2);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 24px 0;
+    position: relative;
+}
+
+.arta-help-box:before {
+    content: '💡';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 20px;
+}
+
+.arta-help-box h3 {
+    color: var(--arta-info);
+    margin: 0 0 12px 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.arta-help-box p {
+    margin: 0;
+    color: rgba(33, 33, 33, 0.8);
+    line-height: 1.6;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
-    .arta-dashboard-stats {
+    .arta-stats-grid {
         grid-template-columns: 1fr;
     }
     
-    .arta-action-buttons {
+    .arta-filters {
         flex-direction: column;
+        align-items: stretch;
     }
     
-    .arta-action-buttons .button {
-        width: 100%;
-        text-align: center;
+    .arta-filter-group {
+        min-width: auto;
     }
     
-    .arta-bulk-scheduler .days-of-week {
+    .arta-calendar-day {
+        min-height: 80px;
+        padding: 4px;
+    }
+    
+    .arta-card-content {
+        padding: 16px;
+    }
+    
+    .arta-card-header {
+        padding: 16px;
+    }
+}
+
+/* RTL Specific Adjustments */
+body.rtl .arta-admin {
+    direction: rtl;
+    text-align: right;
+}
+
+body.rtl .arta-stat-icon {
+    right: 24px;
+    left: auto;
+}
+
+body.rtl .arta-calendar-day {
+    border-right: none;
+    border-left: 1px solid var(--arta-divider);
+}
+
+body.rtl .arta-appointment-indicator {
+    right: auto;
+    left: 4px;
+}
+
+body.rtl .arta-help-box:before {
+    right: auto;
+    left: 20px;
+}
+
+/* WordPress Admin Integration */
+.wrap .arta-admin {
+    margin: 0 -20px;
+    padding: 20px;
+}
+
+.wrap h1 {
+    color: var(--arta-on-surface);
+    font-weight: 300;
+    margin-bottom: 24px;
+    padding: 20px;
+}
+
+/* Meta Box Styling */
+#poststuff .arta-admin {
+    margin: 0;
+    padding: 0;
+}
+
+#poststuff .arta-card {
+    margin: 0;
+    box-shadow: none;
+    border: 1px solid var(--arta-divider);
+}
+
+#poststuff .arta-card-header {
+    background: var(--arta-background);
+    border-bottom: 1px solid var(--arta-divider);
+}
+
+#poststuff .arta-card-content {
+    padding: 20px;
+}
+
+/* Meta Box Form Styling */
+#poststuff .arta-form-group {
+    margin-bottom: 24px;
+}
+
+#poststuff .arta-form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+#poststuff .arta-form-input,
+#poststuff .arta-form-select,
+#poststuff .arta-form-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 4px;
+    background: #fff;
+    font-size: 16px;
+    color: #333;
+    transition: all 0.3s ease;
+    outline: none;
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Arial, sans-serif;
+}
+
+#poststuff .arta-form-input:focus,
+#poststuff .arta-form-select:focus,
+#poststuff .arta-form-textarea:focus {
+    border-color: #1976d2;
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+}
+
+#poststuff .arta-form-input:hover,
+#poststuff .arta-form-select:hover,
+#poststuff .arta-form-textarea:hover {
+    border-color: #bdbdbd;
+}
+
+#poststuff .arta-form-textarea {
+    min-height: 120px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+/* Meta Box Select2 Overrides */
+#poststuff .select2-container {
+    width: 100% !important;
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Arial, sans-serif !important;
+}
+
+#poststuff .select2-container--default .select2-selection--single,
+#poststuff .select2-container--default .select2-selection--multiple {
+    border: none !important;
+    border-bottom: 2px solid #e0e0e0 !important;
+    border-radius: 0 !important;
+    padding: 8px 0 !important;
+    background: transparent !important;
+    min-height: 36px !important;
+    font-size: 16px !important;
+    color: #212121 !important;
+    transition: border-color 0.3s ease !important;
+}
+
+#poststuff .select2-container--default.select2-container--focus .select2-selection--single,
+#poststuff .select2-container--default.select2-container--focus .select2-selection--multiple {
+    border-bottom-color: #1976d2 !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+#poststuff .select2-container--default .select2-selection--single .select2-selection__arrow {
+    left: 8px !important;
+    right: auto !important;
+    height: 36px !important;
+    top: 0 !important;
+}
+
+#poststuff .select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background: #1976d2 !important;
+    border: none !important;
+    border-radius: 16px !important;
+    color: white !important;
+    padding: 4px 12px !important;
+    margin: 2px 0 2px 4px !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+}
+
+#poststuff .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    color: white !important;
+    margin-left: 0 !important;
+    margin-right: 8px !important;
+    border: none !important;
+    background: none !important;
+    font-size: 16px !important;
+    line-height: 1 !important;
+    cursor: pointer !important;
+}
+
+/* Meta Box Grid Layout */
+#poststuff .arta-card-content > div[style*="grid"] {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+    gap: 24px !important;
+}
+
+/* Responsive Meta Box */
+@media (max-width: 768px) {
+    #poststuff .arta-card-content > div[style*="grid"] {
+        grid-template-columns: 1fr !important;
+    }
+    
+    #poststuff .arta-card-content {
+        padding: 16px;
+    }
+}
+
+/* Custom WordPress Admin Overrides */
+.arta-admin .form-table th {
+    background: transparent;
+    border: none;
+    padding: 16px 0 8px;
+    font-weight: 500;
+    color: rgba(33, 33, 33, 0.6);
+}
+
+.arta-admin .form-table td {
+    border: none;
+    padding: 0 0 24px;
+}
+
+.arta-admin .button {
+    background: #1976d2;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 12px 24px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.arta-admin .button:hover {
+    background: #1565c0;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(25, 118, 210, 0.4);
+}
+
+.arta-admin .button-secondary {
+    background: transparent;
+    color: #1976d2;
+    border: 1px solid #1976d2;
+}
+
+.arta-admin .button-secondary:hover {
+    background: rgba(25, 118, 210, 0.04);
+}
+
+/* Additional Select2 Fixes */
+.select2-container--default .select2-selection--single {
+    height: 36px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 34px !important;
+    padding-left: 0 !important;
+    padding-right: 20px !important;
+}
+
+.select2-container--default .select2-selection--multiple {
+    min-height: 36px !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    padding: 0 !important;
+}
+
+/* Ensure proper z-index for dropdowns */
+.select2-dropdown {
+    z-index: 999999 !important;
+}
+
+.select2-container {
+    z-index: 9999 !important;
+}
+
+/* Fix for WordPress admin bar */
+.admin-bar .select2-dropdown {
+    z-index: 999999 !important;
+}
+
+/* Custom Material Design Multi-Select */
+.arta-multi-select {
+    position: relative;
+    width: 100%;
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Arial, sans-serif;
+}
+
+.arta-multi-select-trigger {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 4px;
+    background: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    transition: all 0.3s ease;
+    position: relative;
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Arial, sans-serif;
+}
+
+.arta-multi-select-trigger:focus {
+    outline: none;
+    border-color: #1976d2;
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+}
+
+.arta-multi-select-trigger:hover {
+    border-color: #bdbdbd;
+}
+
+.arta-multi-select-trigger.focused {
+    border-color: #1976d2;
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+}
+
+.arta-multi-select-placeholder {
+    color: rgba(33, 33, 33, 0.6);
+    font-size: 16px;
+    line-height: 20px;
+    flex: 1;
+}
+
+.arta-multi-select-arrow {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #666;
+    transition: transform 0.3s ease;
+}
+
+.arta-multi-select.open .arta-multi-select-arrow {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.arta-multi-select-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+    z-index: 999999;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    margin-top: 4px;
+}
+
+.arta-multi-select.open .arta-multi-select-dropdown {
+    display: block !important;
+}
+
+.arta-multi-select-search {
+    padding: 12px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.arta-multi-select-search input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #212121;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.arta-multi-select-search input:focus {
+    border-color: #1976d2;
+    box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
+}
+
+.arta-multi-select-options {
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.arta-multi-select-option {
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #212121;
+}
+
+.arta-multi-select-option:hover {
+    background: rgba(25, 118, 210, 0.1);
+}
+
+.arta-multi-select-option.selected {
+    background: #1976d2;
+    color: white;
+}
+
+.arta-multi-select-option input[type="checkbox"] {
+    margin: 0;
+    width: 16px;
+    height: 16px;
+    accent-color: #1976d2;
+}
+
+.arta-multi-select-option.selected input[type="checkbox"] {
+    accent-color: white;
+}
+
+.arta-multi-select-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-right: 40px;
+    flex: 1;
+}
+
+.arta-multi-select-tag {
+    background: #1976d2;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    max-width: 200px;
+}
+
+.arta-multi-select-tag-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.arta-multi-select-tag-remove {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    padding: 0;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.arta-multi-select-tag-remove:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* RTL Support for Custom Multi-Select */
+body.rtl .arta-multi-select-arrow {
+    right: 16px;
+    left: auto;
+}
+
+body.rtl .arta-multi-select-tags {
+    margin-right: 0;
+    margin-left: 40px;
+}
+
+/* Selected Items Display */
+.arta-selected-items {
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.arta-selected-item {
+    background: #1976d2;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 16px;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 200px;
+}
+
+.arta-selected-item span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+}
+
+.arta-item-id {
+    opacity: 0.7;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.arta-remove-item {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+    flex-shrink: 0;
+}
+
+.arta-remove-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Meta Box Selected Items */
+#poststuff .arta-selected-items {
+    margin-top: 12px;
+}
+
+#poststuff .arta-selected-item {
+    background: #1976d2;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 16px;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 200px;
+}
+
+#poststuff .arta-selected-item span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+}
+
+#poststuff .arta-item-id {
+    opacity: 0.7;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+#poststuff .arta-remove-item {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+    flex-shrink: 0;
+}
+
+#poststuff .arta-remove-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* WordPress Editor Styling */
+#poststuff .wp-editor-wrap {
+    margin-top: 8px;
+}
+
+#poststuff .wp-editor-wrap .wp-editor-container {
+    border: 2px solid #e0e0e0;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+#poststuff .wp-editor-wrap .wp-editor-container:hover {
+    border-color: #bdbdbd;
+}
+
+#poststuff .wp-editor-wrap .wp-editor-container:focus-within {
+    border-color: #1976d2;
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+}
+
+#poststuff .wp-editor-wrap .wp-editor-tabs {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+#poststuff .wp-editor-wrap .wp-switch-editor {
+    background: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    color: #333;
+    padding: 8px 12px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+#poststuff .wp-editor-wrap .wp-switch-editor:hover {
+    background: #e0e0e0;
+}
+
+#poststuff .wp-editor-wrap .wp-switch-editor.switch-tmce {
+    border-radius: 4px 0 0 0;
+}
+
+#poststuff .wp-editor-wrap .wp-switch-editor.switch-html {
+    border-radius: 0 4px 0 0;
+    border-left: none;
+}
+
+#poststuff .wp-editor-wrap .wp-switch-editor.switch-tmce.active,
+#poststuff .wp-editor-wrap .wp-switch-editor.switch-html.active {
+    background: #1976d2;
+    color: white;
+    border-color: #1976d2;
+}
+
+#poststuff .wp-editor-wrap .wp-editor-area {
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    border: none;
+    outline: none;
+    padding: 12px;
+    min-height: 200px;
+}
+
+#poststuff .wp-editor-wrap .mce-toolbar {
+    background: #f5f5f5;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+#poststuff .wp-editor-wrap .mce-toolbar .mce-btn {
+    background: transparent;
+    border: none;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+#poststuff .wp-editor-wrap .mce-toolbar .mce-btn:hover {
+    background: #e0e0e0;
+}
+
+#poststuff .wp-editor-wrap .mce-toolbar .mce-btn.mce-active {
+    background: #1976d2;
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .arta-multi-select-dropdown {
+        max-height: 150px;
+    }
+    
+    .arta-multi-select-options {
+        max-height: 100px;
+    }
+}
+
+/* Simple Calendar Styles */
+.arta-calendar-simple {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Inline Filters */
+.arta-filters-inline {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.arta-form-inline {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.arta-filter-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.arta-filter-item label {
+    font-weight: 500;
+    color: #333;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.arta-form-select {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background: #fff;
+    font-size: 14px;
+    min-width: 120px;
+}
+
+.arta-btn-simple {
+    background: #0073aa;
+    color: white;
+    border: none;
+    padding: 6px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.arta-btn-simple:hover {
+    background: #005a87;
+}
+
+/* Simple Sections */
+.arta-section {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.arta-section h2 {
+    background: #f1f1f1;
+    margin: 0;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+}
+
+.arta-section > div {
+    padding: 20px;
+}
+
+/* Simple Calendar Grid */
+.arta-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background: #ddd;
+}
+
+.arta-calendar-day-header {
+    background: #f5f5f5;
+    padding: 10px;
+    text-align: center;
+    font-weight: 500;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+}
+
+.arta-calendar-day {
+    background: #fff;
+    padding: 10px;
+    min-height: 80px;
+    border: none;
+    position: relative;
+}
+
+.arta-calendar-day.arta-other-month {
+    background: #f9f9f9;
+    color: #999;
+}
+
+.arta-calendar-day.arta-today {
+    background: #e3f2fd;
+}
+
+.arta-day-number {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.arta-appointment-indicators {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.arta-appointment-indicator {
+    font-size: 11px;
+    padding: 2px 4px;
+    border-radius: 2px;
+    text-align: center;
+}
+
+.arta-appointment-indicator.available {
+    background: #e8f5e8;
+    color: #2e7d32;
+}
+
+.arta-appointment-indicator.booked {
+    background: #fff3e0;
+    color: #f57c00;
+}
+
+/* Simple Table */
+.arta-table-container {
+    overflow-x: auto;
+}
+
+.arta-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+}
+
+.arta-table th,
+.arta-table td {
+    padding: 12px;
+    text-align: right;
+    border-bottom: 1px solid #ddd;
+}
+
+.arta-table th {
+    background: #f5f5f5;
+    font-weight: 500;
+    color: #333;
+}
+
+.arta-table tr:hover {
+    background: #f9f9f9;
+}
+
+/* Simple Badges */
+.arta-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.arta-badge-success {
+    background: #e8f5e8;
+    color: #2e7d32;
+}
+
+.arta-badge-warning {
+    background: #fff3e0;
+    color: #f57c00;
+}
+
+.arta-badge-info {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.arta-badge-error {
+    background: #ffebee;
+    color: #c62828;
+}
+
+/* Simple Notices */
+.arta-notice {
+    padding: 12px 15px;
+    border-radius: 3px;
+    margin-bottom: 15px;
+}
+
+.arta-notice-info {
+    background: #e3f2fd;
+    color: #1976d2;
+    border: 1px solid #bbdefb;
+}
+
+.arta-notice-success {
+    background: #e8f5e8;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}
+
+.arta-notice-error {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .arta-form-inline {
         flex-direction: column;
-        gap: 10px;
+        align-items: stretch;
+        gap: 15px;
+    }
+    
+    .arta-filter-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 5px;
     }
     
     .arta-calendar-grid {
@@ -292,20 +1700,503 @@
     }
     
     .arta-calendar-day {
-        min-height: 80px;
+        min-height: 60px;
         padding: 5px;
     }
 }
 
-/* RTL Support */
-.rtl .arta-action-buttons {
-    flex-direction: row-reverse;
+/* Modal Styles */
+.arta-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.rtl .arta-calendar-header {
-    flex-direction: row-reverse;
+.arta-modal-content {
+    background: #fff;
+    border-radius: 4px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
-.rtl .arta-bulk-scheduler .days-of-week {
-    flex-direction: row-reverse;
+.arta-modal-header {
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.arta-modal-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.arta-modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #999;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arta-modal-close:hover {
+    color: #333;
+}
+
+.arta-modal-body {
+    padding: 20px;
+}
+
+.arta-modal-footer {
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+/* Action Buttons */
+.arta-action-buttons {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.arta-btn-action {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 4px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+    min-width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arta-btn-action:hover {
+    background: #f5f5f5;
+    border-color: #999;
+}
+
+.arta-btn-view:hover {
+    background: #e3f2fd;
+    border-color: #1976d2;
+}
+
+.arta-btn-edit:hover {
+    background: #fff3e0;
+    border-color: #f57c00;
+}
+
+.arta-btn-delete:hover {
+    background: #ffebee;
+    border-color: #c62828;
+}
+
+/* Appointment Details */
+.arta-appointment-details {
+    line-height: 1.6;
+}
+
+.arta-detail-row {
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.arta-detail-row:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.arta-detail-row strong {
+    color: #333;
+    margin-left: 8px;
+}
+
+/* Form Elements in Modal */
+.arta-form-group {
+    margin-bottom: 15px;
+}
+
+.arta-form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+.arta-form-input,
+.arta-form-textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.arta-form-input:focus,
+.arta-form-textarea:focus {
+    outline: none;
+    border-color: #0073aa;
+    box-shadow: 0 0 0 2px rgba(0,115,170,0.1);
+}
+
+.arta-form-textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Calendar Color Improvements */
+.arta-appointment-indicator.available {
+    background: #e8f5e8;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}
+
+.arta-appointment-indicator.booked {
+    background: #fff3e0;
+    color: #f57c00;
+    border: 1px solid #ffcc02;
+}
+
+.arta-appointment-indicator.completed {
+    background: #e3f2fd;
+    color: #1976d2;
+    border: 1px solid #bbdefb;
+}
+
+.arta-appointment-indicator.cancelled {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
+
+/* Calendar Day Status Colors */
+.arta-calendar-day.has-appointments {
+    background: #f8f9fa;
+    border-left: 3px solid #0073aa;
+}
+
+.arta-calendar-day.has-booked {
+    background: #fff8e1;
+    border-left: 3px solid #f57c00;
+}
+
+.arta-calendar-day.has-completed {
+    background: #e8f5e8;
+    border-left: 3px solid #2e7d32;
+}
+
+.arta-calendar-day.has-cancelled {
+    background: #ffebee;
+    border-left: 3px solid #c62828;
+}
+
+/* Calendar Day Appointments */
+.arta-appointments-list {
+    margin-top: 5px;
+    max-height: 120px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #f5f5f5;
+}
+
+.arta-appointments-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.arta-appointments-list::-webkit-scrollbar-track {
+    background: #f5f5f5;
+    border-radius: 2px;
+}
+
+.arta-appointments-list::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 2px;
+}
+
+.arta-appointments-list::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+.arta-appointment-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 4px;
+    margin: 1px 0;
+    border-radius: 2px;
+    font-size: 10px;
+    line-height: 1.2;
+    min-height: 16px;
+}
+
+.arta-appointment-item.available {
+    background: #e8f5e8;
+    color: #2e7d32;
+    border-left: 2px solid #4caf50;
+}
+
+.arta-appointment-item.booked {
+    background: #fff3e0;
+    color: #f57c00;
+    border-left: 2px solid #ff9800;
+}
+
+.arta-appointment-item.completed {
+    background: #e3f2fd;
+    color: #1976d2;
+    border-left: 2px solid #2196f3;
+}
+
+.arta-appointment-item.cancelled {
+    background: #ffebee;
+    color: #c62828;
+    border-left: 2px solid #f44336;
+}
+
+
+.arta-appointment-time {
+    font-weight: 500;
+    font-family: monospace;
+}
+
+.arta-appointment-status {
+    font-size: 9px;
+    opacity: 0.8;
+}
+
+/* Loading Indicators */
+.arta-loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.arta-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    margin: -8px 0 0 -8px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #0073aa;
+    border-radius: 50%;
+    animation: arta-spin 1s linear infinite;
+    z-index: 1000;
+}
+
+@keyframes arta-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.arta-btn-action.arta-loading {
+    background: #f5f5f5 !important;
+    border-color: #ddd !important;
+    color: #999 !important;
+}
+
+.arta-btn-action.arta-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    margin: -6px 0 0 -6px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #0073aa;
+    border-radius: 50%;
+    animation: arta-spin 1s linear infinite;
+}
+
+/* Table Row Loading */
+.arta-table tr.arta-loading {
+    background: #f9f9f9 !important;
+}
+
+.arta-table tr.arta-loading td {
+    position: relative;
+}
+
+.arta-table tr.arta-loading td::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    width: 16px;
+    height: 16px;
+    margin-top: -8px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #0073aa;
+    border-radius: 50%;
+    animation: arta-spin 1s linear infinite;
+}
+
+/* Consultation Table Status Styles */
+.arta-status {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    min-width: 80px;
+}
+
+.arta-status.status-available {
+    background: #e3f2fd;
+    color: #1976d2;
+    border: 1px solid #bbdefb;
+}
+
+.arta-status.status-booked {
+    background: #fff3e0;
+    color: #f57c00;
+    border: 1px solid #ffcc02;
+}
+
+.arta-status.status-completed {
+    background: #e8f5e8;
+    color: #388e3c;
+    border: 1px solid #c8e6c9;
+}
+
+.arta-status.status-cancelled {
+    background: #ffebee;
+    color: #d32f2f;
+    border: 1px solid #ffcdd2;
+}
+
+/* Consultation Table Column Styles */
+.wp-list-table .column-patient_name {
+    width: 15%;
+}
+
+.wp-list-table .column-appointment_date {
+    width: 12%;
+}
+
+.wp-list-table .column-appointment_time {
+    width: 10%;
+}
+
+.wp-list-table .column-doctor {
+    width: 15%;
+}
+
+.wp-list-table .column-program {
+    width: 20%;
+}
+
+.wp-list-table .column-status {
+    width: 12%;
+}
+
+.wp-list-table .column-date {
+    width: 16%;
+}
+
+.wp-list-table .column-request_id {
+    width: 8%;
+    text-align: center;
+}
+
+/* Approval Status Styles */
+.arta-approval-status {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    min-width: 80px;
+}
+
+.arta-approval-status.approval-pending {
+    background: #fff3e0;
+    color: #f57c00;
+    border: 1px solid #ffcc02;
+}
+
+.arta-approval-status.approval-approved {
+    background: #e8f5e8;
+    color: #388e3c;
+    border: 1px solid #c8e6c9;
+}
+
+.arta-approval-status.approval-rejected {
+    background: #ffebee;
+    color: #d32f2f;
+    border: 1px solid #ffcdd2;
+}
+
+/* Approval Actions */
+.arta-approval-actions button {
+    transition: all 0.2s ease;
+}
+
+.arta-approval-actions button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Filter Styles */
+#posts-filter select {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Rejection Modal Styles */
+#arta-rejection-modal {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+#arta-rejection-modal h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+#arta-rejection-modal textarea {
+    font-family: inherit;
+    resize: vertical;
+}
+
+#arta-rejection-modal button {
+    transition: all 0.2s ease;
+}
+
+#arta-rejection-modal button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
