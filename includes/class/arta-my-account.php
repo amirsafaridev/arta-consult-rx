@@ -26,17 +26,18 @@ class Arta_My_Account {
     public function init() {
         // Add menu item to WooCommerce My Account
         add_filter('woocommerce_account_menu_items', array($this, 'add_my_requests_menu_item'));
-        add_action('init', array($this, 'add_my_requests_endpoint'));
+        
+        // Add endpoint - use wp_loaded to ensure WooCommerce is ready
+        add_action('wp_loaded', array($this, 'add_my_requests_endpoint'));
+        
+        // Handle the endpoint content
         add_action('woocommerce_account_my-requests_endpoint', array($this, 'my_requests_content'));
+        
+        // Manual check for my-requests page
+        add_action('template_redirect', array($this, 'check_my_requests_page'));
         
         // Flush rewrite rules if needed
         add_action('init', array($this, 'maybe_flush_rewrite_rules'));
-        
-        // Add admin notice for rewrite rules
-        add_action('admin_notices', array($this, 'admin_notice_rewrite_rules'));
-        
-        // Add admin action for manual flush
-        add_action('admin_action_arta_flush_rewrite_rules', array($this, 'manual_flush_rewrite_rules'));
         
         // Enqueue scripts and styles
         add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
@@ -60,7 +61,27 @@ class Arta_My_Account {
      * Add My Requests endpoint
      */
     public function add_my_requests_endpoint() {
-        add_rewrite_endpoint('my-requests', EP_ROOT | EP_PAGES);
+        // Use WooCommerce method if available
+        if (function_exists('WC') && WC()) {
+            // Add to WooCommerce query vars
+            add_filter('woocommerce_get_query_vars', array($this, 'add_my_requests_query_var'));
+            
+            // Get WooCommerce endpoints mask
+            $wc_query = WC()->query;
+            $mask = $wc_query->get_endpoints_mask();
+            add_rewrite_endpoint('my-requests', $mask);
+        } else {
+            // Fallback to standard WordPress method
+            add_rewrite_endpoint('my-requests', EP_PAGES);
+        }
+    }
+    
+    /**
+     * Add my-requests to WooCommerce query vars
+     */
+    public function add_my_requests_query_var($vars) {
+        $vars['my-requests'] = 'my-requests';
+        return $vars;
     }
 
     /**
@@ -70,24 +91,55 @@ class Arta_My_Account {
         if (get_option('arta_my_requests_flush_rewrite_rules')) {
             flush_rewrite_rules();
             delete_option('arta_my_requests_flush_rewrite_rules');
+            // Force flush to ensure endpoints work
+            if (function_exists('WC')) {
+                flush_rewrite_rules(false);
+            }
+        }
+    }
+    
+    /**
+     * Force flush rewrite rules on activation
+     */
+    public function force_flush_rewrite_rules() {
+        flush_rewrite_rules();
+    }
+    
+    /**
+     * Check if we're on my-requests page and handle it manually if needed
+     */
+    public function check_my_requests_page() {
+        global $wp_query;
+        
+        if (isset($_SERVER['REQUEST_URI'])) {
+            $request_uri = $_SERVER['REQUEST_URI'];
+            if (strpos($request_uri, '/my-account/my-requests') !== false) {
+                // Force set the query var and fix 404
+                $wp_query->query_vars['my-requests'] = '';
+                $wp_query->is_404 = false;
+                $wp_query->is_page = true;
+                $wp_query->is_singular = true;
+                
+                // Set the queried object to My Account page
+                $myaccount_page_id = wc_get_page_id('myaccount');
+                if ($myaccount_page_id) {
+                    $wp_query->queried_object = get_post($myaccount_page_id);
+                    $wp_query->queried_object_id = $myaccount_page_id;
+                }
+                
+                // Force trigger the WooCommerce endpoint action
+                // add_action('woocommerce_account_content', array($this, 'my_requests_content'));
+            }
         }
     }
 
     /**
-     * Admin notice for rewrite rules
+     * Enqueue scripts and styles
      */
-    public function admin_notice_rewrite_rules() {
-        if (get_option('arta_my_requests_flush_rewrite_rules')) {
-            ?>
-            <div class="notice notice-warning is-dismissible">
-                <p>
-                    <strong><?php _e('Arta Consult RX:', 'arta-consult-rx'); ?></strong>
-                    <?php _e('برای فعال‌سازی صفحه "درخواست‌های من" در حساب کاربری، لطفاً به', 'arta-consult-rx'); ?>
-                    <a href="<?php echo admin_url('options-permalink.php'); ?>"><?php _e('تنظیمات پیوندهای یکتا', 'arta-consult-rx'); ?></a>
-                    <?php _e('بروید و "ذخیره تغییرات" را کلیک کنید.', 'arta-consult-rx'); ?>
-                </p>
-            </div>
-            <?php
+    public function enqueue_scripts() {
+        if (is_account_page()) {
+            wp_enqueue_style('arta-my-account-css', ARTA_CONSULT_RX_PLUGIN_URL . 'assets/css/my-account.css', array(), ARTA_CONSULT_RX_VERSION);
+            wp_enqueue_script('jquery');
         }
     }
 
@@ -95,6 +147,8 @@ class Arta_My_Account {
      * My Requests content
      */
     public function my_requests_content() {
+        error_log('Arta My Account: my_requests_content called');
+        
         if (!is_user_logged_in()) {
             echo '<p>' . __('برای مشاهده درخواست‌های خود باید وارد شوید.', 'arta-consult-rx') . '</p>';
             return;
@@ -112,6 +166,8 @@ class Arta_My_Account {
             'orderby' => 'date',
             'order' => 'DESC'
         ));
+        
+        error_log('Arta My Account: Found ' . count($consultations) . ' consultations for user ' . $user_id);
 
         ?>
         <div class="arta-my-requests">
@@ -151,77 +207,203 @@ class Arta_My_Account {
                         <div class="arta-request-item">
                             <div class="arta-request-header">
                                 <div class="arta-request-info">
-                                    <h4><?php echo sprintf(__('درخواست #%d', 'arta-consult-rx'), $consultation->ID); ?></h4>
+                                    <h4><?php printf(__('درخواست #%s', 'arta-consult-rx'), $consultation->ID); ?></h4>
                                     <div class="arta-request-meta">
                                         <span class="arta-request-date">
-                                            <?php echo date_i18n('j F Y', strtotime($consultation->post_date)); ?>
+                                            <?php _e('تاریخ درخواست:', 'arta-consult-rx'); ?> <?php echo date_i18n('j F Y - H:i', strtotime($consultation->post_date)); ?>
                                         </span>
-                                        <?php if ($appointment_date): ?>
+                                        <?php if ($appointment_date && $appointment_time): ?>
                                             <span class="arta-appointment-date">
-                                                <?php echo date_i18n('j F Y', strtotime($appointment_date)); ?>
-                                                <?php if ($appointment_time): ?>
-                                                    - <?php echo esc_html($appointment_time); ?>
-                                                <?php endif; ?>
+                                                <?php _e('تاریخ نوبت:', 'arta-consult-rx'); ?> <?php echo date_i18n('j F Y', strtotime($appointment_date)); ?> - <?php echo $appointment_time; ?>
                                             </span>
                                         <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="arta-request-status">
-                                    <span class="arta-status-badge <?php echo esc_attr($status_class); ?>">
-                                        <?php echo esc_html($status_text); ?>
+                                    <span class="arta-status-badge <?php echo $status_class; ?>">
+                                        <?php echo $status_text; ?>
                                     </span>
+                                    <button class="arta-view-details-btn" type="button">
+                                        <?php _e('مشاهده جزئیات', 'arta-consult-rx'); ?>
+                                    </button>
                                 </div>
                             </div>
                             
-                            <div class="arta-request-details">
-                                <?php if ($doctor): ?>
-                                    <div class="arta-detail-row">
-                                        <strong><?php _e('پزشک:', 'arta-consult-rx'); ?></strong>
-                                        <span><?php echo esc_html($doctor->display_name); ?></span>
+                            <div class="arta-request-content">
+                                <div class="arta-request-details">
+                                    <?php if ($doctor): ?>
+                                        <div class="arta-detail-row">
+                                            <strong><?php _e('پزشک:', 'arta-consult-rx'); ?></strong>
+                                            <span><?php echo $doctor->display_name; ?></span>
+                                        </div>
+                                    <?php endif; ?>
+                                    
+                                    <?php if ($program): ?>
+                                        <div class="arta-detail-row">
+                                            <strong><?php _e('برنامه:', 'arta-consult-rx'); ?></strong>
+                                            <span><?php echo $program->post_title; ?></span>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                                
+                                <?php
+                                // Get additional consultation details
+                                $full_name = get_post_meta($consultation->ID, '_arta_full_name', true);
+                                $phone = get_post_meta($consultation->ID, '_arta_phone', true);
+                                $email = get_post_meta($consultation->ID, '_arta_email', true);
+                                $age = get_post_meta($consultation->ID, '_arta_age', true);
+                                $height = get_post_meta($consultation->ID, '_arta_height', true);
+                                $weight = get_post_meta($consultation->ID, '_arta_weight', true);
+                                $chronic_diseases = get_post_meta($consultation->ID, '_arta_chronic_diseases', true);
+                                $medications = get_post_meta($consultation->ID, '_arta_medications', true);
+                                $medical_history = get_post_meta($consultation->ID, '_arta_medical_history', true);
+                                $program_goal = get_post_meta($consultation->ID, '_arta_program_goal', true);
+                                ?>
+                                
+                                <?php if ($full_name || $phone || $email || $age): ?>
+                                    <div class="arta-additional-details">
+                                        <h5><?php _e('اطلاعات شخصی', 'arta-consult-rx'); ?></h5>
+                                        <div class="arta-detail-grid">
+                                            <?php if ($full_name): ?>
+                                                <div class="arta-detail-item">
+                                                    <strong><?php _e('نام کامل', 'arta-consult-rx'); ?></strong>
+                                                    <span><?php echo esc_html($full_name); ?></span>
+                                                </div>
+                                            <?php endif; ?>
+                                            
+                                            <?php if ($phone): ?>
+                                                <div class="arta-detail-item">
+                                                    <strong><?php _e('شماره تماس', 'arta-consult-rx'); ?></strong>
+                                                    <span><?php echo esc_html($phone); ?></span>
+                                                </div>
+                                            <?php endif; ?>
+                                            
+                                            <?php if ($email): ?>
+                                                <div class="arta-detail-item">
+                                                    <strong><?php _e('ایمیل', 'arta-consult-rx'); ?></strong>
+                                                    <span><?php echo esc_html($email); ?></span>
+                                                </div>
+                                            <?php endif; ?>
+                                            
+                                            <?php if ($age): ?>
+                                                <div class="arta-detail-item">
+                                                    <strong><?php _e('سن', 'arta-consult-rx'); ?></strong>
+                                                    <span><?php echo esc_html($age); ?> <?php _e('سال', 'arta-consult-rx'); ?></span>
+                                                </div>
+                                            <?php endif; ?>
+                                            
+                                            <?php if ($height): ?>
+                                                <div class="arta-detail-item">
+                                                    <strong><?php _e('قد', 'arta-consult-rx'); ?></strong>
+                                                    <span><?php echo esc_html($height); ?> <?php _e('سانتی‌متر', 'arta-consult-rx'); ?></span>
+                                                </div>
+                                            <?php endif; ?>
+                                            
+                                            <?php if ($weight): ?>
+                                                <div class="arta-detail-item">
+                                                    <strong><?php _e('وزن', 'arta-consult-rx'); ?></strong>
+                                                    <span><?php echo esc_html($weight); ?> <?php _e('کیلوگرم', 'arta-consult-rx'); ?></span>
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
                                     </div>
                                 <?php endif; ?>
                                 
-                                <?php if ($program): ?>
-                                    <div class="arta-detail-row">
-                                        <strong><?php _e('برنامه:', 'arta-consult-rx'); ?></strong>
-                                        <span><?php echo esc_html($program->post_title); ?></span>
+                                <?php if ($chronic_diseases || $medications || $medical_history): ?>
+                                    <div class="arta-additional-details">
+                                        <h5><?php _e('اطلاعات پزشکی', 'arta-consult-rx'); ?></h5>
+                                        <div class="arta-detail-grid">
+                                            <?php if ($chronic_diseases): ?>
+                                                <div class="arta-detail-item">
+                                                    <strong><?php _e('بیماری‌های مزمن', 'arta-consult-rx'); ?></strong>
+                                                    <span><?php echo esc_html($chronic_diseases); ?></span>
+                                                </div>
+                                            <?php endif; ?>
+                                            
+                                            <?php if ($medications): ?>
+                                                <div class="arta-detail-item">
+                                                    <strong><?php _e('داروهای مصرفی', 'arta-consult-rx'); ?></strong>
+                                                    <span><?php echo esc_html($medications); ?></span>
+                                                </div>
+                                            <?php endif; ?>
+                                            
+                                            <?php if ($medical_history): ?>
+                                                <div class="arta-detail-item">
+                                                    <strong><?php _e('سابقه پزشکی', 'arta-consult-rx'); ?></strong>
+                                                    <span><?php echo esc_html($medical_history); ?></span>
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                                
+                                <?php if ($program_goal): ?>
+                                    <div class="arta-additional-details">
+                                        <h5><?php _e('هدف از برنامه', 'arta-consult-rx'); ?></h5>
+                                        <p style="margin: 0; color: #666; line-height: 1.6;"><?php echo esc_html($program_goal); ?></p>
                                     </div>
                                 <?php endif; ?>
                                 
                                 <?php if ($approval_status === 'rejected' && $rejection_reason): ?>
                                     <div class="arta-rejection-reason">
-                                        <strong><?php _e('دلیل رد:', 'arta-consult-rx'); ?></strong>
+                                        <strong><?php _e('دلیل رد درخواست:', 'arta-consult-rx'); ?></strong>
                                         <p><?php echo esc_html($rejection_reason); ?></p>
                                     </div>
                                 <?php endif; ?>
                             </div>
                             
-                            <?php if ($approval_status === 'approved'): ?>
-                                <div class="arta-request-actions">
-                                    <a href="<?php echo get_permalink($program_id); ?>" class="arta-btn arta-btn-secondary">
-                                        <?php _e('مشاهده برنامه', 'arta-consult-rx'); ?>
-                                    </a>
-                                </div>
-                            <?php endif; ?>
                         </div>
                     <?php endforeach; ?>
                 </div>
             <?php endif; ?>
         </div>
+        
+        <script>
+        jQuery(document).ready(function($) {
+            console.log('Arta My Account Script Loaded');
+            console.log('Found accordion buttons:', $('.arta-view-details-btn').length);
+            
+            // Accordion functionality
+            $('.arta-view-details-btn').click(function(e) {
+                console.log('Accordion button clicked');
+                e.preventDefault();
+                e.stopPropagation();
+                
+                var $btn = $(this);
+                var $header = $btn.closest('.arta-request-header');
+                var $content = $header.next('.arta-request-content');
+                var $item = $header.closest('.arta-request-item');
+                
+                console.log('Button:', $btn);
+                console.log('Header:', $header);
+                console.log('Content:', $content);
+                console.log('Item:', $item);
+                
+                // Toggle active class
+                $header.toggleClass('active');
+                $content.toggleClass('active');
+                $btn.toggleClass('active');
+                
+                console.log('Content has active class:', $content.hasClass('active'));
+                
+                // Update button text
+                if ($content.hasClass('active')) {
+                    $btn.text('<?php _e('بستن جزئیات', 'arta-consult-rx'); ?>');
+                    console.log('Button text changed to: بستن جزئیات');
+                } else {
+                    $btn.text('<?php _e('مشاهده جزئیات', 'arta-consult-rx'); ?>');
+                    console.log('Button text changed to: مشاهده جزئیات');
+                }
+                
+                // Close other accordions (optional - remove if you want multiple open)
+                $('.arta-request-item').not($item).find('.arta-request-header').removeClass('active');
+                $('.arta-request-item').not($item).find('.arta-request-content').removeClass('active');
+                $('.arta-request-item').not($item).find('.arta-view-details-btn').removeClass('active').text('<?php _e('مشاهده جزئیات', 'arta-consult-rx'); ?>');
+                
+                console.log('Accordion toggled successfully');
+            });
+        });
+        </script>
         <?php
-    }
-
-    /**
-     * Enqueue scripts and styles
-     */
-    public function enqueue_scripts() {
-        if (is_account_page()) {
-            wp_enqueue_style(
-                'arta-my-account',
-                ARTA_CONSULT_RX_PLUGIN_URL . 'assets/css/my-account.css',
-                array(),
-                ARTA_CONSULT_RX_VERSION
-            );
-        }
     }
 }

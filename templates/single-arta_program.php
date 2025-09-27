@@ -24,10 +24,13 @@ if (!empty($doctors)) {
     foreach ($doctors as $doctor_id) {
         $doctor = get_user_by('ID', $doctor_id);
         if ($doctor) {
+            // Get custom avatar if exists
+            $avatar = arta_get_doctor_avatar($doctor->ID, 'thumbnail');
+            
             $doctors_data[] = array(
                 'id' => $doctor->ID,
                 'name' => $doctor->display_name,
-                'avatar' => get_avatar_url($doctor->ID, array('size' => 60))
+                'avatar' => $avatar
             );
         }
     }

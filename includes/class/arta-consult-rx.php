@@ -79,10 +79,11 @@ class Arta_Consult_RX {
         include_once ARTA_CONSULT_RX_ABSPATH . 'includes/class/arta-post-types.php';
         include_once ARTA_CONSULT_RX_ABSPATH . 'includes/class/arta-user-roles.php';
         include_once ARTA_CONSULT_RX_ABSPATH . 'includes/class/arta-meta-boxes.php';
-            include_once ARTA_CONSULT_RX_ABSPATH . 'includes/class/arta-database.php';
-            include_once ARTA_CONSULT_RX_ABSPATH . 'includes/class/arta-admin.php';
-            include_once ARTA_CONSULT_RX_ABSPATH . 'includes/class/arta-appointment-form.php';
-            include_once ARTA_CONSULT_RX_ABSPATH . 'includes/class/arta-my-account.php';
+        include_once ARTA_CONSULT_RX_ABSPATH . 'includes/class/arta-database.php';
+        include_once ARTA_CONSULT_RX_ABSPATH . 'includes/class/arta-admin.php';
+        include_once ARTA_CONSULT_RX_ABSPATH . 'includes/class/arta-appointment-form.php';
+        include_once ARTA_CONSULT_RX_ABSPATH . 'includes/class/arta-my-account.php';
+        include_once ARTA_CONSULT_RX_ABSPATH . 'includes/helpers/arta-doctor-helper.php';
     }
 
     /**

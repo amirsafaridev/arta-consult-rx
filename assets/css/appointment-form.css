@@ -228,6 +228,78 @@
     min-height: 80px;
 }
 
+/* Checkbox Styles */
+.arta-checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+    padding: 16px 20px;
+    background: #ffffff;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    gap: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.arta-checkbox-label::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+}
+
+.arta-checkbox-label:hover {
+    border-color: #667eea;
+    background: #f8f9ff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.1);
+}
+
+.arta-checkbox-label:hover::before {
+    transform: scaleY(1);
+}
+
+.arta-checkbox-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #667eea;
+    flex-shrink: 0;
+    margin: 0;
+    border-radius: 4px;
+}
+
+.arta-checkbox-label:has(input[type="checkbox"]:checked) {
+    border-color: #667eea;
+    background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
+}
+
+.arta-checkbox-label:has(input[type="checkbox"]:checked)::before {
+    transform: scaleY(1);
+}
+
+.arta-checkbox-label input[type="checkbox"]:checked + .arta-checkbox-text {
+    color: #667eea;
+    font-weight: 600;
+}
+
+.arta-checkbox-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #495057;
+    line-height: 1.5;
+    flex: 1;
+    transition: all 0.2s ease;
+}
+
 /* Doctor Selection */
 .arta-doctors-list {
     display: grid;
@@ -508,6 +580,15 @@
         width: 100%;
         justify-content: center;
     }
+    
+    .arta-checkbox-label {
+        padding: 12px 16px;
+        gap: 12px;
+    }
+    
+    .arta-checkbox-text {
+        font-size: 13px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -521,5 +602,19 @@
     
     .arta-appointment-form {
         padding: 20px;
+    }
+    
+    .arta-checkbox-label {
+        padding: 10px 12px;
+        gap: 10px;
+    }
+    
+    .arta-checkbox-label input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .arta-checkbox-text {
+        font-size: 12px;
     }
 }

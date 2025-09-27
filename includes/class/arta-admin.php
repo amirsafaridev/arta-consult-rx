@@ -29,6 +29,12 @@ class Arta_Admin {
         add_action('wp_ajax_arta_delete_appointment', array($this, 'delete_appointment'));
         add_action('wp_ajax_arta_create_doctor', array($this, 'create_doctor'));
         add_action('wp_ajax_arta_get_appointments', array($this, 'ajax_get_appointments'));
+        
+        // Add avatar field to user edit page
+        add_action('show_user_profile', array($this, 'add_doctor_avatar_field'));
+        add_action('edit_user_profile', array($this, 'add_doctor_avatar_field'));
+        add_action('personal_options_update', array($this, 'save_doctor_avatar_field'));
+        add_action('edit_user_profile_update', array($this, 'save_doctor_avatar_field'));
     }
 
     /**
@@ -81,8 +87,9 @@ class Arta_Admin {
      * Enqueue admin scripts
      */
     public function enqueue_admin_scripts($hook) {
-        if (strpos($hook, 'arta-') !== false) {
+        if (strpos($hook, 'arta-') !== false || $hook === 'user-edit.php' || $hook === 'profile.php') {
             wp_enqueue_script('jquery');
+            wp_enqueue_media(); // For media uploader
             wp_enqueue_script('jquery-ui-datepicker');
             wp_enqueue_style('jquery-ui-datepicker');
             wp_enqueue_script('select2');
@@ -96,6 +103,16 @@ class Arta_Admin {
                 true
             );
 
+            wp_enqueue_style(
+                'arta-admin-css',
+                ARTA_CONSULT_RX_PLUGIN_URL . 'assets/css/admin.css',
+                array(),
+                ARTA_CONSULT_RX_VERSION
+            );
+        }
+        
+        // Enqueue CSS for user edit pages
+        if ($hook === 'user-edit.php' || $hook === 'profile.php') {
             wp_enqueue_style(
                 'arta-admin-css',
                 ARTA_CONSULT_RX_PLUGIN_URL . 'assets/css/admin.css',
@@ -877,9 +894,23 @@ class Arta_Admin {
                                         <tr>
                                             <td>
                                                 <div style="display: flex; align-items: center; gap: 12px;">
-                                                    <div style="width: 40px; height: 40px; background: var(--arta-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
-                                                        <?php echo strtoupper(substr($doctor->display_name, 0, 1)); ?>
-                                                    </div>
+                                                    <?php
+                                                    $avatar_id = get_user_meta($doctor->ID, 'arta_doctor_avatar', true);
+                                                    if ($avatar_id) {
+                                                        $avatar_url = wp_get_attachment_image_url($avatar_id, 'thumbnail');
+                                                        if ($avatar_url) {
+                                                            echo '<img src="' . esc_url($avatar_url) . '" alt="' . esc_attr($doctor->display_name) . '" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #e0e0e0;">';
+                                                        } else {
+                                                            echo '<div style="width: 40px; height: 40px; background: var(--arta-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">';
+                                                            echo strtoupper(substr($doctor->display_name, 0, 1));
+                                                            echo '</div>';
+                                                        }
+                                                    } else {
+                                                        echo '<div style="width: 40px; height: 40px; background: var(--arta-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">';
+                                                        echo strtoupper(substr($doctor->display_name, 0, 1));
+                                                        echo '</div>';
+                                                    }
+                                                    ?>
                                                     <div>
                                                         <strong><?php echo esc_html($doctor->display_name); ?></strong>
                                                         <br><small style="color: rgba(33, 33, 33, 0.6);"><?php _e('پزشک متخصص', 'arta-consult-rx'); ?></small>
@@ -969,6 +1000,23 @@ class Arta_Admin {
                             <label for="doctor_password"><?php _e('رمز عبور', 'arta-consult-rx'); ?> *</label>
                             <input type="password" id="doctor_password" name="password" class="arta-form-input" required>
                         </div>
+                        
+                        <div class="arta-form-group">
+                            <label for="doctor_avatar"><?php _e('عکس پزشک', 'arta-consult-rx'); ?></label>
+                            <div class="arta-avatar-upload">
+                                <input type="hidden" id="doctor_avatar" name="avatar" value="">
+                                <div class="arta-avatar-preview" id="doctor_avatar_preview">
+                                    <div class="arta-avatar-placeholder">
+                                        <span class="dashicons dashicons-camera"></span>
+                                        <p><?php _e('عکس پزشک را انتخاب کنید', 'arta-consult-rx'); ?></p>
+                                    </div>
+                                </div>
+                                <div class="arta-avatar-actions">
+                                    <button type="button" class="arta-btn-secondary" id="doctor_upload_btn"><?php _e('انتخاب عکس', 'arta-consult-rx'); ?></button>
+                                    <button type="button" class="arta-btn-simple" id="doctor_remove_avatar" style="display: none;"><?php _e('حذف عکس', 'arta-consult-rx'); ?></button>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <div class="arta-modal-footer">
@@ -980,6 +1028,45 @@ class Arta_Admin {
 
         <script>
         jQuery(document).ready(function($) {
+            // Media uploader for doctor avatar
+            var mediaUploader;
+            
+            $('#doctor_upload_btn').on('click', function(e) {
+                e.preventDefault();
+                
+                if (mediaUploader) {
+                    mediaUploader.open();
+                    return;
+                }
+                
+                mediaUploader = wp.media({
+                    title: '<?php _e('انتخاب عکس پزشک', 'arta-consult-rx'); ?>',
+                    button: {
+                        text: '<?php _e('انتخاب عکس', 'arta-consult-rx'); ?>'
+                    },
+                    multiple: false,
+                    library: {
+                        type: 'image'
+                    }
+                });
+                
+                mediaUploader.on('select', function() {
+                    var attachment = mediaUploader.state().get('selection').first().toJSON();
+                    $('#doctor_avatar').val(attachment.id);
+                    $('#doctor_avatar_preview').html('<img src="' + attachment.sizes.thumbnail.url + '" alt="' + attachment.alt + '">');
+                    $('#doctor_remove_avatar').show();
+                });
+                
+                mediaUploader.open();
+            });
+            
+            // Remove avatar
+            $('#doctor_remove_avatar').on('click', function() {
+                $('#doctor_avatar').val('');
+                $('#doctor_avatar_preview').html('<div class="arta-avatar-placeholder"><span class="dashicons dashicons-camera"></span><p><?php _e('عکس پزشک را انتخاب کنید', 'arta-consult-rx'); ?></p></div>');
+                $(this).hide();
+            });
+
             // Open add doctor modal
             $('#arta-add-doctor-btn').on('click', function() {
                 $('#arta-add-doctor-modal').show();
@@ -989,17 +1076,27 @@ class Arta_Admin {
             $('.arta-modal-close, #arta-add-doctor-cancel-btn').on('click', function() {
                 $('#arta-add-doctor-modal').hide();
                 $('#arta-add-doctor-form')[0].reset();
+                // Reset avatar preview
+                $('#doctor_avatar_preview').html('<div class="arta-avatar-placeholder"><span class="dashicons dashicons-camera"></span><p><?php _e('عکس پزشک را انتخاب کنید', 'arta-consult-rx'); ?></p></div>');
+                $('#doctor_remove_avatar').hide();
             });
 
             // Save doctor
             $('#arta-add-doctor-save-btn').on('click', function() {
+                var $btn = $(this);
+                var originalText = $btn.text();
+                
+                // Show loading state
+                $btn.addClass('arta-loading').prop('disabled', true).text('در حال ایجاد...');
+                
                 var formData = {
                     action: 'arta_create_doctor',
                     nonce: '<?php echo wp_create_nonce('arta_admin_nonce'); ?>',
                     username: $('#doctor_username').val(),
                     display_name: $('#doctor_display_name').val(),
                     email: $('#doctor_email').val(),
-                    password: $('#doctor_password').val()
+                    password: $('#doctor_password').val(),
+                    avatar: $('#doctor_avatar').val()
                 };
 
                 $.ajax({
@@ -1016,6 +1113,10 @@ class Arta_Admin {
                     },
                     error: function() {
                         alert('خطا در ارتباط با سرور');
+                    },
+                    complete: function() {
+                        // Reset button state
+                        $btn.removeClass('arta-loading').prop('disabled', false).text(originalText);
                     }
                 });
             });
@@ -1233,6 +1334,7 @@ class Arta_Admin {
         $display_name = sanitize_text_field($_POST['display_name']);
         $email = sanitize_email($_POST['email']);
         $password = $_POST['password'];
+        $avatar = intval($_POST['avatar']);
 
         // Validate inputs
         if (empty($username) || empty($display_name) || empty($email) || empty($password)) {
@@ -1266,7 +1368,113 @@ class Arta_Admin {
         $user = new WP_User($user_id);
         $user->set_role('arta_doctor');
 
+        // Save avatar if provided
+        if ($avatar > 0) {
+            update_user_meta($user_id, 'arta_doctor_avatar', $avatar);
+        }
+
         wp_send_json_success(array('message' => __('پزشک با موفقیت ایجاد شد', 'arta-consult-rx')));
+    }
+
+    /**
+     * Add doctor avatar field to user edit page
+     */
+    public function add_doctor_avatar_field($user) {
+        // Only show for doctors
+        if (!in_array('arta_doctor', $user->roles)) {
+            return;
+        }
+        
+        $avatar_id = get_user_meta($user->ID, 'arta_doctor_avatar', true);
+        $avatar_url = $avatar_id ? wp_get_attachment_image_url($avatar_id, 'thumbnail') : '';
+        ?>
+        <h3><?php _e('عکس پزشک', 'arta-consult-rx'); ?></h3>
+        <table class="form-table">
+            <tr>
+                <th><label for="arta_doctor_avatar"><?php _e('عکس پزشک', 'arta-consult-rx'); ?></label></th>
+                <td>
+                    <div class="arta-avatar-upload">
+                        <input type="hidden" id="arta_doctor_avatar" name="arta_doctor_avatar" value="<?php echo esc_attr($avatar_id); ?>">
+                        <div class="arta-avatar-preview" id="arta_doctor_avatar_preview">
+                            <?php if ($avatar_url): ?>
+                                <img src="<?php echo esc_url($avatar_url); ?>" alt="<?php _e('عکس پزشک', 'arta-consult-rx'); ?>">
+                            <?php else: ?>
+                                <div class="arta-avatar-placeholder">
+                                    <span class="dashicons dashicons-camera"></span>
+                                    <p><?php _e('عکس پزشک را انتخاب کنید', 'arta-consult-rx'); ?></p>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                        <div class="arta-avatar-actions">
+                            <button type="button" class="button" id="arta_doctor_upload_btn"><?php _e('انتخاب عکس', 'arta-consult-rx'); ?></button>
+                            <button type="button" class="button" id="arta_doctor_remove_avatar" <?php echo $avatar_url ? '' : 'style="display: none;"'; ?>><?php _e('حذف عکس', 'arta-consult-rx'); ?></button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        
+        <script>
+        jQuery(document).ready(function($) {
+            // Media uploader for doctor avatar
+            var mediaUploader;
+            
+            $('#arta_doctor_upload_btn').on('click', function(e) {
+                e.preventDefault();
+                
+                if (mediaUploader) {
+                    mediaUploader.open();
+                    return;
+                }
+                
+                mediaUploader = wp.media({
+                    title: '<?php _e('انتخاب عکس پزشک', 'arta-consult-rx'); ?>',
+                    button: {
+                        text: '<?php _e('انتخاب عکس', 'arta-consult-rx'); ?>'
+                    },
+                    multiple: false,
+                    library: {
+                        type: 'image'
+                    }
+                });
+                
+                mediaUploader.on('select', function() {
+                    var attachment = mediaUploader.state().get('selection').first().toJSON();
+                    $('#arta_doctor_avatar').val(attachment.id);
+                    $('#arta_doctor_avatar_preview').html('<img src="' + attachment.sizes.thumbnail.url + '" alt="' + attachment.alt + '">');
+                    $('#arta_doctor_remove_avatar').show();
+                });
+                
+                mediaUploader.open();
+            });
+            
+            // Remove avatar
+            $('#arta_doctor_remove_avatar').on('click', function() {
+                $('#arta_doctor_avatar').val('');
+                $('#arta_doctor_avatar_preview').html('<div class="arta-avatar-placeholder"><span class="dashicons dashicons-camera"></span><p><?php _e('عکس پزشک را انتخاب کنید', 'arta-consult-rx'); ?></p></div>');
+                $(this).hide();
+            });
+        });
+        </script>
+        <?php
+    }
+
+    /**
+     * Save doctor avatar field
+     */
+    public function save_doctor_avatar_field($user_id) {
+        if (!current_user_can('edit_user', $user_id)) {
+            return false;
+        }
+        
+        if (isset($_POST['arta_doctor_avatar'])) {
+            $avatar_id = intval($_POST['arta_doctor_avatar']);
+            if ($avatar_id > 0) {
+                update_user_meta($user_id, 'arta_doctor_avatar', $avatar_id);
+            } else {
+                delete_user_meta($user_id, 'arta_doctor_avatar');
+            }
+        }
     }
 
 }

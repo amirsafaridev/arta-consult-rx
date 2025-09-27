@@ -203,20 +203,25 @@ jQuery(document).ready(function($) {
         formData = {};
         formData.program_id = arta_ajax.program_id;
         
-        // Load user data if logged in
+        // Reset form first
+        $('#arta-appointment-form')[0].reset();
+        
+        // Load user data if logged in (after reset)
         loadUserData();
         
         // Load doctors
         loadDoctors();
         
-        // Reset form
-        $('#arta-appointment-form')[0].reset();
         showStep(1);
         $modal.fadeIn();
     }
 
     // Close modal
     function closeModal() {
+        // Reset email field to normal state
+        $('#email').prop('readonly', false);
+        $('#email').next('small').remove();
+        
         $modal.fadeOut();
     }
 
@@ -346,45 +351,34 @@ jQuery(document).ready(function($) {
 
     // Load user data
     function loadUserData() {
-        if (arta_ajax.user_logged_in) {
-            $.ajax({
-                url: arta_ajax.ajax_url,
-                type: 'POST',
-                data: {
-                    action: 'arta_get_user_data',
-                    nonce: arta_ajax.nonce
-                },
-                success: function(response) {
-                    if (response.success && response.data) {
-                        var userData = response.data;
-                        
-                        // Fill form fields with user data
-                        if (userData.full_name) $('#full_name').val(userData.full_name);
-                        if (userData.gender) $('#gender').val(userData.gender);
-                        if (userData.birth_date) $('#birth_date').val(userData.birth_date);
-                        if (userData.height) $('#height').val(userData.height);
-                        if (userData.weight) $('#weight').val(userData.weight);
-                        if (userData.phone) $('#phone').val(userData.phone);
-                        if (userData.chronic_diseases) $('#chronic_diseases').val(userData.chronic_diseases);
-                        if (userData.medications) $('#medications').val(userData.medications);
-                        if (userData.medical_history) $('#medical_history').val(userData.medical_history);
-                        if (userData.program_goal) $('#program_goal').val(userData.program_goal);
-                        
-                        // Handle email field
-                        if (userData.has_profile_email) {
-                            // User has email in profile, use it and make field readonly
-                            $('#email').val(userData.profile_email).prop('readonly', true);
-                            $('#email').after('<small style="color: #666; display: block; margin-top: 5px;">ایمیل از پروفایل شما استفاده می‌شود</small>');
-                        } else if (userData.email) {
-                            // User has custom email, use it
-                            $('#email').val(userData.email);
-                        }
-                    }
-                },
-                error: function() {
-                    console.log('خطا در بارگذاری اطلاعات کاربر');
-                }
-            });
+        if (arta_ajax.user_logged_in && arta_ajax.user_data) {
+            var userData = arta_ajax.user_data;
+            
+            // Fill form fields with user data
+            if (userData.full_name) $('#full_name').val(userData.full_name);
+            if (userData.gender) $('#gender').val(userData.gender);
+            if (userData.birth_date) $('#birth_date').val(userData.birth_date);
+            if (userData.height) $('#height').val(userData.height);
+            if (userData.weight) $('#weight').val(userData.weight);
+            if (userData.phone) $('#phone').val(userData.phone);
+            if (userData.chronic_diseases) $('#chronic_diseases').val(userData.chronic_diseases);
+            if (userData.medications) $('#medications').val(userData.medications);
+            if (userData.medical_history) $('#medical_history').val(userData.medical_history);
+            if (userData.program_goal) $('#program_goal').val(userData.program_goal);
+            
+            // Handle email field
+            if (userData.has_profile_email) {
+                // User has email in profile, use it and make field readonly
+                $('#email').val(userData.profile_email).prop('readonly', true);
+                // Remove existing message if any
+                $('#email').next('small').remove();
+                $('#email').after('<small style="color: #666; display: block; margin-top: 5px;">ایمیل از پروفایل شما استفاده می‌شود</small>');
+            } else if (userData.email) {
+                // User has custom email, use it
+                $('#email').val(userData.email).prop('readonly', false);
+                // Remove existing message if any
+                $('#email').next('small').remove();
+            }
         }
     }
 

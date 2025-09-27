@@ -36,10 +36,15 @@ class Arta_Appointment_Form {
             wp_enqueue_script('arta-appointment-form', ARTA_CONSULT_RX_PLUGIN_URL . 'assets/js/appointment-form.js', array('jquery'), ARTA_CONSULT_RX_VERSION, true);
             wp_enqueue_style('arta-appointment-form', ARTA_CONSULT_RX_PLUGIN_URL . 'assets/css/appointment-form.css', array(), ARTA_CONSULT_RX_VERSION);
             
+            // Get user data for pre-filling
+            $user_data = $this->get_user_data_for_form();
+            
             wp_localize_script('arta-appointment-form', 'arta_ajax', array(
                 'ajax_url' => admin_url('admin-ajax.php'),
                 'nonce' => wp_create_nonce('arta_appointment_nonce'),
                 'program_id' => get_the_ID(),
+                'user_logged_in' => is_user_logged_in(),
+                'user_data' => $user_data,
                 'strings' => array(
                     'loading' => __('در حال بارگذاری...', 'arta-consult-rx'),
                     'error' => __('خطا در ارسال اطلاعات', 'arta-consult-rx'),
@@ -145,10 +150,13 @@ class Arta_Appointment_Form {
         foreach ($doctors as $doctor_id) {
             $doctor = get_user_by('ID', $doctor_id);
             if ($doctor) {
+                // Get custom avatar if exists
+                $avatar = arta_get_doctor_avatar($doctor->ID, 'thumbnail');
+                
                 $doctors_data[] = array(
                     'id' => $doctor->ID,
                     'name' => $doctor->display_name,
-                    'avatar' => get_avatar_url($doctor->ID, array('size' => 80))
+                    'avatar' => $avatar
                 );
             }
         }
@@ -460,6 +468,46 @@ class Arta_Appointment_Form {
         }
 
         wp_send_json_success($user_data);
+    }
+
+    /**
+     * Get user data for form pre-filling (non-AJAX version)
+     */
+    private function get_user_data_for_form() {
+        if (!is_user_logged_in()) {
+            return array();
+        }
+
+        $user_id = get_current_user_id();
+        $user = get_user_by('ID', $user_id);
+        
+        $user_data = array(
+            'full_name' => get_user_meta($user_id, 'arta_full_name', true),
+            'gender' => get_user_meta($user_id, 'arta_gender', true),
+            'birth_date' => get_user_meta($user_id, 'arta_birth_date', true),
+            'height' => get_user_meta($user_id, 'arta_height', true),
+            'weight' => get_user_meta($user_id, 'arta_weight', true),
+            'phone' => get_user_meta($user_id, 'arta_phone', true),
+            'chronic_diseases' => get_user_meta($user_id, 'arta_chronic_diseases', true),
+            'medications' => get_user_meta($user_id, 'arta_medications', true),
+            'medical_history' => get_user_meta($user_id, 'arta_medical_history', true),
+            'program_goal' => get_user_meta($user_id, 'arta_program_goal', true),
+        );
+
+        // Handle email logic
+        $has_profile_email = get_user_meta($user_id, 'arta_has_profile_email', true);
+        
+        if ($has_profile_email && $user && $user->user_email) {
+            // User has email in profile
+            $user_data['has_profile_email'] = true;
+            $user_data['profile_email'] = $user->user_email;
+        } else {
+            // User has custom email or no email
+            $user_data['has_profile_email'] = false;
+            $user_data['email'] = get_user_meta($user_id, 'arta_email', true);
+        }
+
+        return $user_data;
     }
 }
 
