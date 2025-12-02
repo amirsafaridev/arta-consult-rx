@@ -9,7 +9,7 @@
 
 **A comprehensive WordPress plugin for managing medical consultations, appointments, and prescription generation integrated with WooCommerce**
 
-[Features](#-features) • [Installation](#-installation) • [Documentation](#-documentation) • [Contributing](#-contributing)
+[Features](#-features) • [Installation](#-installation) • [Documentation](#-documentation)
 
 </div>
 
@@ -25,8 +25,6 @@
 - [Usage](#-usage)
 - [Architecture](#-architecture)
 - [Screenshots](#-screenshots)
-- [Development](#-development)
-- [Contributing](#-contributing)
 - [License](#-license)
 - [Author](#-author)
 
@@ -223,57 +221,6 @@ arta-consult-rx/
 
 > _Screenshots coming soon. This section will showcase the plugin's interface, prescription generation, and admin panels._
 
-## 🔧 Development
-
-### Setting Up Development Environment
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/arta-consult-rx.git
-   ```
-
-2. Set up a local WordPress development environment
-3. Install required dependencies (WooCommerce, Elementor)
-4. Activate the plugin in development mode
-
-### Code Standards
-
-- Follow WordPress Coding Standards
-- Use PHPDoc for all functions and classes
-- Maintain proper security practices (nonces, sanitization, validation)
-- Ensure compatibility with WordPress 5.5+ and PHP 7.4+
-
-### Hooks and Filters
-
-The plugin provides various hooks for extensibility:
-
-```php
-// Actions
-do_action('arta_consult_rx_before_init');
-do_action('arta_consult_rx_init');
-do_action('arta_consult_rx_loaded');
-
-// Filters
-apply_filters('arta_consult_rx_template_path', 'arta-consult-rx/');
-```
-
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these guidelines:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### Contribution Guidelines
-
-- Follow WordPress and PHP coding standards
-- Add appropriate documentation
-- Test thoroughly before submitting
-- Update README if needed
-
 ## 📄 License
 
 This project is licensed under the **GPL v2 or later** License.
@@ -303,7 +250,7 @@ GNU General Public License for more details.
 
 <div align="center">
 
-**Made with ❤️ for the healthcare industry**
+**Made with ❤️ for the Amir Safari**
 
 ⭐ Star this repo if you find it helpful!
 
