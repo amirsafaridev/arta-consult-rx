@@ -70,6 +70,7 @@ class Arta_My_Account {
             $wc_query = WC()->query;
             $mask = $wc_query->get_endpoints_mask();
             add_rewrite_endpoint('my-requests', $mask);
+            
         } else {
             // Fallback to standard WordPress method
             add_rewrite_endpoint('my-requests', EP_PAGES);
@@ -83,6 +84,7 @@ class Arta_My_Account {
         $vars['my-requests'] = 'my-requests';
         return $vars;
     }
+    
 
     /**
      * Maybe flush rewrite rules
@@ -127,11 +129,12 @@ class Arta_My_Account {
                     $wp_query->queried_object_id = $myaccount_page_id;
                 }
                 
-                // Force trigger the WooCommerce endpoint action
-                // add_action('woocommerce_account_content', array($this, 'my_requests_content'));
+                // The content will be handled by the proper WooCommerce endpoint action
+                // that was already registered in the init method
             }
         }
     }
+
 
     /**
      * Enqueue scripts and styles
@@ -147,7 +150,6 @@ class Arta_My_Account {
      * My Requests content
      */
     public function my_requests_content() {
-        error_log('Arta My Account: my_requests_content called');
         
         if (!is_user_logged_in()) {
             echo '<p>' . __('برای مشاهده درخواست‌های خود باید وارد شوید.', 'arta-consult-rx') . '</p>';
@@ -167,18 +169,15 @@ class Arta_My_Account {
             'order' => 'DESC'
         ));
         
-        error_log('Arta My Account: Found ' . count($consultations) . ' consultations for user ' . $user_id);
 
         ?>
-        <div class="arta-my-requests">
+        <div class="arta-my-requests <?php echo esc_attr(function_exists('arta_get_direction_class') ? arta_get_direction_class() : 'arta-rtl'); ?>" dir="<?php echo esc_attr(function_exists('arta_get_direction_attr') ? arta_get_direction_attr() : 'rtl'); ?>">
             <h3><?php _e('درخواست‌های مشاوره من', 'arta-consult-rx'); ?></h3>
             
             <?php if (empty($consultations)): ?>
                 <div class="arta-no-requests">
                     <p><?php _e('شما هنوز درخواست مشاوره‌ای ثبت نکرده‌اید.', 'arta-consult-rx'); ?></p>
-                    <a href="<?php echo home_url('/programs/'); ?>" class="arta-btn arta-btn-primary">
-                        <?php _e('مشاهده برنامه‌ها', 'arta-consult-rx'); ?>
-                    </a>
+                   
                 </div>
             <?php else: ?>
                 <div class="arta-requests-list">
@@ -188,11 +187,33 @@ class Arta_My_Account {
                         $appointment_date = get_post_meta($consultation->ID, '_arta_appointment_date', true);
                         $appointment_time = get_post_meta($consultation->ID, '_arta_appointment_time', true);
                         $doctor_id = get_post_meta($consultation->ID, '_arta_doctor_id', true);
-                        $program_id = get_post_meta($consultation->ID, '_arta_program_id', true);
                         $rejection_reason = get_post_meta($consultation->ID, '_arta_rejection_reason', true);
                         
                         $doctor = get_user_by('ID', $doctor_id);
-                        $program = get_post($program_id);
+                        
+                        // Get programs
+                        $programs = get_post_meta($consultation->ID, '_arta_programs', true);
+                        $program_list = array();
+                        if (!empty($programs) && is_array($programs)) {
+                            foreach ($programs as $prog_id) {
+                                $program = get_post($prog_id);
+                                if ($program) {
+                                    $program_list[] = $program->post_title;
+                                }
+                            }
+                        }
+                        
+                        // Get products
+                        $products = get_post_meta($consultation->ID, '_arta_products', true);
+                        $product_list = array();
+                        if (!empty($products) && is_array($products)) {
+                            foreach ($products as $prod_id) {
+                                $product = get_post($prod_id);
+                                if ($product) {
+                                    $product_list[] = $product->post_title;
+                                }
+                            }
+                        }
                         
                         $status_labels = array(
                             'pending' => __('در انتظار بررسی', 'arta-consult-rx'),
@@ -224,7 +245,11 @@ class Arta_My_Account {
                                         <?php echo $status_text; ?>
                                     </span>
                                     <button class="arta-view-details-btn" type="button">
-                                        <?php _e('مشاهده جزئیات', 'arta-consult-rx'); ?>
+                                        <svg class="arta-btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                        </svg>
+                                        <?php _e('مشاهده', 'arta-consult-rx'); ?>
                                     </button>
                                 </div>
                             </div>
@@ -238,10 +263,31 @@ class Arta_My_Account {
                                         </div>
                                     <?php endif; ?>
                                     
-                                    <?php if ($program): ?>
+                                    <?php if (!empty($program_list)): ?>
                                         <div class="arta-detail-row">
-                                            <strong><?php _e('برنامه:', 'arta-consult-rx'); ?></strong>
-                                            <span><?php echo $program->post_title; ?></span>
+                                            <strong><?php _e('برنامه‌ها:', 'arta-consult-rx'); ?></strong>
+                                            <div class="arta-program-list">
+                                                <ul>
+                                                    <?php foreach ($program_list as $program_title): ?>
+                                                        <li><?php echo esc_html($program_title); ?></li>
+                                                    <?php endforeach; ?>
+                                                </ul>
+                                                <small style="color: #666;">(<?php echo count($program_list); ?> برنامه)</small>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
+                                    
+                                    <?php if (!empty($product_list)): ?>
+                                        <div class="arta-detail-row">
+                                            <strong><?php _e('محصولات:', 'arta-consult-rx'); ?></strong>
+                                            <div class="arta-product-list">
+                                                <ul>
+                                                    <?php foreach ($product_list as $product_title): ?>
+                                                        <li><?php echo esc_html($product_title); ?></li>
+                                                    <?php endforeach; ?>
+                                                </ul>
+                                                <small style="color: #666;">(<?php echo count($product_list); ?> محصول)</small>
+                                            </div>
                                         </div>
                                     <?php endif; ?>
                                 </div>
@@ -360,12 +406,8 @@ class Arta_My_Account {
         
         <script>
         jQuery(document).ready(function($) {
-            console.log('Arta My Account Script Loaded');
-            console.log('Found accordion buttons:', $('.arta-view-details-btn').length);
-            
             // Accordion functionality
             $('.arta-view-details-btn').click(function(e) {
-                console.log('Accordion button clicked');
                 e.preventDefault();
                 e.stopPropagation();
                 
@@ -374,33 +416,22 @@ class Arta_My_Account {
                 var $content = $header.next('.arta-request-content');
                 var $item = $header.closest('.arta-request-item');
                 
-                console.log('Button:', $btn);
-                console.log('Header:', $header);
-                console.log('Content:', $content);
-                console.log('Item:', $item);
-                
                 // Toggle active class
                 $header.toggleClass('active');
                 $content.toggleClass('active');
                 $btn.toggleClass('active');
                 
-                console.log('Content has active class:', $content.hasClass('active'));
-                
-                // Update button text
+                // Update button content (icon + text)
                 if ($content.hasClass('active')) {
-                    $btn.text('<?php _e('بستن جزئیات', 'arta-consult-rx'); ?>');
-                    console.log('Button text changed to: بستن جزئیات');
+                    $btn.html('<svg class="arta-btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg><?php _e('بستن', 'arta-consult-rx'); ?>');
                 } else {
-                    $btn.text('<?php _e('مشاهده جزئیات', 'arta-consult-rx'); ?>');
-                    console.log('Button text changed to: مشاهده جزئیات');
+                    $btn.html('<svg class="arta-btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg><?php _e('مشاهده', 'arta-consult-rx'); ?>');
                 }
                 
                 // Close other accordions (optional - remove if you want multiple open)
                 $('.arta-request-item').not($item).find('.arta-request-header').removeClass('active');
                 $('.arta-request-item').not($item).find('.arta-request-content').removeClass('active');
-                $('.arta-request-item').not($item).find('.arta-view-details-btn').removeClass('active').text('<?php _e('مشاهده جزئیات', 'arta-consult-rx'); ?>');
-                
-                console.log('Accordion toggled successfully');
+                $('.arta-request-item').not($item).find('.arta-view-details-btn').removeClass('active').html('<svg class="arta-btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg><?php _e('مشاهده', 'arta-consult-rx'); ?>');
             });
         });
         </script>

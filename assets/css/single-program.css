@@ -333,7 +333,7 @@
     cursor: pointer;
     text-align: center;
     justify-content: center;
-    min-width: 120px;
+    min-width: 100px;
 }
 
 .arta-btn-primary {
@@ -400,6 +400,7 @@
     .arta-products-grid {
         grid-template-columns: 1fr;
         gap: 16px;
+        max-width: 215px;
     }
     
     .arta-doctor-box,
@@ -439,7 +440,7 @@
     }
     
     .arta-btn {
-        width: 100%;
+        width: 40%;
     }
 }
 

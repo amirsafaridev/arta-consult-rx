@@ -21,9 +21,6 @@ class Arta_Post_Types {
      */
     public function __construct() {
         add_action('init', array($this, 'register_post_types'), 5);
-        add_filter('template_include', array($this, 'template_loader'));
-        add_action('init', array($this, 'flush_rewrite_rules_if_needed'));
-        add_action('template_redirect', array($this, 'handle_arta_program_redirect'));
     }
 
     /**
@@ -43,10 +40,10 @@ class Arta_Post_Types {
      */
     private function register_arta_program_post_type() {
         $labels = array(
-            'name'                  => _x('برنامه‌ها', 'Post type general name', 'arta-consult-rx'),
-            'singular_name'         => _x('برنامه', 'Post type singular name', 'arta-consult-rx'),
-            'menu_name'             => _x('برنامه‌ها', 'Admin Menu text', 'arta-consult-rx'),
-            'name_admin_bar'        => _x('برنامه', 'Add New on Toolbar', 'arta-consult-rx'),
+            'name'                  => __('برنامه‌ها', 'arta-consult-rx'),
+            'singular_name'         => __('برنامه', 'arta-consult-rx'),
+            'menu_name'             => __('برنامه‌ها', 'arta-consult-rx'),
+            'name_admin_bar'        => __('برنامه', 'arta-consult-rx'),
             'add_new'               => __('افزودن جدید', 'arta-consult-rx'),
             'add_new_item'          => __('افزودن برنامه جدید', 'arta-consult-rx'),
             'new_item'              => __('برنامه جدید', 'arta-consult-rx'),
@@ -57,34 +54,44 @@ class Arta_Post_Types {
             'parent_item_colon'     => __('برنامه والد:', 'arta-consult-rx'),
             'not_found'             => __('برنامه‌ای یافت نشد.', 'arta-consult-rx'),
             'not_found_in_trash'    => __('هیچ برنامه‌ای در سطل زباله یافت نشد.', 'arta-consult-rx'),
-            'featured_image'        => _x('تصویر شاخص برنامه', 'Overrides the "Featured Image" phrase', 'arta-consult-rx'),
-            'set_featured_image'    => _x('تنظیم تصویر شاخص', 'Overrides the "Set featured image" phrase', 'arta-consult-rx'),
-            'remove_featured_image' => _x('حذف تصویر شاخص', 'Overrides the "Remove featured image" phrase', 'arta-consult-rx'),
-            'use_featured_image'    => _x('استفاده به عنوان تصویر شاخص', 'Overrides the "Use as featured image" phrase', 'arta-consult-rx'),
-            'archives'              => _x('آرشیو برنامه‌ها', 'The post type archive label', 'arta-consult-rx'),
-            'insert_into_item'      => _x('درج در برنامه', 'Overrides the "Insert into post" phrase', 'arta-consult-rx'),
-            'uploaded_to_this_item' => _x('آپلود شده در این برنامه', 'Overrides the "Uploaded to this post" phrase', 'arta-consult-rx'),
-            'filter_items_list'     => _x('فیلتر لیست برنامه‌ها', 'Screen reader text for the filter links', 'arta-consult-rx'),
-            'items_list_navigation' => _x('ناوبری لیست برنامه‌ها', 'Screen reader text for the pagination', 'arta-consult-rx'),
-            'items_list'            => _x('لیست برنامه‌ها', 'Screen reader text for the items list', 'arta-consult-rx'),
+            'featured_image'        => __('تصویر شاخص برنامه', 'arta-consult-rx'),
+            'set_featured_image'    => __('تنظیم تصویر شاخص', 'arta-consult-rx'),
+            'remove_featured_image' => __('حذف تصویر شاخص', 'arta-consult-rx'),
+            'use_featured_image'    => __('استفاده به عنوان تصویر شاخص', 'arta-consult-rx'),
+            'archives'              => __('آرشیو برنامه‌ها', 'arta-consult-rx'),
+            'insert_into_item'      => __('درج در برنامه', 'arta-consult-rx'),
+            'uploaded_to_this_item' => __('آپلود شده در این برنامه', 'arta-consult-rx'),
+            'filter_items_list'     => __('فیلتر لیست برنامه‌ها', 'arta-consult-rx'),
+            'items_list_navigation' => __('ناوبری لیست برنامه‌ها', 'arta-consult-rx'),
+            'items_list'            => __('لیست برنامه‌ها', 'arta-consult-rx'),
         );
 
         $args = array(
-            'labels'             => $labels,
-            'public'             => true,
+            'label' => __('برنامه‌ها', 'arta-consult-rx'),
+            'labels' => $labels,
+            'description' => '',
+            'public' => true,
             'publicly_queryable' => true,
-            'show_ui'            => true,
-            'show_in_menu'       => true,
-            'show_in_rest'       => true,
-            'query_var'          => true,
-            'rewrite'            => array('slug' => 'program', 'with_front' => false),
-            'capability_type'    => 'post',
-            'has_archive'        => true,
-            'hierarchical'       => false,
-            'menu_position'      => 5,
-            'menu_icon'          => 'dashicons-calendar-alt',
-            'supports'           => array('title', 'editor', 'thumbnail', 'excerpt', 'custom-fields'),
-            'show_in_nav_menus'  => true,
+            'show_ui' => true,
+            'show_in_rest' => true,
+            'rest_base' => '',
+            'rest_controller_class' => 'WP_REST_Posts_Controller',
+            'rest_namespace' => 'wp/v2',
+            'has_archive' => true,
+            'show_in_menu' => true,
+            'show_in_nav_menus' => true,
+            'delete_with_user' => false,
+            'exclude_from_search' => false,
+            'capability_type' => 'post',
+            'map_meta_cap' => true,
+            'hierarchical' => false,
+            'can_export' => false,
+            'rewrite' => array('slug' => 'program', 'with_front' => true),
+            'query_var' => true,
+            'supports' => array('title', 'editor', 'thumbnail'),
+            'show_in_graphql' => false,
+            'menu_position' => 5,
+            'menu_icon' => 'dashicons-calendar-alt',
         );
 
         register_post_type('arta_program', $args);
@@ -95,10 +102,10 @@ class Arta_Post_Types {
      */
     private function register_arta_consultation_post_type() {
         $labels = array(
-            'name'                  => _x('درخواست‌های مشاوره', 'Post type general name', 'arta-consult-rx'),
-            'singular_name'         => _x('درخواست مشاوره', 'Post type singular name', 'arta-consult-rx'),
-            'menu_name'             => _x('درخواست‌های مشاوره', 'Admin Menu text', 'arta-consult-rx'),
-            'name_admin_bar'        => _x('درخواست مشاوره', 'Add New on Toolbar', 'arta-consult-rx'),
+            'name'                  => __('درخواست‌های مشاوره', 'arta-consult-rx'),
+            'singular_name'         => __('درخواست مشاوره', 'arta-consult-rx'),
+            'menu_name'             => __('درخواست‌های مشاوره', 'arta-consult-rx'),
+            'name_admin_bar'        => __('درخواست مشاوره', 'arta-consult-rx'),
             'add_new'               => __('افزودن جدید', 'arta-consult-rx'),
             'add_new_item'          => __('افزودن درخواست جدید', 'arta-consult-rx'),
             'new_item'              => __('درخواست جدید', 'arta-consult-rx'),
@@ -109,16 +116,16 @@ class Arta_Post_Types {
             'parent_item_colon'     => __('درخواست والد:', 'arta-consult-rx'),
             'not_found'             => __('درخواستی یافت نشد.', 'arta-consult-rx'),
             'not_found_in_trash'    => __('هیچ درخواستی در سطل زباله یافت نشد.', 'arta-consult-rx'),
-            'featured_image'        => _x('تصویر شاخص درخواست', 'Overrides the "Featured Image" phrase', 'arta-consult-rx'),
-            'set_featured_image'    => _x('تنظیم تصویر شاخص', 'Overrides the "Set featured image" phrase', 'arta-consult-rx'),
-            'remove_featured_image' => _x('حذف تصویر شاخص', 'Overrides the "Remove featured image" phrase', 'arta-consult-rx'),
-            'use_featured_image'    => _x('استفاده به عنوان تصویر شاخص', 'Overrides the "Use as featured image" phrase', 'arta-consult-rx'),
-            'archives'              => _x('آرشیو درخواست‌ها', 'The post type archive label', 'arta-consult-rx'),
-            'insert_into_item'      => _x('درج در درخواست', 'Overrides the "Insert into post" phrase', 'arta-consult-rx'),
-            'uploaded_to_this_item' => _x('آپلود شده در این درخواست', 'Overrides the "Uploaded to this post" phrase', 'arta-consult-rx'),
-            'filter_items_list'     => _x('فیلتر لیست درخواست‌ها', 'Screen reader text for the filter links', 'arta-consult-rx'),
-            'items_list_navigation' => _x('ناوبری لیست درخواست‌ها', 'Screen reader text for the pagination', 'arta-consult-rx'),
-            'items_list'            => _x('لیست درخواست‌ها', 'Screen reader text for the items list', 'arta-consult-rx'),
+            'featured_image'        => __('تصویر شاخص درخواست', 'arta-consult-rx'),
+            'set_featured_image'    => __('تنظیم تصویر شاخص', 'arta-consult-rx'),
+            'remove_featured_image' => __('حذف تصویر شاخص', 'arta-consult-rx'),
+            'use_featured_image'    => __('استفاده به عنوان تصویر شاخص', 'arta-consult-rx'),
+            'archives'              => __('آرشیو درخواست‌ها', 'arta-consult-rx'),
+            'insert_into_item'      => __('درج در درخواست', 'arta-consult-rx'),
+            'uploaded_to_this_item' => __('آپلود شده در این درخواست', 'arta-consult-rx'),
+            'filter_items_list'     => __('فیلتر لیست درخواست‌ها', 'arta-consult-rx'),
+            'items_list_navigation' => __('ناوبری لیست درخواست‌ها', 'arta-consult-rx'),
+            'items_list'            => __('لیست درخواست‌ها', 'arta-consult-rx'),
         );
 
         $args = array(
@@ -154,9 +161,10 @@ class Arta_Post_Types {
         add_action('restrict_manage_posts', array($this, 'add_consultation_filters'));
         add_filter('parse_query', array($this, 'filter_consultation_queries'));
         
-        // Add AJAX handlers for approval/rejection
+        // Add AJAX handlers for approval/rejection/completion
         add_action('wp_ajax_arta_approve_consultation', array($this, 'handle_consultation_approval'));
         add_action('wp_ajax_arta_reject_consultation', array($this, 'handle_consultation_rejection'));
+        add_action('wp_ajax_arta_complete_consultation', array($this, 'handle_consultation_completion'));
         
         // Add admin footer script for consultation list
         add_action('admin_footer-edit.php', array($this, 'add_consultation_list_scripts'));
@@ -165,93 +173,6 @@ class Arta_Post_Types {
         add_action('admin_footer', array($this, 'add_consultation_list_scripts'));
     }
 
-    /**
-     * Template loader
-     */
-    public function template_loader($template) {
-        global $wp_query;
-        
-        // Check if this is a 404 and we're looking for an arta_program
-        if (is_404() && isset($wp_query->query_vars['name'])) {
-            $post_name = $wp_query->query_vars['name'];
-            
-            // Try to find the post by name
-            $post = get_page_by_path($post_name, OBJECT, 'arta_program');
-            
-            if ($post) {
-                // Set up the global post
-                $GLOBALS['post'] = $post;
-                setup_postdata($post);
-                
-                // Load our custom template
-                $plugin_template = ARTA_CONSULT_RX_PLUGIN_DIR . 'templates/single-arta_program.php';
-                
-                if (file_exists($plugin_template)) {
-                    return $plugin_template;
-                }
-            }
-        }
-        
-        // Regular template loading for non-404 cases
-        if (is_singular('arta_program')) {
-            $plugin_template = ARTA_CONSULT_RX_PLUGIN_DIR . 'templates/single-arta_program.php';
-            
-            if (file_exists($plugin_template)) {
-                return $plugin_template;
-            }
-        }
-        
-        return $template;
-    }
-
-    /**
-     * Handle arta_program redirect for 404 cases
-     */
-    public function handle_arta_program_redirect() {
-        global $wp_query;
-        
-        if (is_404() && isset($wp_query->query_vars['name'])) {
-            $post_name = $wp_query->query_vars['name'];
-            
-            // Try to find the post by name
-            $post = get_page_by_path($post_name, OBJECT, 'arta_program');
-            
-            if ($post) {
-                // Set up the global post
-                $GLOBALS['post'] = $post;
-                setup_postdata($post);
-                
-                // Clear 404 status
-                $wp_query->is_404 = false;
-                $wp_query->is_single = true;
-                $wp_query->is_singular = true;
-                $wp_query->queried_object = $post;
-                $wp_query->queried_object_id = $post->ID;
-                $wp_query->posts = array($post);
-                $wp_query->post_count = 1;
-                $wp_query->found_posts = 1;
-                $wp_query->max_num_pages = 1;
-                
-                // Load our custom template
-                $plugin_template = ARTA_CONSULT_RX_PLUGIN_DIR . 'templates/single-arta_program.php';
-                
-                if (file_exists($plugin_template)) {
-                    include $plugin_template;
-                    exit;
-                }
-            }
-        }
-    }
-
-    /**
-     * Flush rewrite rules if needed
-     */
-    public function flush_rewrite_rules_if_needed() {
-        if (get_option('arta_consult_rx_flush_rewrite_rules')) {
-            flush_rewrite_rules();
-            delete_option('arta_consult_rx_flush_rewrite_rules');
-        }
-    }
 
     /**
      * Add meta boxes for consultation
@@ -263,6 +184,15 @@ class Arta_Post_Types {
             array($this, 'render_consultation_meta_box'),
             'arta_consultation',
             'normal',
+            'high'
+        );
+        
+        add_meta_box(
+            'arta_consultation_approval',
+            __('وضعیت درخواست', 'arta-consult-rx'),
+            array($this, 'render_consultation_approval_meta_box'),
+            'arta_consultation',
+            'side',
             'high'
         );
     }
@@ -301,9 +231,29 @@ class Arta_Post_Types {
         $doctor = get_user_by('ID', $doctor_id);
         $doctor_name = $doctor ? $doctor->display_name : __('نامشخص', 'arta-consult-rx');
 
-        // Get program info
-        $program = get_post($program_id);
-        $program_title = $program ? $program->post_title : __('نامشخص', 'arta-consult-rx');
+        // Get programs info
+        $programs = get_post_meta($post->ID, '_arta_programs', true);
+        $program_titles = array();
+        if (!empty($programs) && is_array($programs)) {
+            foreach ($programs as $prog_id) {
+                $program = get_post($prog_id);
+                if ($program) {
+                    $program_titles[] = $program->post_title;
+                }
+            }
+        }
+        
+        // Get products info
+        $products = get_post_meta($post->ID, '_arta_products', true);
+        $product_titles = array();
+        if (!empty($products) && is_array($products)) {
+            foreach ($products as $prod_id) {
+                $product = get_post($prod_id);
+                if ($product) {
+                    $product_titles[] = $product->post_title;
+                }
+            }
+        }
 
         wp_nonce_field('arta_consultation_meta_box', 'arta_consultation_meta_box_nonce');
         ?>
@@ -371,65 +321,71 @@ class Arta_Post_Types {
 
             <!-- Appointment Information -->
             <div class="arta-meta-section">
-                <h4>📅 اطلاعات نوبت</h4>
+                <h4>📅 <?php _e('اطلاعات نوبت', 'arta-consult-rx'); ?></h4>
                 <div class="arta-meta-row">
                     <div class="arta-meta-field">
-                        <label>تاریخ نوبت:</label>
+                        <label><?php _e('تاریخ نوبت:', 'arta-consult-rx'); ?></label>
                         <input type="date" name="arta_appointment_date" value="<?php echo esc_attr($appointment_date); ?>" class="arta-readonly" readonly>
                     </div>
                     <div class="arta-meta-field">
-                        <label>ساعت نوبت:</label>
+                        <label><?php _e('ساعت نوبت:', 'arta-consult-rx'); ?></label>
                         <input type="text" value="<?php echo $appointment ? esc_html($appointment->appointment_time) : ''; ?>" class="arta-readonly" readonly>
+                    </div>
+                </div>
+                <div class="arta-meta-row single">
+                    <div class="arta-meta-field">
+                        <label><?php _e('پزشک:', 'arta-consult-rx'); ?></label>
+                        <input type="text" value="<?php echo esc_html($doctor_name); ?>" class="arta-readonly" readonly>
                     </div>
                 </div>
                 <div class="arta-meta-row">
                     <div class="arta-meta-field">
-                        <label>پزشک:</label>
-                        <input type="text" value="<?php echo esc_html($doctor_name); ?>" class="arta-readonly" readonly>
+                        <label><?php printf(__('برنامه‌ها (%d برنامه):', 'arta-consult-rx'), count($program_titles)); ?></label>
+                        <textarea class="arta-readonly" readonly style="min-height: 60px;"><?php echo !empty($program_titles) ? implode("\n", $program_titles) : __('هیچ برنامه‌ای ثبت نشده', 'arta-consult-rx'); ?></textarea>
                     </div>
                     <div class="arta-meta-field">
-                        <label>برنامه:</label>
-                        <input type="text" value="<?php echo esc_html($program_title); ?>" class="arta-readonly" readonly>
+                        <label><?php printf(__('محصولات (%d محصول):', 'arta-consult-rx'), count($product_titles)); ?></label>
+                        <textarea class="arta-readonly" readonly style="min-height: 60px;"><?php echo !empty($product_titles) ? implode("\n", $product_titles) : __('هیچ محصولی ثبت نشده', 'arta-consult-rx'); ?></textarea>
                     </div>
                 </div>
             </div>
 
             <!-- Personal Information -->
             <div class="arta-meta-section">
-                <h4>👤 اطلاعات شخصی</h4>
+                <h4>👤 <?php _e('اطلاعات شخصی', 'arta-consult-rx'); ?></h4>
                 <div class="arta-meta-row">
                     <div class="arta-meta-field">
-                        <label>نام و نام خانوادگی:</label>
+                        <label><?php _e('نام و نام خانوادگی:', 'arta-consult-rx'); ?></label>
                         <input type="text" name="arta_full_name" value="<?php echo esc_attr($full_name); ?>">
                     </div>
                     <div class="arta-meta-field">
-                        <label>جنسیت:</label>
+                        <label><?php _e('جنسیت:', 'arta-consult-rx'); ?></label>
                         <select name="arta_gender">
-                            <option value="male" <?php selected($gender, 'male'); ?>>مرد</option>
-                            <option value="female" <?php selected($gender, 'female'); ?>>زن</option>
+                            <option value="male" <?php selected($gender, 'male'); ?>><?php _e('مرد', 'arta-consult-rx'); ?></option>
+                            <option value="female" <?php selected($gender, 'female'); ?>><?php _e('زن', 'arta-consult-rx'); ?></option>
                         </select>
                     </div>
                 </div>
                 <div class="arta-meta-row">
                     <div class="arta-meta-field">
-                        <label>تاریخ تولد:</label>
+                        <label><?php _e('تاریخ تولد:', 'arta-consult-rx'); ?></label>
                         <input type="date" name="arta_birth_date" value="<?php echo esc_attr($birth_date); ?>">
                     </div>
                     <div class="arta-meta-field">
-                        <label>قد (سانتی‌متر):</label>
+                        <label><?php _e('قد (سانتی‌متر):', 'arta-consult-rx'); ?></label>
                         <input type="number" name="arta_height" value="<?php echo esc_attr($height); ?>" min="100" max="250">
                     </div>
                 </div>
                 <div class="arta-meta-row">
                     <div class="arta-meta-field">
-                        <label>وزن (کیلوگرم):</label>
+                        <label><?php _e('وزن (کیلوگرم):', 'arta-consult-rx'); ?></label>
                         <input type="number" name="arta_weight" value="<?php echo esc_attr($weight); ?>" min="30" max="200">
                     </div>
                     <div class="arta-meta-field">
-                        <label>تأیید مشاوره پزشکی:</label>
+                        <label><?php _e('تأیید مشاوره پزشکی:', 'arta-consult-rx'); ?></label>
                         <select name="arta_medical_consultation">
-                            <option value="0" <?php selected($medical_consultation, '0'); ?>>خیر</option>
-                            <option value="1" <?php selected($medical_consultation, '1'); ?>>بله</option>
+                            <option value="0" <?php selected($medical_consultation, '0'); ?>><?php _e('خیر', 'arta-consult-rx'); ?></option>
+                            <option value="1" <?php selected($medical_consultation, '1'); ?>><?php _e('بله', 'arta-consult-rx'); ?></option>
                         </select>
                     </div>
                 </div>
@@ -437,14 +393,14 @@ class Arta_Post_Types {
 
             <!-- Contact Information -->
             <div class="arta-meta-section">
-                <h4>📞 اطلاعات تماس</h4>
+                <h4>📞 <?php _e('اطلاعات تماس', 'arta-consult-rx'); ?></h4>
                 <div class="arta-meta-row">
                     <div class="arta-meta-field">
-                        <label>ایمیل:</label>
+                        <label><?php _e('ایمیل:', 'arta-consult-rx'); ?></label>
                         <input type="email" name="arta_email" value="<?php echo esc_attr($email); ?>">
                     </div>
                     <div class="arta-meta-field">
-                        <label>شماره تماس:</label>
+                        <label><?php _e('شماره تماس:', 'arta-consult-rx'); ?></label>
                         <input type="tel" name="arta_phone" value="<?php echo esc_attr($phone); ?>">
                     </div>
                 </div>
@@ -452,58 +408,22 @@ class Arta_Post_Types {
 
             <!-- Medical Information -->
             <div class="arta-meta-section">
-                <h4>🏥 اطلاعات پزشکی</h4>
+                <h4>🏥 <?php _e('اطلاعات پزشکی', 'arta-consult-rx'); ?></h4>
                 <div class="arta-meta-field">
-                    <label>بیماری‌های مزمن:</label>
+                    <label><?php _e('بیماری‌های مزمن:', 'arta-consult-rx'); ?></label>
                     <textarea name="arta_chronic_diseases"><?php echo esc_textarea($chronic_diseases); ?></textarea>
                 </div>
                 <div class="arta-meta-field">
-                    <label>داروهای مصرفی:</label>
+                    <label><?php _e('داروهای مصرفی:', 'arta-consult-rx'); ?></label>
                     <textarea name="arta_medications"><?php echo esc_textarea($medications); ?></textarea>
                 </div>
                 <div class="arta-meta-field">
-                    <label>سوابق درمانی:</label>
+                    <label><?php _e('سوابق درمانی:', 'arta-consult-rx'); ?></label>
                     <textarea name="arta_medical_history"><?php echo esc_textarea($medical_history); ?></textarea>
                 </div>
                 <div class="arta-meta-field">
-                    <label>هدف از برنامه:</label>
+                    <label><?php _e('هدف از برنامه:', 'arta-consult-rx'); ?></label>
                     <textarea name="arta_program_goal"><?php echo esc_textarea($program_goal); ?></textarea>
-                </div>
-            </div>
-
-            <!-- Approval Section -->
-            <div class="arta-meta-section">
-                <h4>✅ تایید/رد درخواست</h4>
-                <?php
-                $approval_status = get_post_meta($post->ID, '_arta_approval_status', true);
-                if (!$approval_status) {
-                    $approval_status = 'pending';
-                }
-                
-                $rejection_reason = get_post_meta($post->ID, '_arta_rejection_reason', true);
-                ?>
-                
-                <div class="arta-meta-row">
-                    <div class="arta-meta-field">
-                        <label>وضعیت تایید:</label>
-                        <select name="arta_approval_status">
-                            <option value="pending" <?php selected($approval_status, 'pending'); ?>>در انتظار بررسی</option>
-                            <option value="approved" <?php selected($approval_status, 'approved'); ?>>تایید شده</option>
-                            <option value="rejected" <?php selected($approval_status, 'rejected'); ?>>رد شده</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <?php if ($approval_status === 'rejected' && $rejection_reason): ?>
-                <div class="arta-meta-field">
-                    <label>دلیل رد:</label>
-                    <textarea name="arta_rejection_reason" rows="3" readonly><?php echo esc_textarea($rejection_reason); ?></textarea>
-                </div>
-                <?php endif; ?>
-                
-                <div class="arta-approval-actions" style="margin-top: 15px;">
-                    <a href="#" class="arta-btn-approve-inline" data-post-id="<?php echo $post->ID; ?>" style="background: #4caf50; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin-left: 10px; text-decoration: none; display: inline-block;">تایید درخواست</a>
-                    <a href="#" class="arta-btn-reject-inline" data-post-id="<?php echo $post->ID; ?>" style="background: #f44336; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; text-decoration: none; display: inline-block;">رد درخواست</a>
                 </div>
             </div>
         </div>
@@ -511,12 +431,12 @@ class Arta_Post_Types {
         <!-- Rejection Modal -->
         <div id="arta-rejection-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999;">
             <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 8px; max-width: 500px; width: 90%;">
-                <h3 style="margin-top: 0;">رد درخواست</h3>
-                <p>لطفاً دلیل رد درخواست را وارد کنید:</p>
-                <textarea id="rejection-reason" rows="4" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; margin: 10px 0;" placeholder="دلیل رد درخواست (اختیاری)"></textarea>
+                <h3 style="margin-top: 0;"><?php _e('رد درخواست', 'arta-consult-rx'); ?></h3>
+                <p><?php _e('لطفاً دلیل رد درخواست را وارد کنید:', 'arta-consult-rx'); ?></p>
+                <textarea id="rejection-reason" rows="4" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; margin: 10px 0;" placeholder="<?php esc_attr_e('دلیل رد درخواست (اختیاری)', 'arta-consult-rx'); ?>"></textarea>
                 <div style="text-align: left; margin-top: 20px;">
-                    <button id="confirm-rejection" style="background: #f44336; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin-left: 10px;">تایید رد</button>
-                    <button id="cancel-rejection" style="background: #6c757d; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">لغو</button>
+                    <button id="confirm-rejection" style="background: #f44336; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin-left: 10px;"><?php _e('تایید رد', 'arta-consult-rx'); ?></button>
+                    <button id="cancel-rejection" style="background: #6c757d; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;"><?php _e('لغو', 'arta-consult-rx'); ?></button>
                 </div>
             </div>
         </div>
@@ -527,7 +447,7 @@ class Arta_Post_Types {
             $(document).on('click', '.arta-btn-approve-inline, .arta-btn-approve', function(e) {
                 e.preventDefault();
                 var postId = $(this).data('post-id');
-                if (confirm('آیا مطمئن هستید که می‌خواهید این درخواست را تایید کنید؟')) {
+                if (confirm('<?php echo esc_js(__('آیا مطمئن هستید که می‌خواهید این درخواست را تایید کنید؟', 'arta-consult-rx')); ?>')) {
                     $.ajax({
                         url: ajaxurl,
                         type: 'POST',
@@ -538,14 +458,13 @@ class Arta_Post_Types {
                         },
                         success: function(response) {
                             if (response.success) {
-                                alert(response.data.message);
                                 location.reload();
                             } else {
-                                alert(response.data.message || 'خطا در تایید درخواست');
+                                alert(response.data.message || '<?php echo esc_js(__('خطا در تایید درخواست', 'arta-consult-rx')); ?>');
                             }
                         },
                         error: function() {
-                            alert('خطا در ارتباط با سرور');
+                            alert('<?php echo esc_js(__('خطا در ارتباط با سرور', 'arta-consult-rx')); ?>');
                         }
                     });
                 }
@@ -575,14 +494,14 @@ class Arta_Post_Types {
                     },
                     success: function(response) {
                         if (response.success) {
-                            alert(response.data.message);
+                            $btn.text('<?php echo esc_js(__('انجام شد درحال بارگذاری...', 'arta-consult-rx')); ?>');
                             location.reload();
                         } else {
-                            alert(response.data.message || 'خطا در رد درخواست');
+                            alert(response.data.message || '<?php echo esc_js(__('خطا در رد درخواست', 'arta-consult-rx')); ?>');
                         }
                     },
                     error: function() {
-                        alert('خطا در ارتباط با سرور');
+                        alert('<?php echo esc_js(__('خطا در ارتباط با سرور', 'arta-consult-rx')); ?>');
                     }
                 });
             });
@@ -591,6 +510,108 @@ class Arta_Post_Types {
             $('#cancel-rejection').on('click', function() {
                 $('#arta-rejection-modal').hide();
                 $('#rejection-reason').val('');
+            });
+        });
+        </script>
+        <?php
+    }
+
+    /**
+     * Render consultation approval meta box (sidebar)
+     */
+    public function render_consultation_approval_meta_box($post) {
+        $approval_status = get_post_meta($post->ID, '_arta_approval_status', true);
+        if (!$approval_status) {
+            $approval_status = 'pending';
+        }
+        
+        $rejection_reason = get_post_meta($post->ID, '_arta_rejection_reason', true);
+        
+        wp_nonce_field('arta_consultation_approval_meta_box', 'arta_consultation_approval_meta_box_nonce');
+        ?>
+        <style>
+            .arta-approval-meta-box {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            }
+            .arta-approval-field {
+                margin-bottom: 15px;
+            }
+            .arta-approval-field label {
+                display: block;
+                font-weight: 600;
+                margin-bottom: 8px;
+                color: #1d2327;
+                font-size: 14px;
+            }
+            .arta-approval-field select {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #8c8f94;
+                border-radius: 4px;
+                font-size: 14px;
+            }
+            .arta-approval-field textarea {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #8c8f94;
+                border-radius: 4px;
+                font-size: 13px;
+                resize: vertical;
+                background: #f6f7f7;
+            }
+            .arta-status-indicator {
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                margin-left: 8px;
+                vertical-align: middle;
+            }
+            .arta-status-pending {
+                background-color: #ff9800;
+            }
+            .arta-status-approved {
+                background-color: #4caf50;
+            }
+            .arta-status-rejected {
+                background-color: #f44336;
+            }
+            .arta-status-completed {
+                background-color: #2196f3;
+            }
+        </style>
+        
+        <div class="arta-approval-meta-box">
+            <div class="arta-approval-field">
+                
+                <select name="arta_approval_status" id="arta_approval_status">
+                    <option value="pending" <?php selected($approval_status, 'pending'); ?>>🟠 <?php _e('در انتظار بررسی', 'arta-consult-rx'); ?></option>
+                    <option value="approved" <?php selected($approval_status, 'approved'); ?>>🟢 <?php _e('تایید شده', 'arta-consult-rx'); ?></option>
+                    <option value="rejected" <?php selected($approval_status, 'rejected'); ?>>🔴 <?php _e('رد شده', 'arta-consult-rx'); ?></option>
+                    <option value="completed" <?php selected($approval_status, 'completed'); ?>>🔵 <?php _e('تکمیل شده', 'arta-consult-rx'); ?></option>
+                </select>
+            </div>
+            
+            
+            <div class="arta-approval-field" id="arta-rejection-reason-field" style="display: <?php echo $approval_status === 'rejected'  ? 'block' : 'none'; ?>;">
+                <label><?php _e('دلیل رد:', 'arta-consult-rx'); ?></label>
+                <textarea name="arta_rejection_reason" rows="4" placeholder="<?php esc_attr_e('دلیل رد درخواست را وارد کنید...', 'arta-consult-rx'); ?>"><?php echo esc_textarea($rejection_reason); ?></textarea>
+            </div>
+            
+        </div>
+        
+        <script>
+        jQuery(document).ready(function($) {
+            // Show/hide rejection reason field based on status selection
+            $('#arta_approval_status').on('change', function() {
+                var status = $(this).val();
+                var $rejectionField = $('#arta-rejection-reason-field');
+                
+                if (status === 'rejected') {
+                    $rejectionField.fadeIn(200);
+                } else {
+                    $rejectionField.fadeOut(200);
+                }
             });
         });
         </script>
@@ -654,26 +675,48 @@ class Arta_Post_Types {
             // Update approval status
             update_post_meta($post_id, '_arta_approval_status', $new_status);
             
+            // Save rejection reason if provided
+            if (isset($_POST['arta_rejection_reason'])) {
+                $rejection_reason = sanitize_textarea_field($_POST['arta_rejection_reason']);
+                update_post_meta($post_id, '_arta_rejection_reason', $rejection_reason);
+            }
+            
             // Update appointment status based on approval status change
             $appointment_id = get_post_meta($post_id, '_arta_appointment_id', true);
             if ($appointment_id) {
                 global $wpdb;
                 $table_name = $wpdb->prefix . 'arta_appointments';
                 
-                if ($new_status === 'approved') {
-                    // If approved, set appointment to booked
-                    $wpdb->update(
+                // Map approval status to appointment status
+                $appointment_status = '';
+                
+                switch ($new_status) {
+                    case 'approved':
+                        // If approved, set appointment to booked
+                        $appointment_status = 'booked';
+                        break;
+                        
+                    case 'rejected':
+                        // If rejected, set appointment to available
+                        $appointment_status = 'available';
+                        break;
+                        
+                    case 'completed':
+                        // If completed, set appointment to completed
+                        $appointment_status = 'completed';
+                        break;
+                        
+                    case 'pending':
+                        // If pending, set appointment to booked (keep the reservation)
+                        $appointment_status = 'booked';
+                        break;
+                }
+                
+                // Update appointment status if mapping exists
+                if ($appointment_status) {
+                    $result = $wpdb->update(
                         $table_name,
-                        array('status' => 'booked'),
-                        array('id' => $appointment_id),
-                        array('%s'),
-                        array('%d')
-                    );
-                } elseif ($new_status === 'rejected') {
-                    // If rejected, set appointment to available
-                    $wpdb->update(
-                        $table_name,
-                        array('status' => 'available'),
+                        array('status' => $appointment_status),
                         array('id' => $appointment_id),
                         array('%s'),
                         array('%d')
@@ -698,7 +741,8 @@ class Arta_Post_Types {
         $new_columns['appointment_date'] = __('تاریخ نوبت', 'arta-consult-rx');
         $new_columns['appointment_time'] = __('ساعت نوبت', 'arta-consult-rx');
         $new_columns['doctor'] = __('پزشک', 'arta-consult-rx');
-        $new_columns['program'] = __('برنامه', 'arta-consult-rx');
+        $new_columns['programs'] = __('برنامه‌ها', 'arta-consult-rx');
+        $new_columns['products'] = __('محصولات', 'arta-consult-rx');
         $new_columns['status'] = __('وضعیت', 'arta-consult-rx');
         $new_columns['approval'] = __('تایید/رد', 'arta-consult-rx');
         $new_columns['date'] = __('تاریخ ثبت', 'arta-consult-rx');
@@ -762,12 +806,40 @@ class Arta_Post_Types {
                 }
                 break;
                 
-            case 'program':
-                $program_id = get_post_meta($post_id, '_arta_program_id', true);
-                if ($program_id) {
-                    $program = get_post($program_id);
-                    if ($program) {
-                        echo '<a href="' . get_edit_post_link($program_id) . '">' . esc_html($program->post_title) . '</a>';
+            case 'programs':
+                $programs = get_post_meta($post_id, '_arta_programs', true);
+                if (!empty($programs) && is_array($programs)) {
+                    $program_names = array();
+                    foreach ($programs as $program_id) {
+                        $program = get_post($program_id);
+                        if ($program) {
+                            $program_names[] = '<a href="' . get_edit_post_link($program_id) . '" target="_blank">' . esc_html($program->post_title) . '</a>';
+                        }
+                    }
+                    if (!empty($program_names)) {
+                        echo '<span class="arta-programs-list">' . implode('<br>', $program_names) . '</span>';
+                        echo '<br><small style="color: #666;">(' . count($program_names) . ' ' . __('برنامه', 'arta-consult-rx') . ')</small>';
+                    } else {
+                        echo '—';
+                    }
+                } else {
+                    echo '—';
+                }
+                break;
+
+            case 'products':
+                $products = get_post_meta($post_id, '_arta_products', true);
+                if (!empty($products) && is_array($products)) {
+                    $product_names = array();
+                    foreach ($products as $product_id) {
+                        $product = get_post($product_id);
+                        if ($product) {
+                            $product_names[] = '<a href="' . get_edit_post_link($product_id) . '" target="_blank">' . esc_html($product->post_title) . '</a>';
+                        }
+                    }
+                    if (!empty($product_names)) {
+                        echo '<span class="arta-products-list">' . implode('<br>', $product_names) . '</span>';
+                        echo '<br><small style="color: #666;">(' . count($product_names) . ' ' . __('محصول', 'arta-consult-rx') . ')</small>';
                     } else {
                         echo '—';
                     }
@@ -812,18 +884,34 @@ class Arta_Post_Types {
                 $approval_labels = array(
                     'pending' => __('در انتظار بررسی', 'arta-consult-rx'),
                     'approved' => __('تایید شده', 'arta-consult-rx'),
-                    'rejected' => __('رد شده', 'arta-consult-rx')
+                    'rejected' => __('رد شده', 'arta-consult-rx'),
+                    'completed' => __('تکمیل شده', 'arta-consult-rx')
+                );
+                
+                $approval_colors = array(
+                    'pending' => '#ff9800',   // نارنجی
+                    'approved' => '#4caf50',  // سبز
+                    'rejected' => '#f44336',  // قرمز
+                    'completed' => '#2196f3'  // آبی
                 );
                 
                 $approval_class = 'approval-' . $approval_status;
                 $approval_text = isset($approval_labels[$approval_status]) ? $approval_labels[$approval_status] : $approval_status;
+                $approval_color = isset($approval_colors[$approval_status]) ? $approval_colors[$approval_status] : '#999';
                 
-                echo '<span class="arta-approval-status ' . esc_attr($approval_class) . '">' . esc_html($approval_text) . '</span>';
+                echo '<span class="arta-approval-status ' . esc_attr($approval_class) . '">';
+                echo '<span class="status-dot" style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: ' . esc_attr($approval_color) . '; margin-left: 6px;"></span>';
+                echo esc_html($approval_text);
+                echo '</span>';
                 
                 if ($approval_status === 'pending') {
                     echo '<div class="arta-approval-actions" style="margin-top: 5px;">';
-                    echo '<a href="#" class="arta-btn-approve" data-post-id="' . $post_id . '" style="background: #4caf50; color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; margin-left: 5px; text-decoration: none; display: inline-block;">تایید</a>';
-                    echo '<a href="#" class="arta-btn-reject" data-post-id="' . $post_id . '" style="background: #f44336; color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; text-decoration: none; display: inline-block;">رد</a>';
+                    echo '<a href="#" class="arta-btn-approve" data-post-id="' . $post_id . '" style="background: #4caf50; color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; margin-left: 5px; text-decoration: none; display: inline-block;">' . __('تایید', 'arta-consult-rx') . '</a>';
+                    echo '<a href="#" class="arta-btn-reject" data-post-id="' . $post_id . '" style="background: #f44336; color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; text-decoration: none; display: inline-block;">' . __('رد', 'arta-consult-rx') . '</a>';
+                    echo '</div>';
+                } elseif ($approval_status === 'approved') {
+                    echo '<div class="arta-approval-actions" style="margin-top: 5px;">';
+                    echo '<a href="#" class="arta-btn-complete" data-post-id="' . $post_id . '" style="background: #2196f3; color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; text-decoration: none; display: inline-block;">' . __('تکمیل شده', 'arta-consult-rx') . '</a>';
                     echo '</div>';
                 }
                 break;
@@ -873,10 +961,11 @@ class Arta_Post_Types {
             // Approval status filter
             echo '<select name="filter_approval">';
             $approval_options = array(
-                '' => 'همه وضعیت‌ها',
-                'pending' => 'در انتظار بررسی',
-                'approved' => 'تایید شده',
-                'rejected' => 'رد شده'
+                '' => __('همه وضعیت‌ها', 'arta-consult-rx'),
+                'pending' => __('در انتظار بررسی', 'arta-consult-rx'),
+                'approved' => __('تایید شده', 'arta-consult-rx'),
+                'rejected' => __('رد شده', 'arta-consult-rx'),
+                'completed' => __('تکمیل شده', 'arta-consult-rx')
             );
             foreach ($approval_options as $value => $label) {
                 $selected = isset($_GET['filter_approval']) ? selected($_GET['filter_approval'], $value, false) : '';
@@ -992,6 +1081,38 @@ class Arta_Post_Types {
     }
 
     /**
+     * Handle consultation completion
+     */
+    public function handle_consultation_completion() {
+        check_ajax_referer('arta_consultation_nonce', 'nonce');
+        
+        if (!current_user_can('edit_posts')) {
+            wp_die(__('شما مجوز لازم را ندارید', 'arta-consult-rx'));
+        }
+
+        $post_id = intval($_POST['post_id']);
+        
+        // Update approval status to completed
+        update_post_meta($post_id, '_arta_approval_status', 'completed');
+        
+        // Update appointment status to completed
+        $appointment_id = get_post_meta($post_id, '_arta_appointment_id', true);
+        if ($appointment_id) {
+            global $wpdb;
+            $table_name = $wpdb->prefix . 'arta_appointments';
+            $wpdb->update(
+                $table_name,
+                array('status' => 'completed'),
+                array('id' => $appointment_id),
+                array('%s'),
+                array('%d')
+            );
+        }
+
+        wp_send_json_success(array('message' => __('درخواست به تکمیل شده تغییر یافت', 'arta-consult-rx')));
+    }
+
+    /**
      * Add scripts to consultation list page
      */
     public function add_consultation_list_scripts() {
@@ -1002,12 +1123,12 @@ class Arta_Post_Types {
             <!-- Rejection Modal -->
             <div id="arta-rejection-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999;">
                 <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 8px; max-width: 500px; width: 90%;">
-                    <h3 style="margin-top: 0;">رد درخواست</h3>
-                    <p>لطفاً دلیل رد درخواست را وارد کنید:</p>
-                    <textarea id="rejection-reason" rows="4" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; margin: 10px 0;" placeholder="دلیل رد درخواست (اختیاری)"></textarea>
+                    <h3 style="margin-top: 0;"><?php _e('رد درخواست', 'arta-consult-rx'); ?></h3>
+                    <p><?php _e('لطفاً دلیل رد درخواست را وارد کنید:', 'arta-consult-rx'); ?></p>
+                    <textarea id="rejection-reason" rows="4" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; margin: 10px 0;" placeholder="<?php esc_attr_e('دلیل رد درخواست (اختیاری)', 'arta-consult-rx'); ?>"></textarea>
                     <div style="text-align: left; margin-top: 20px;">
-                        <button id="confirm-rejection" style="background: #f44336; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin-left: 10px;">تایید رد</button>
-                        <button id="cancel-rejection" style="background: #6c757d; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">لغو</button>
+                        <button id="confirm-rejection" style="background: #f44336; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin-left: 10px;"><?php _e('تایید رد', 'arta-consult-rx'); ?></button>
+                        <button id="cancel-rejection" style="background: #6c757d; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;"><?php _e('لغو', 'arta-consult-rx'); ?></button>
                     </div>
                 </div>
             </div>
@@ -1018,7 +1139,7 @@ class Arta_Post_Types {
                 $(document).on('click', '.arta-btn-approve', function(e) {
                     e.preventDefault();
                     var postId = $(this).data('post-id');
-                    if (confirm('آیا مطمئن هستید که می‌خواهید این درخواست را تایید کنید؟')) {
+                    if (confirm('<?php echo esc_js(__('آیا مطمئن هستید که می‌خواهید این درخواست را تایید کنید؟', 'arta-consult-rx')); ?>')) {
                         $.ajax({
                             url: ajaxurl,
                             type: 'POST',
@@ -1029,14 +1150,13 @@ class Arta_Post_Types {
                             },
                             success: function(response) {
                                 if (response.success) {
-                                    alert(response.data.message);
                                     location.reload();
                                 } else {
-                                    alert(response.data.message || 'خطا در تایید درخواست');
+                                    alert(response.data.message || '<?php echo esc_js(__('خطا در تایید درخواست', 'arta-consult-rx')); ?>');
                                 }
                             },
                             error: function() {
-                                alert('خطا در ارتباط با سرور');
+                                alert('<?php echo esc_js(__('خطا در ارتباط با سرور', 'arta-consult-rx')); ?>');
                             }
                         });
                     }
@@ -1057,7 +1177,7 @@ class Arta_Post_Types {
                     var reason = $('#rejection-reason').val();
                     
                     // Add loading state
-                    $btn.prop('disabled', true).text('در حال پردازش...');
+                    $btn.prop('disabled', true).text('<?php echo esc_js(__('در حال پردازش...', 'arta-consult-rx')); ?>');
                     
                     $.ajax({
                         url: ajaxurl,
@@ -1070,16 +1190,16 @@ class Arta_Post_Types {
                         },
                         success: function(response) {
                             if (response.success) {
-                                alert(response.data.message);
+                                $btn.text('<?php echo esc_js(__('انجام شد درحال بارگذاری...', 'arta-consult-rx')); ?>');
                                 location.reload();
                             } else {
-                                alert(response.data.message || 'خطا در رد درخواست');
+                                alert(response.data.message || '<?php echo esc_js(__('خطا در رد درخواست', 'arta-consult-rx')); ?>');
                                 // Remove loading state
-                                $btn.prop('disabled', false).text('تایید رد');
+                                $btn.prop('disabled', false).text('<?php echo esc_js(__('تایید رد', 'arta-consult-rx')); ?>');
                             }
                         },
                         error: function() {
-                            alert('خطا در ارتباط با سرور');
+                            alert('<?php echo esc_js(__('خطا در ارتباط با سرور', 'arta-consult-rx')); ?>');
                             // Remove loading state
                             $btn.prop('disabled', false).text('تایید رد');
                         }
@@ -1090,6 +1210,33 @@ class Arta_Post_Types {
                 $('#cancel-rejection').on('click', function() {
                     $('#arta-rejection-modal').hide();
                     $('#rejection-reason').val('');
+                });
+
+                // Completion buttons
+                $(document).on('click', '.arta-btn-complete', function(e) {
+                    e.preventDefault();
+                    var postId = $(this).data('post-id');
+                    if (confirm('<?php echo esc_js(__('آیا مطمئن هستید که می‌خواهید این درخواست را تکمیل شده علامت بزنید؟', 'arta-consult-rx')); ?>')) {
+                        $.ajax({
+                            url: ajaxurl,
+                            type: 'POST',
+                            data: {
+                                action: 'arta_complete_consultation',
+                                post_id: postId,
+                                nonce: '<?php echo wp_create_nonce('arta_consultation_nonce'); ?>'
+                            },
+                            success: function(response) {
+                                if (response.success) {
+                                    location.reload();
+                                } else {
+                                    alert(response.data.message || '<?php echo esc_js(__('خطا در تغییر وضعیت', 'arta-consult-rx')); ?>');
+                                }
+                            },
+                            error: function() {
+                                alert('<?php echo esc_js(__('خطا در ارتباط با سرور', 'arta-consult-rx')); ?>');
+                            }
+                        });
+                    }
                 });
             });
             </script>

@@ -41,11 +41,15 @@ class Arta_Admin {
      * Add admin menu
      */
     public function add_admin_menu() {
+        // Check if user is a doctor
+        $is_doctor = Arta_User_Roles::is_doctor();
+        $capability = $is_doctor ? 'arta_view_own_appointments' : 'manage_options';
+        
         // Main menu
         add_menu_page(
             __('مشاوره پزشکی ', 'arta-consult-rx'),
             __('مشاوره پزشکی ', 'arta-consult-rx'),
-            'manage_options',
+            $capability,
             'arta-consult-rx',
             array($this, 'admin_page'),
             'dashicons-calendar-alt',
@@ -57,7 +61,7 @@ class Arta_Admin {
             'arta-consult-rx',
             __('تعریف نوبت', 'arta-consult-rx'),
             __('تعریف نوبت', 'arta-consult-rx'),
-            'manage_options',
+            $is_doctor ? 'arta_create_appointments' : 'manage_options',
             'arta-appointment-settings',
             array($this, 'appointment_settings_page')
         );
@@ -67,20 +71,31 @@ class Arta_Admin {
             'arta-consult-rx',
             __('تقویم نوبت‌ها', 'arta-consult-rx'),
             __('تقویم نوبت‌ها', 'arta-consult-rx'),
-            'manage_options',
+            $capability,
             'arta-appointment-calendar',
             array($this, 'appointment_calendar_page')
         );
 
-        // Doctors submenu
-        add_submenu_page(
-            'arta-consult-rx',
-            __('لیست پزشکان', 'arta-consult-rx'),
-            __('لیست پزشکان', 'arta-consult-rx'),
-            'manage_options',
-            'arta-doctors-list',
-            array($this, 'doctors_list_page')
-        );
+        // Doctors submenu - only for admins
+        if (!$is_doctor) {
+            add_submenu_page(
+                'arta-consult-rx',
+                __('لیست پزشکان', 'arta-consult-rx'),
+                __('لیست پزشکان', 'arta-consult-rx'),
+                'manage_options',
+                'arta-doctors-list',
+                array($this, 'doctors_list_page')
+            );
+
+            // add_submenu_page(
+            //     'arta-consult-rx',
+            //     __('تنظیمات', 'arta-consult-rx'),
+            //     __('تنظیمات', 'arta-consult-rx'),
+            //     'manage_options',
+            //     'arta-settings',
+            //     array($this, 'settings_page')
+            // );
+        }
     }
 
     /**
@@ -127,7 +142,14 @@ class Arta_Admin {
                     'confirm_delete' => __('آیا مطمئن هستید که می‌خواهید این نوبت را حذف کنید؟', 'arta-consult-rx'),
                     'loading' => __('در حال بارگذاری...', 'arta-consult-rx'),
                     'error' => __('خطا در انجام عملیات', 'arta-consult-rx'),
-                    'success' => __('عملیات با موفقیت انجام شد', 'arta-consult-rx')
+                    'success' => __('عملیات با موفقیت انجام شد', 'arta-consult-rx'),
+                    'select_placeholder' => __('انتخاب کنید...', 'arta-consult-rx'),
+                    'no_results' => __('نتیجه‌ای یافت نشد', 'arta-consult-rx'),
+                    'searching' => __('در حال جستجو...', 'arta-consult-rx'),
+                    'loading_more' => __('بارگذاری بیشتر...', 'arta-consult-rx'),
+                    'search' => __('جستجو...', 'arta-consult-rx'),
+                    'create_appointments' => __('ایجاد نوبت‌ها', 'arta-consult-rx'),
+                    'fill_required_fields' => __('لطفاً تمام فیلدهای الزامی را پر کنید.', 'arta-consult-rx'),
                 )
             ));
         }
@@ -137,15 +159,27 @@ class Arta_Admin {
      * Main admin page
      */
     public function admin_page() {
+        $is_doctor = Arta_User_Roles::is_doctor();
+        $current_user_id = get_current_user_id();
+        
+        // Filter stats for doctors
+        $stats_args = array();
+        if ($is_doctor) {
+            $stats_args['doctor_id'] = $current_user_id;
+        }
+        
         $programs_count = wp_count_posts('arta_program')->publish;
         $doctors_count = count(Arta_User_Roles::get_doctor_users());
-        $today_appointments = count(Arta_Database::get_appointments(array('date' => current_time('Y-m-d'))));
-        $booked_appointments = count(Arta_Database::get_appointments(array('status' => 'booked')));
+        $today_args = array_merge($stats_args, array('date' => current_time('Y-m-d')));
+        $today_appointments = count(Arta_Database::get_appointments($today_args));
+        $booked_args = array_merge($stats_args, array('status' => 'booked'));
+        $booked_appointments = count(Arta_Database::get_appointments($booked_args));
         ?>
-        <div class="wrap arta-admin">
+        <div class="wrap arta-admin <?php echo esc_attr(arta_get_direction_class()); ?>" dir="<?php echo esc_attr(arta_get_direction_attr()); ?>">
             <h1><?php _e('Arta Consult RX', 'arta-consult-rx'); ?></h1>
             
             <div class="arta-stats-grid">
+                <?php if (!$is_doctor): ?>
                 <div class="arta-stat-card">
                     <div class="arta-stat-icon">📋</div>
                     <div class="arta-stat-number"><?php echo $programs_count; ?></div>
@@ -157,17 +191,18 @@ class Arta_Admin {
                     <div class="arta-stat-number"><?php echo $doctors_count; ?></div>
                     <div class="arta-stat-label"><?php _e('پزشکان متخصص', 'arta-consult-rx'); ?></div>
                 </div>
+                <?php endif; ?>
                 
                 <div class="arta-stat-card">
                     <div class="arta-stat-icon">📅</div>
                     <div class="arta-stat-number"><?php echo $today_appointments; ?></div>
-                    <div class="arta-stat-label"><?php _e('نوبت‌های امروز', 'arta-consult-rx'); ?></div>
+                    <div class="arta-stat-label"><?php _e($is_doctor ? 'نوبت‌های امروز من' : 'نوبت‌های امروز', 'arta-consult-rx'); ?></div>
                 </div>
                 
                 <div class="arta-stat-card">
                     <div class="arta-stat-icon">✅</div>
                     <div class="arta-stat-number"><?php echo $booked_appointments; ?></div>
-                    <div class="arta-stat-label"><?php _e('نوبت‌های رزرو شده', 'arta-consult-rx'); ?></div>
+                    <div class="arta-stat-label"><?php _e($is_doctor ? 'نوبت‌های رزرو شده من' : 'نوبت‌های رزرو شده', 'arta-consult-rx'); ?></div>
                 </div>
             </div>
 
@@ -184,12 +219,14 @@ class Arta_Admin {
                         <a href="<?php echo admin_url('admin.php?page=arta-appointment-calendar'); ?>" class="arta-btn arta-btn-secondary">
                             <span>📅</span> <?php _e('تقویم نوبت‌ها', 'arta-consult-rx'); ?>
                         </a>
+                        <?php if (!$is_doctor): ?>
                         <a href="<?php echo admin_url('admin.php?page=arta-doctors-list'); ?>" class="arta-btn arta-btn-secondary">
                             <span>👨‍⚕️</span> <?php _e('مدیریت پزشکان', 'arta-consult-rx'); ?>
                         </a>
                         <a href="<?php echo admin_url('post-new.php?post_type=arta_program'); ?>" class="arta-btn arta-btn-secondary">
                             <span>➕</span> <?php _e('برنامه جدید', 'arta-consult-rx'); ?>
                         </a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -205,9 +242,11 @@ class Arta_Admin {
             $this->handle_appointment_creation();
         }
 
+        $is_doctor = Arta_User_Roles::is_doctor();
+        $current_user_id = get_current_user_id();
         $doctors = Arta_User_Roles::get_doctor_users();
         ?>
-        <div class="wrap arta-admin">
+        <div class="wrap arta-admin <?php echo esc_attr(arta_get_direction_class()); ?>" dir="<?php echo esc_attr(arta_get_direction_attr()); ?>">
             <h1><?php _e('تعریف نوبت', 'arta-consult-rx'); ?></h1>
             
           
@@ -222,6 +261,9 @@ class Arta_Admin {
                         <?php wp_nonce_field('arta_appointment_settings', 'arta_appointment_nonce'); ?>
                         
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+                            <?php if ($is_doctor): ?>
+                                <input type="hidden" name="arta_program[doctor_id]" value="<?php echo esc_attr($current_user_id); ?>">
+                            <?php else: ?>
                             <div class="arta-form-group">
                                 <label for="arta_doctor_id" class="arta-form-label"><?php _e('انتخاب پزشک', 'arta-consult-rx'); ?></label>
                                 <select id="arta_doctor_id" name="arta_program[doctor_id]" class="arta-form-select" required>
@@ -233,6 +275,7 @@ class Arta_Admin {
                                     <?php endforeach; ?>
                                 </select>
                             </div>
+                            <?php endif; ?>
 
                             <div class="arta-form-group">
                                 <label for="arta_start_date" class="arta-form-label"><?php _e('تاریخ شروع', 'arta-consult-rx'); ?></label>
@@ -342,12 +385,20 @@ class Arta_Admin {
      * Appointment calendar page
      */
     public function appointment_calendar_page() {
+        $is_doctor = Arta_User_Roles::is_doctor();
+        $current_user_id = get_current_user_id();
         $current_month = isset($_GET['month']) ? sanitize_text_field($_GET['month']) : current_time('Y-m');
-        $selected_doctor = isset($_GET['doctor']) ? intval($_GET['doctor']) : 0;
+        
+        // If user is a doctor, always filter by their ID
+        if ($is_doctor) {
+            $selected_doctor = $current_user_id;
+        } else {
+            $selected_doctor = isset($_GET['doctor']) ? intval($_GET['doctor']) : 0;
+        }
 
         $doctors = Arta_User_Roles::get_doctor_users();
         ?>
-        <div class="wrap arta-admin">
+        <div class="wrap arta-admin <?php echo esc_attr(arta_get_direction_class()); ?>" dir="<?php echo esc_attr(arta_get_direction_attr()); ?>">
             <h1><?php _e('تقویم نوبت‌ها', 'arta-consult-rx'); ?></h1>
             
             <div class="arta-filters-inline">
@@ -368,6 +419,7 @@ class Arta_Admin {
                         </select>
                     </div>
 
+                    <?php if (!$is_doctor): ?>
                     <div class="arta-filter-item">
                         <label for="arta_doctor_filter"><?php _e('پزشک:', 'arta-consult-rx'); ?></label>
                         <select id="arta_doctor_filter" name="doctor" class="arta-form-select">
@@ -379,6 +431,7 @@ class Arta_Admin {
                             <?php endforeach; ?>
                         </select>
                     </div>
+                    <?php endif; ?>
 
                     <div class="arta-filter-item">
                         <button type="submit" class="arta-btn-simple">
@@ -396,7 +449,12 @@ class Arta_Admin {
             </div>
 
             <div class="arta-section">
-                <h2><?php _e('لیست نوبت‌ها', 'arta-consult-rx'); ?></h2>
+                <h2>
+                    <?php _e('لیست نوبت‌ها', 'arta-consult-rx'); ?>
+                    <button type="button" id="arta-reset-date-filter" class="arta-btn-simple" style="display: none; float: left; font-size: 12px; padding: 4px 12px;">
+                        <?php _e('نمایش همه نوبت‌های ماه', 'arta-consult-rx'); ?>
+                    </button>
+                </h2>
                 <div id="arta-appointments-list">
                     <?php $this->render_appointments_list($current_month, $selected_doctor); ?>
                 </div>
@@ -427,8 +485,8 @@ class Arta_Admin {
 
         $first_day = new DateTime($month . '-01');
         $last_day = new DateTime($first_day->format('Y-m-t'));
-        $start_date = clone $first_day;
-        $start_date->modify('first day of this week');
+        $days_in_month = (int)$first_day->format('t');
+     
 
         echo '<div class="arta-calendar-simple">';
         
@@ -449,16 +507,13 @@ class Arta_Admin {
             echo '<div class="arta-calendar-day-header">' . $day_name . '</div>';
         }
 
-        $current_date = clone $start_date;
-        for ($week = 0; $week < 6; $week++) {
-            for ($day = 0; $day < 7; $day++) {
-                $date_str = $current_date->format('Y-m-d');
-                $is_current_month = $current_date->format('Y-m') === $month;
-                $is_today = $date_str === current_time('Y-m-d');
+        $current_date = clone $first_day;
+        for ($day_num = 1; $day_num <= $days_in_month; $day_num++) {
+            $date_str = $current_date->format('Y-m-d');
+            $is_today = $date_str === current_time('Y-m-d');
                 
                 
                 $class = 'arta-calendar-day';
-                if (!$is_current_month) $class .= ' arta-other-month';
                 if ($is_today) $class .= ' arta-today';
                 
                 $appointment_count = isset($appointments_by_date[$date_str]) ? count($appointments_by_date[$date_str]) : 0;
@@ -532,7 +587,6 @@ class Arta_Admin {
                 echo '</div>';
                 
                 $current_date->add(new DateInterval('P1D'));
-            }
         }
         
         echo '</div>';
@@ -853,7 +907,7 @@ class Arta_Admin {
     public function doctors_list_page() {
         $doctors = Arta_User_Roles::get_doctor_users();
         ?>
-        <div class="wrap arta-admin">
+        <div class="wrap arta-admin <?php echo esc_attr(arta_get_direction_class()); ?>" dir="<?php echo esc_attr(arta_get_direction_attr()); ?>">
             <h1><?php _e('لیست پزشکان', 'arta-consult-rx'); ?></h1>
             
             <div class="arta-card">
@@ -1126,17 +1180,171 @@ class Arta_Admin {
     }
 
     /**
+     * Settings page
+     */
+    public function settings_page() {
+        // Handle form submission
+        if (isset($_POST['submit']) && wp_verify_nonce($_POST['arta_settings_nonce'], 'arta_settings_save')) {
+            $this->handle_settings_save();
+        }
+        
+        // Get current settings
+        $calendar_type = get_option('arta_calendar_type', 'persian');
+        
+        ?>
+        <div class="wrap arta-admin <?php echo esc_attr(arta_get_direction_class()); ?>" dir="<?php echo esc_attr(arta_get_direction_attr()); ?>">
+            <h1><?php _e('تنظیمات', 'arta-consult-rx'); ?></h1>
+            
+            <div class="arta-card">
+                <div class="arta-card-header">
+                    <h2 class="arta-card-title"><?php _e('تنظیمات تقویم', 'arta-consult-rx'); ?></h2>
+                    <p class="arta-card-subtitle"><?php _e('انتخاب نوع تقویم برای نمایش تاریخ‌ها در افزونه', 'arta-consult-rx'); ?></p>
+                </div>
+                <div class="arta-card-content">
+                    <form method="post" action="" class="arta-form">
+                        <?php wp_nonce_field('arta_settings_save', 'arta_settings_nonce'); ?>
+                        
+                        <div class="arta-form-group">
+                            <label class="arta-form-label"><?php _e('نوع تقویم', 'arta-consult-rx'); ?></label>
+                            <div class="arta-radio-group">
+                                <label class="arta-radio-item">
+                                    <input type="radio" name="calendar_type" value="persian" <?php checked($calendar_type, 'persian'); ?>>
+                                    <span class="arta-radio-label">
+                                        <strong><?php _e('تقویم شمسی (فارسی)', 'arta-consult-rx'); ?></strong>
+                                        <small><?php _e('تقویم رسمی ایران - مناسب برای کاربران ایرانی', 'arta-consult-rx'); ?></small>
+                                    </span>
+                                </label>
+                                
+                                <label class="arta-radio-item">
+                                    <input type="radio" name="calendar_type" value="gregorian" <?php checked($calendar_type, 'gregorian'); ?>>
+                                    <span class="arta-radio-label">
+                                        <strong><?php _e('تقویم میلادی (گرگوری)', 'arta-consult-rx'); ?></strong>
+                                        <small><?php _e('تقویم بین‌المللی - مناسب برای کاربران بین‌المللی', 'arta-consult-rx'); ?></small>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="arta-form-group">
+                            <div class="arta-info-box">
+                                <h4><?php _e('نکات مهم:', 'arta-consult-rx'); ?></h4>
+                                <ul>
+                                    <li><?php _e('این تنظیم بر روی نمایش تاریخ‌ها در تمام بخش‌های افزونه تأثیر می‌گذارد', 'arta-consult-rx'); ?></li>
+                                    <li><?php _e('تغییر این تنظیم فوراً اعمال می‌شود و نیازی به ذخیره مجدد نیست', 'arta-consult-rx'); ?></li>
+                                    <li><?php _e('تاریخ‌های ذخیره شده در دیتابیس تغییر نمی‌کنند، فقط نحوه نمایش آن‌ها تغییر می‌کند', 'arta-consult-rx'); ?></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="arta-card-actions">
+                            <button type="submit" name="submit" class="arta-btn arta-btn-primary">
+                                <span>💾</span> <?php _e('ذخیره تنظیمات', 'arta-consult-rx'); ?>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="arta-card">
+                <div class="arta-card-header">
+                    <h2 class="arta-card-title"><?php _e('اطلاعات سیستم', 'arta-consult-rx'); ?></h2>
+                </div>
+                <div class="arta-card-content">
+                    <div class="arta-info-grid">
+                        <div class="arta-info-item">
+                            <strong><?php _e('نوع تقویم فعلی:', 'arta-consult-rx'); ?></strong>
+                            <span class="arta-badge <?php echo $calendar_type === 'persian' ? 'arta-badge-info' : 'arta-badge-success'; ?>">
+                                <?php echo $calendar_type === 'persian' ? __('شمسی (فارسی)', 'arta-consult-rx') : __('میلادی (گرگوری)', 'arta-consult-rx'); ?>
+                            </span>
+                        </div>
+                        <div class="arta-info-item">
+                            <strong><?php _e('تاریخ امروز:', 'arta-consult-rx'); ?></strong>
+                            <span><?php echo $this->get_formatted_date(current_time('Y-m-d')); ?></span>
+                        </div>
+                        <div class="arta-info-item">
+                            <strong><?php _e('نسخه افزونه:', 'arta-consult-rx'); ?></strong>
+                            <span><?php echo ARTA_CONSULT_RX_VERSION; ?></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <?php
+    }
+
+    /**
+     * Handle settings form submission
+     */
+    private function handle_settings_save() {
+        if (!current_user_can('manage_options')) {
+            echo '<div class="arta-notice arta-notice-error"><p>' . __('شما دسترسی لازم را ندارید.', 'arta-consult-rx') . '</p></div>';
+            return;
+        }
+
+        $calendar_type = sanitize_text_field($_POST['calendar_type']);
+        
+        // Validate calendar type
+        if (!in_array($calendar_type, array('persian', 'gregorian'))) {
+            echo '<div class="arta-notice arta-notice-error"><p>' . __('نوع تقویم انتخاب شده معتبر نیست.', 'arta-consult-rx') . '</p></div>';
+            return;
+        }
+
+        // Save the setting
+        update_option('arta_calendar_type', $calendar_type);
+        
+        echo '<div class="arta-notice arta-notice-success"><p>' . __('✅ تنظیمات با موفقیت ذخیره شد.', 'arta-consult-rx') . '</p></div>';
+    }
+
+    /**
+     * Get formatted date based on calendar type setting
+     */
+    public function get_formatted_date($date, $format = null) {
+        $calendar_type = get_option('arta_calendar_type', 'persian');
+        
+        if ($calendar_type === 'persian') {
+            // For Persian calendar, we'll use a simple conversion
+            // In a real implementation, you might want to use a proper Persian calendar library
+            if (!$format) {
+                $format = 'Y/m/d';
+            }
+            return date_i18n($format, strtotime($date));
+        } else {
+            // Gregorian calendar
+            if (!$format) {
+                $format = 'Y/m/d';
+            }
+            return date_i18n($format, strtotime($date));
+        }
+    }
+
+    /**
+     * Get calendar type setting
+     */
+    public static function get_calendar_type() {
+        return get_option('arta_calendar_type', 'persian');
+    }
+
+    /**
      * AJAX: Create appointments
      */
     public function ajax_create_appointments() {
         check_ajax_referer('arta_admin_nonce', 'nonce');
 
-        if (!current_user_can('manage_options')) {
+        // Check user permissions
+        $is_doctor = Arta_User_Roles::is_doctor();
+        if (!$is_doctor && !current_user_can('manage_options')) {
             wp_die(__('شما دسترسی لازم را ندارید.', 'arta-consult-rx'));
         }
 
         $program_id = intval($_POST['program_id']);
         $doctor_id = intval($_POST['doctor_id']);
+        
+        // Security check: if user is a doctor, ensure they can only create appointments for themselves
+        if ($is_doctor && $doctor_id != get_current_user_id()) {
+            wp_send_json_error(array('message' => __('شما فقط می‌توانید نوبت برای خودتان ایجاد کنید.', 'arta-consult-rx')));
+        }
+        
         $start_date = sanitize_text_field($_POST['start_date']);
         $end_date = sanitize_text_field($_POST['end_date']);
         $start_time = sanitize_text_field($_POST['start_time']);
@@ -1196,6 +1404,12 @@ class Arta_Admin {
         }
         if (isset($_POST['doctor_id'])) {
             $args['doctor_id'] = intval($_POST['doctor_id']);
+        }
+        
+        // If user is a doctor, filter by their ID
+        $is_doctor = Arta_User_Roles::is_doctor();
+        if ($is_doctor) {
+            $args['doctor_id'] = get_current_user_id();
         }
 
         $appointments = Arta_Database::get_appointments($args);
@@ -1263,6 +1477,12 @@ class Arta_Admin {
 
         if (!$appointment) {
             wp_send_json_error(__('نوبت یافت نشد', 'arta-consult-rx'));
+        }
+
+        // Check if doctor can edit this appointment
+        $is_doctor = Arta_User_Roles::is_doctor();
+        if ($is_doctor && $appointment->doctor_id != get_current_user_id()) {
+            wp_send_json_error(__('شما دسترسی لازم به این نوبت را ندارید', 'arta-consult-rx'));
         }
 
         wp_send_json_success($appointment);
@@ -1476,5 +1696,6 @@ class Arta_Admin {
             }
         }
     }
+    
 
 }

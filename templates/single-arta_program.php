@@ -6,6 +6,41 @@
  * @since 1.0.0
  */
 
+// Check if Elementor template exists first
+if (class_exists('Elementor\Plugin')) {
+    $templates = get_posts(array(
+        'post_type' => 'elementor_library',
+        'meta_query' => array(
+            'relation' => 'AND',
+            array(
+                'key' => '_elementor_template_type',
+                'value' => 'single',
+                'compare' => '='
+            ),
+            array(
+                'relation' => 'OR',
+                array(
+                    'key' => '_elementor_conditions',
+                    'value' => 'arta_program',
+                    'compare' => 'LIKE'
+                ),
+                array(
+                    'key' => '_elementor_conditions',
+                    'value' => 'singular/arta_program',
+                    'compare' => 'LIKE'
+                )
+            )
+        ),
+        'posts_per_page' => 1,
+        'post_status' => 'publish'
+    ));
+
+    if (!empty($templates)) {
+        // Let Elementor handle the template
+        return;
+    }
+}
+
 get_header();
 
 // Get post meta data

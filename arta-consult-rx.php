@@ -20,7 +20,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('ARTA_CONSULT_RX_VERSION', '1.0.0');
+define('ARTA_CONSULT_RX_VERSION', '1.0.1');
 define('ARTA_CONSULT_RX_PLUGIN_FILE', __FILE__);
 define('ARTA_CONSULT_RX_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('ARTA_CONSULT_RX_PLUGIN_URL', plugin_dir_url(__FILE__));
@@ -29,18 +29,5 @@ define('ARTA_CONSULT_RX_PLUGIN_BASENAME', plugin_basename(__FILE__));
 // Include the main plugin class
 require_once ARTA_CONSULT_RX_PLUGIN_DIR . 'includes/class/arta-consult-rx.php';
 
-/**
- * Main instance of Arta_Consult_RX
- *
- * @return Arta_Consult_RX
- */
-function arta_consult_rx() {
-    return Arta_Consult_RX::instance();
-}
+require_once ARTA_CONSULT_RX_PLUGIN_DIR . 'includes/function.php';
 
-// Initialize the plugin
-arta_consult_rx();
-
-// Register activation and deactivation hooks
-register_activation_hook(__FILE__, array(arta_consult_rx(), 'activate'));
-register_deactivation_hook(__FILE__, array(arta_consult_rx(), 'deactivate'));

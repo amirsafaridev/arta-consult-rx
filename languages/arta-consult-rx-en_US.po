@@ -1,0 +1,2578 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Arta Consult RX 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-01 12:00+0000\n"
+"PO-Revision-Date: 2025-01-01 12:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: includes/class/arta-admin.php:50
+msgid "مشاوره پزشکی "
+msgstr "Medical Consultation"
+
+#: includes/class/arta-admin.php:62
+msgid "تعریف نوبت"
+msgstr "Define Appointment"
+
+#: includes/class/arta-admin.php:72
+msgid "تقویم نوبت‌ها"
+msgstr "Appointment Calendar"
+
+#: includes/class/arta-admin.php:83
+msgid "لیست پزشکان"
+msgstr "Doctors List"
+
+#: includes/class/arta-admin.php:179
+msgid "برنامه‌های فعال"
+msgstr "Active Programs"
+
+#: includes/class/arta-admin.php:185
+msgid "پزشکان متخصص"
+msgstr "Specialist Doctors"
+
+#: includes/class/arta-admin.php:192
+msgid "نوبت‌های امروز من"
+msgstr "My Today's Appointments"
+
+#: includes/class/arta-admin.php:192
+msgid "نوبت‌های امروز"
+msgstr "Today's Appointments"
+
+#: includes/class/arta-admin.php:198
+msgid "نوبت‌های رزرو شده من"
+msgstr "My Booked Appointments"
+
+#: includes/class/arta-admin.php:198
+msgid "نوبت‌های رزرو شده"
+msgstr "Booked Appointments"
+
+#: includes/class/arta-admin.php:204
+msgid "دسترسی سریع"
+msgstr "Quick Access"
+
+#: includes/class/arta-admin.php:205
+msgid "مدیریت آسان سیستم نوبت‌دهی"
+msgstr "Easy Appointment Management System"
+
+#: includes/class/arta-admin.php:210
+msgid "تنظیمات نوبت"
+msgstr "Appointment Settings"
+
+#: includes/class/arta-admin.php:213
+msgid "تقویم نوبت‌ها"
+msgstr "Appointment Calendar"
+
+#: includes/class/arta-admin.php:217
+msgid "مدیریت پزشکان"
+msgstr "Doctor Management"
+
+#: includes/class/arta-admin.php:220
+msgid "برنامه جدید"
+msgstr "New Program"
+
+#: includes/class/arta-admin.php:243
+msgid "تعریف نوبت"
+msgstr "Define Appointment"
+
+#: includes/class/arta-admin.php:249
+msgid "ایجاد نوبت‌های دسته‌جمعی"
+msgstr "Create Bulk Appointments"
+
+#: includes/class/arta-admin.php:250
+msgid "تعریف نوبت‌های متعدد برای یک بازه زمانی مشخص"
+msgstr "Define multiple appointments for a specific time period"
+
+#: includes/class/arta-admin.php:261
+msgid "انتخاب پزشک"
+msgstr "Select Doctor"
+
+#: includes/class/arta-admin.php:263
+msgid "انتخاب کنید..."
+msgstr "Select..."
+
+#: includes/class/arta-admin.php:274
+msgid "تاریخ شروع"
+msgstr "Start Date"
+
+#: includes/class/arta-admin.php:279
+msgid "تاریخ پایان"
+msgstr "End Date"
+
+#: includes/class/arta-admin.php:284
+msgid "ساعت شروع"
+msgstr "Start Time"
+
+#: includes/class/arta-admin.php:289
+msgid "ساعت پایان"
+msgstr "End Time"
+
+#: includes/class/arta-admin.php:294
+msgid "فاصله بین نوبت‌ها (دقیقه)"
+msgstr "Interval Between Appointments (minutes)"
+
+#: includes/class/arta-admin.php:296
+msgid "دقیقه"
+msgstr "minutes"
+
+#: includes/class/arta-admin.php:304
+msgid "فاصله زمانی بین هر نوبت (حداقل 15 دقیقه)"
+msgstr "Time interval between each appointment (minimum 15 minutes)"
+
+#: includes/class/arta-admin.php:311
+msgid "ایجاد نوبت‌ها"
+msgstr "Create Appointments"
+
+#: includes/class/arta-admin.php:314
+msgid "پاک کردن فرم"
+msgstr "Clear Form"
+
+#: includes/class/arta-admin.php:329
+msgid "خطا در دریافت اطلاعات فرم."
+msgstr "Error receiving form data."
+
+#: includes/class/arta-admin.php:343
+msgid "لطفاً تمام فیلدهای الزامی را پر کنید."
+msgstr "Please fill in all required fields."
+
+#: includes/class/arta-admin.php:348
+msgid "تاریخ شروع نمی‌تواند بعد از تاریخ پایان باشد."
+msgstr "Start date cannot be after end date."
+
+#: includes/class/arta-admin.php:353
+msgid "ساعت شروع باید قبل از ساعت پایان باشد."
+msgstr "Start time must be before end time."
+
+#: includes/class/arta-admin.php:370
+msgid "✅ %d نوبت با موفقیت ایجاد شد."
+msgstr "✅ %d appointments created successfully."
+
+#: includes/class/arta-admin.php:372
+msgid "❌ خطا در ایجاد نوبت‌ها. لطفاً اطلاعات را بررسی کنید."
+msgstr "❌ Error creating appointments. Please check the information."
+
+#: includes/class/arta-admin.php:373
+msgid "برای بررسی جزئیات خطا، فایل debug.log را بررسی کنید."
+msgstr "To check error details, check the debug.log file."
+
+#: includes/class/arta-admin.php:395
+msgid "تقویم نوبت‌ها"
+msgstr "Appointment Calendar"
+
+#: includes/class/arta-admin.php:402
+msgid "ماه:"
+msgstr "Month:"
+
+#: includes/class/arta-admin.php:417
+msgid "پزشک:"
+msgstr "Doctor:"
+
+#: includes/class/arta-admin.php:419
+msgid "همه"
+msgstr "All"
+
+#: includes/class/arta-admin.php:431
+msgid "نمایش"
+msgstr "Show"
+
+#: includes/class/arta-admin.php:446
+msgid "لیست نوبت‌ها"
+msgstr "Appointments List"
+
+#: includes/class/arta-admin.php:448
+msgid "نمایش همه نوبت‌های ماه"
+msgstr "Show All Month's Appointments"
+
+#: includes/class/arta-admin.php:489
+msgid "شنبه"
+msgstr "Saturday"
+
+#: includes/class/arta-admin.php:490
+msgid "یکشنبه"
+msgstr "Sunday"
+
+#: includes/class/arta-admin.php:491
+msgid "دوشنبه"
+msgstr "Monday"
+
+#: includes/class/arta-admin.php:492
+msgid "سه‌شنبه"
+msgstr "Tuesday"
+
+#: includes/class/arta-admin.php:493
+msgid "چهارشنبه"
+msgstr "Wednesday"
+
+#: includes/class/arta-admin.php:494
+msgid "پنج‌شنبه"
+msgstr "Thursday"
+
+#: includes/class/arta-admin.php:495
+msgid "جمعه"
+msgstr "Friday"
+
+#: includes/class/arta-admin.php:555
+msgid "آزاد"
+msgstr "Available"
+
+#: includes/class/arta-admin.php:559
+msgid "رزرو"
+msgstr "Booked"
+
+#: includes/class/arta-admin.php:563
+msgid "تکمیل"
+msgstr "Completed"
+
+#: includes/class/arta-admin.php:567
+msgid "لغو"
+msgstr "Cancelled"
+
+#: includes/class/arta-admin.php:604
+msgid "📅 هیچ نوبتی برای این ماه یافت نشد."
+msgstr "📅 No appointments found for this month."
+
+#: includes/class/arta-admin.php:611
+msgid "تاریخ"
+msgstr "Date"
+
+#: includes/class/arta-admin.php:612
+msgid "ساعت"
+msgstr "Time"
+
+#: includes/class/arta-admin.php:613
+msgid "پزشک"
+msgstr "Doctor"
+
+#: includes/class/arta-admin.php:614
+msgid "وضعیت"
+msgstr "Status"
+
+#: includes/class/arta-admin.php:615
+msgid "بیمار"
+msgstr "Patient"
+
+#: includes/class/arta-admin.php:616
+msgid "عملیات"
+msgstr "Actions"
+
+#: includes/class/arta-admin.php:624
+msgid "موجود"
+msgstr "Available"
+
+#: includes/class/arta-admin.php:625
+msgid "رزرو شده"
+msgstr "Booked"
+
+#: includes/class/arta-admin.php:626
+msgid "تکمیل شده"
+msgstr "Completed"
+
+#: includes/class/arta-admin.php:627
+msgid "لغو شده"
+msgstr "Cancelled"
+
+#: includes/class/arta-admin.php:663
+msgid "مشاهده جزئیات"
+msgstr "View Details"
+
+#: includes/class/arta-admin.php:666
+msgid "ویرایش نوبت"
+msgstr "Edit Appointment"
+
+#: includes/class/arta-admin.php:669
+msgid "حذف نوبت"
+msgstr "Delete Appointment"
+
+#: includes/class/arta-admin.php:685
+msgid "جزئیات نوبت"
+msgstr "Appointment Details"
+
+#: includes/class/arta-admin.php:692
+msgid "بستن"
+msgstr "Close"
+
+#: includes/class/arta-admin.php:701
+msgid "ویرایش نوبت"
+msgstr "Edit Appointment"
+
+#: includes/class/arta-admin.php:709
+msgid "تاریخ"
+msgstr "Date"
+
+#: includes/class/arta-admin.php:714
+msgid "ساعت"
+msgstr "Time"
+
+#: includes/class/arta-admin.php:719
+msgid "وضعیت"
+msgstr "Status"
+
+#: includes/class/arta-admin.php:721
+msgid "موجود"
+msgstr "Available"
+
+#: includes/class/arta-admin.php:722
+msgid "رزرو شده"
+msgstr "Booked"
+
+#: includes/class/arta-admin.php:723
+msgid "تکمیل شده"
+msgstr "Completed"
+
+#: includes/class/arta-admin.php:724
+msgid "لغو شده"
+msgstr "Cancelled"
+
+#: includes/class/arta-admin.php:731
+msgid "ذخیره"
+msgstr "Save"
+
+#: includes/class/arta-admin.php:732
+msgid "لغو"
+msgstr "Cancel"
+
+#: includes/class/arta-admin.php:755
+msgid "آیا مطمئن هستید که می‌خواهید این نوبت را حذف کنید؟"
+msgstr "Are you sure you want to delete this appointment?"
+
+#: includes/class/arta-admin.php:848
+msgid "نوبت با موفقیت به‌روزرسانی شد"
+msgstr "Appointment updated successfully"
+
+#: includes/class/arta-admin.php:851
+msgid "خطا در به‌روزرسانی نوبت"
+msgstr "Error updating appointment"
+
+#: includes/class/arta-admin.php:879
+msgid "نوبت با موفقیت حذف شد"
+msgstr "Appointment deleted successfully"
+
+#: includes/class/arta-admin.php:882
+msgid "خطا در حذف نوبت"
+msgstr "Error deleting appointment"
+
+#: includes/class/arta-admin.php:904
+msgid "لیست پزشکان"
+msgstr "Doctors List"
+
+#: includes/class/arta-admin.php:910
+msgid "اضافه کردن پزشک جدید"
+msgstr "Add New Doctor"
+
+#: includes/class/arta-admin.php:919
+msgid "👨‍⚕️ هیچ پزشکی در سیستم ثبت نشده است."
+msgstr "👨‍⚕️ No doctors registered in the system."
+
+#: includes/class/arta-admin.php:926
+msgid "پزشک"
+msgstr "Doctor"
+
+#: includes/class/arta-admin.php:927
+msgid "اطلاعات تماس"
+msgstr "Contact Information"
+
+#: includes/class/arta-admin.php:928
+msgid "تاریخ عضویت"
+msgstr "Registration Date"
+
+#: includes/class/arta-admin.php:929
+msgid "آخرین ورود"
+msgstr "Last Login"
+
+#: includes/class/arta-admin.php:930
+msgid "آمار نوبت‌ها"
+msgstr "Appointments Statistics"
+
+#: includes/class/arta-admin.php:931
+msgid "عملیات"
+msgstr "Actions"
+
+#: includes/class/arta-admin.php:963
+msgid "پزشک متخصص"
+msgstr "Specialist Doctor"
+
+#: includes/class/arta-admin.php:986
+msgid "هرگز"
+msgstr "Never"
+
+#: includes/class/arta-admin.php:991
+msgid "کل نوبت‌ها"
+msgstr "Total Appointments"
+
+#: includes/class/arta-admin.php:992
+msgid "کل"
+msgstr "Total"
+
+#: includes/class/arta-admin.php:994
+msgid "نوبت‌های رزرو شده"
+msgstr "Booked Appointments"
+
+#: includes/class/arta-admin.php:995
+msgid "رزرو"
+msgstr "Booked"
+
+#: includes/class/arta-admin.php:997
+msgid "نوبت‌های آزاد"
+msgstr "Available Appointments"
+
+#: includes/class/arta-admin.php:998
+msgid "آزاد"
+msgstr "Available"
+
+#: includes/class/arta-admin.php:1004
+msgid "ویرایش اطلاعات پزشک"
+msgstr "Edit Doctor Information"
+
+#: includes/class/arta-admin.php:1007
+msgid "مشاهده نوبت‌های پزشک"
+msgstr "View Doctor's Appointments"
+
+#: includes/class/arta-admin.php:1026
+msgid "افزودن پزشک جدید"
+msgstr "Add New Doctor"
+
+#: includes/class/arta-admin.php:1032
+msgid "نام کاربری"
+msgstr "Username"
+
+#: includes/class/arta-admin.php:1037
+msgid "نام پزشک"
+msgstr "Doctor Name"
+
+#: includes/class/arta-admin.php:1042
+msgid "ایمیل"
+msgstr "Email"
+
+#: includes/class/arta-admin.php:1047
+msgid "رمز عبور"
+msgstr "Password"
+
+#: includes/class/arta-admin.php:1052
+msgid "عکس پزشک"
+msgstr "Doctor Photo"
+
+#: includes/class/arta-admin.php:1058
+msgid "عکس پزشک را انتخاب کنید"
+msgstr "Select Doctor Photo"
+
+#: includes/class/arta-admin.php:1062
+msgid "انتخاب عکس"
+msgstr "Select Photo"
+
+#: includes/class/arta-admin.php:1063
+msgid "حذف عکس"
+msgstr "Remove Photo"
+
+#: includes/class/arta-admin.php:1070
+msgid "ایجاد پزشک"
+msgstr "Create Doctor"
+
+#: includes/class/arta-admin.php:1071
+msgid "لغو"
+msgstr "Cancel"
+
+#: includes/class/arta-admin.php:1090
+msgid "انتخاب عکس پزشک"
+msgstr "Select Doctor Photo"
+
+#: includes/class/arta-admin.php:1137
+msgid "در حال ایجاد..."
+msgstr "Creating..."
+
+#: includes/class/arta-admin.php:1158
+msgid "خطا در ایجاد پزشک"
+msgstr "Error creating doctor"
+
+#: includes/class/arta-admin.php:1162
+msgid "خطا در ارتباط با سرور"
+msgstr "Error connecting to server"
+
+#: includes/class/arta-admin.php:1189
+msgid "تنظیمات"
+msgstr "Settings"
+
+#: includes/class/arta-admin.php:1193
+msgid "تنظیمات تقویم"
+msgstr "Calendar Settings"
+
+#: includes/class/arta-admin.php:1194
+msgid "انتخاب نوع تقویم برای نمایش تاریخ‌ها در افزونه"
+msgstr "Select calendar type to display dates in the plugin"
+
+#: includes/class/arta-admin.php:1201
+msgid "نوع تقویم"
+msgstr "Calendar Type"
+
+#: includes/class/arta-admin.php:1206
+msgid "تقویم شمسی (فارسی)"
+msgstr "Solar Calendar (Persian)"
+
+#: includes/class/arta-admin.php:1207
+msgid "تقویم رسمی ایران - مناسب برای کاربران ایرانی"
+msgstr "Official Iranian calendar - suitable for Iranian users"
+
+#: includes/class/arta-admin.php:1214
+msgid "تقویم میلادی (گرگوری)"
+msgstr "Gregorian Calendar"
+
+#: includes/class/arta-admin.php:1215
+msgid "تقویم بین‌المللی - مناسب برای کاربران بین‌المللی"
+msgstr "International calendar - suitable for international users"
+
+#: includes/class/arta-admin.php:1223
+msgid "نکات مهم:"
+msgstr "Important Notes:"
+
+#: includes/class/arta-admin.php:1225
+msgid "این تنظیم بر روی نمایش تاریخ‌ها در تمام بخش‌های افزونه تأثیر می‌گذارد"
+msgstr "This setting affects date display in all sections of the plugin"
+
+#: includes/class/arta-admin.php:1226
+msgid "تغییر این تنظیم فوراً اعمال می‌شود و نیازی به ذخیره مجدد نیست"
+msgstr "This setting change is applied immediately and does not require re-saving"
+
+#: includes/class/arta-admin.php:1227
+msgid "تاریخ‌های ذخیره شده در دیتابیس تغییر نمی‌کنند، فقط نحوه نمایش آن‌ها تغییر می‌کند"
+msgstr "Dates stored in the database do not change, only their display format changes"
+
+#: includes/class/arta-admin.php:1234
+msgid "ذخیره تنظیمات"
+msgstr "Save Settings"
+
+#: includes/class/arta-admin.php:1243
+msgid "اطلاعات سیستم"
+msgstr "System Information"
+
+#: includes/class/arta-admin.php:1248
+msgid "نوع تقویم فعلی:"
+msgstr "Current Calendar Type:"
+
+#: includes/class/arta-admin.php:1250
+msgid "شمسی (فارسی)"
+msgstr "Solar (Persian)"
+
+#: includes/class/arta-admin.php:1250
+msgid "میلادی (گرگوری)"
+msgstr "Gregorian"
+
+#: includes/class/arta-admin.php:1254
+msgid "تاریخ امروز:"
+msgstr "Today's Date:"
+
+#: includes/class/arta-admin.php:1258
+msgid "نسخه افزونه:"
+msgstr "Plugin Version:"
+
+#: includes/class/arta-admin.php:1274
+msgid "شما دسترسی لازم را ندارید."
+msgstr "You do not have the required permissions."
+
+#: includes/class/arta-admin.php:1282
+msgid "نوع تقویم انتخاب شده معتبر نیست."
+msgstr "The selected calendar type is not valid."
+
+#: includes/class/arta-admin.php:1289
+msgid "✅ تنظیمات با موفقیت ذخیره شد."
+msgstr "✅ Settings saved successfully."
+
+#: includes/class/arta-admin.php:1330
+msgid "شما دسترسی لازم را ندارید."
+msgstr "You do not have the required permissions."
+
+#: includes/class/arta-admin.php:1338
+msgid "شما فقط می‌توانید نوبت برای خودتان ایجاد کنید."
+msgstr "You can only create appointments for yourself."
+
+#: includes/class/arta-admin.php:1358
+msgid "%d نوبت با موفقیت ایجاد شد."
+msgstr "%d appointments created successfully."
+
+#: includes/class/arta-admin.php:1370
+msgid "شما دسترسی لازم را ندارید."
+msgstr "You do not have the required permissions."
+
+#: includes/class/arta-admin.php:1379
+msgid "نوبت با موفقیت حذف شد."
+msgstr "Appointment deleted successfully."
+
+#: includes/class/arta-admin.php:1383
+msgid "خطا در حذف نوبت."
+msgstr "Error deleting appointment."
+
+#: includes/class/arta-admin.php:1418
+msgid "خطای امنیتی"
+msgstr "Security Error"
+
+#: includes/class/arta-admin.php:1425
+msgid "نوبت یافت نشد"
+msgstr "Appointment not found"
+
+#: includes/class/arta-admin.php:1430
+msgid "موجود"
+msgstr "Available"
+
+#: includes/class/arta-admin.php:1431
+msgid "رزرو شده"
+msgstr "Booked"
+
+#: includes/class/arta-admin.php:1432
+msgid "تکمیل شده"
+msgstr "Completed"
+
+#: includes/class/arta-admin.php:1433
+msgid "لغو شده"
+msgstr "Cancelled"
+
+#: includes/class/arta-admin.php:1437
+msgid "تاریخ:"
+msgstr "Date:"
+
+#: includes/class/arta-admin.php:1438
+msgid "ساعت:"
+msgstr "Time:"
+
+#: includes/class/arta-admin.php:1439
+msgid "پزشک:"
+msgstr "Doctor:"
+
+#: includes/class/arta-admin.php:1440
+msgid "وضعیت:"
+msgstr "Status:"
+
+#: includes/class/arta-admin.php:1443
+msgid "نام بیمار:"
+msgstr "Patient Name:"
+
+#: includes/class/arta-admin.php:1446
+msgid "شماره تماس:"
+msgstr "Phone Number:"
+
+#: includes/class/arta-admin.php:1449
+msgid "ایمیل:"
+msgstr "Email:"
+
+#: includes/class/arta-admin.php:1452
+msgid "یادداشت:"
+msgstr "Notes:"
+
+#: includes/class/arta-admin.php:1465
+msgid "خطای امنیتی"
+msgstr "Security Error"
+
+#: includes/class/arta-admin.php:1472
+msgid "نوبت یافت نشد"
+msgstr "Appointment not found"
+
+#: includes/class/arta-admin.php:1478
+msgid "شما دسترسی لازم به این نوبت را ندارید"
+msgstr "You do not have access to this appointment"
+
+#: includes/class/arta-admin.php:1489
+msgid "خطای امنیتی"
+msgstr "Security Error"
+
+#: includes/class/arta-admin.php:1512
+msgid "نوبت با موفقیت به‌روزرسانی شد"
+msgstr "Appointment updated successfully"
+
+#: includes/class/arta-admin.php:1514
+msgid "خطا در به‌روزرسانی نوبت"
+msgstr "Error updating appointment"
+
+#: includes/class/arta-admin.php:1523
+msgid "خطای امنیتی"
+msgstr "Security Error"
+
+#: includes/class/arta-admin.php:1530
+msgid "نوبت با موفقیت حذف شد"
+msgstr "Appointment deleted successfully"
+
+#: includes/class/arta-admin.php:1532
+msgid "خطا در حذف نوبت"
+msgstr "Error deleting appointment"
+
+#: includes/class/arta-admin.php:1543
+msgid "شما مجوز لازم را ندارید"
+msgstr "You do not have the required permission"
+
+#: includes/class/arta-admin.php:1554
+msgid "تمام فیلدها الزامی است"
+msgstr "All fields are required"
+
+#: includes/class/arta-admin.php:1559
+msgid "نام کاربری قبلاً استفاده شده است"
+msgstr "Username already in use"
+
+#: includes/class/arta-admin.php:1564
+msgid "ایمیل قبلاً استفاده شده است"
+msgstr "Email already in use"
+
+#: includes/class/arta-admin.php:1589
+msgid "پزشک با موفقیت ایجاد شد"
+msgstr "Doctor created successfully"
+
+#: includes/class/arta-admin.php:1604
+msgid "عکس پزشک"
+msgstr "Doctor Photo"
+
+#: includes/class/arta-admin.php:1607
+msgid "عکس پزشک"
+msgstr "Doctor Photo"
+
+#: includes/class/arta-admin.php:1613
+msgid "عکس پزشک"
+msgstr "Doctor Photo"
+
+#: includes/class/arta-admin.php:1617
+msgid "عکس پزشک را انتخاب کنید"
+msgstr "Select Doctor Photo"
+
+#: includes/class/arta-admin.php:1622
+msgid "انتخاب عکس"
+msgstr "Select Photo"
+
+#: includes/class/arta-admin.php:1623
+msgid "حذف عکس"
+msgstr "Remove Photo"
+
+#: includes/class/arta-admin.php:1644
+msgid "انتخاب عکس پزشک"
+msgstr "Select Doctor Photo"
+
+#: includes/class/arta-admin.php:1646
+msgid "انتخاب عکس"
+msgstr "Select Photo"
+
+#: includes/class/arta-admin.php:1667
+msgid "عکس پزشک را انتخاب کنید"
+msgstr "Select Doctor Photo"
+
+#: includes/class/arta-admin.php:138
+msgid "در حال بارگذاری..."
+msgstr "Loading..."
+
+#: includes/class/arta-admin.php:142
+msgid "آیا مطمئن هستید که می‌خواهید این نوبت را حذف کنید؟"
+msgstr "Are you sure you want to delete this appointment?"
+
+#: includes/class/arta-admin.php:144
+msgid "خطا در انجام عملیات"
+msgstr "Error performing operation"
+
+#: includes/class/arta-admin.php:145
+msgid "عملیات با موفقیت انجام شد"
+msgstr "Operation completed successfully"
+
+#: includes/class/arta-appointment-form.php:51
+msgid "در حال بارگذاری..."
+msgstr "Loading..."
+
+#: includes/class/arta-appointment-form.php:52
+msgid "خطا در ارسال اطلاعات"
+msgstr "Error sending information"
+
+#: includes/class/arta-appointment-form.php:53
+msgid "درخواست شما با موفقیت ثبت شد"
+msgstr "Your request has been registered successfully"
+
+#: includes/class/arta-appointment-form.php:54
+msgid "این فیلد الزامی است"
+msgstr "This field is required"
+
+#: includes/class/arta-appointment-form.php:55
+msgid "ایمیل معتبر نیست"
+msgstr "Invalid email"
+
+#: includes/class/arta-appointment-form.php:56
+msgid "شماره تماس معتبر نیست"
+msgstr "Invalid phone number"
+
+#: includes/class/arta-appointment-form.php:78
+msgid "اطلاعات وارد شده معتبر نیست"
+msgstr "Entered information is not valid"
+
+#: includes/class/arta-appointment-form.php:107
+msgid "درخواست شما با موفقیت ثبت شد. ایمیل تاییدیه برای شما ارسال شد."
+msgstr "Your request has been registered successfully. A confirmation email has been sent to you."
+
+#: includes/class/arta-appointment-form.php:181
+msgid "متخصص"
+msgstr "Specialist"
+
+#: includes/class/arta-appointment-form.php:182
+msgid "تجربه کافی"
+msgstr "Sufficient Experience"
+
+#: includes/class/arta-appointment-form.php:223
+msgid "نام و نام خانوادگی"
+msgstr "Full Name"
+
+#: includes/class/arta-appointment-form.php:224
+msgid "جنسیت"
+msgstr "Gender"
+
+#: includes/class/arta-appointment-form.php:225
+msgid "تاریخ تولد"
+msgstr "Birth Date"
+
+#: includes/class/arta-appointment-form.php:226
+msgid "ایمیل"
+msgstr "Email"
+
+#: includes/class/arta-appointment-form.php:227
+msgid "شماره تماس"
+msgstr "Phone Number"
+
+#: includes/class/arta-appointment-form.php:232
+msgid "%s الزامی است"
+msgstr "%s is required"
+
+#: includes/class/arta-appointment-form.php:237
+msgid "فرمت ایمیل معتبر نیست"
+msgstr "Email format is not valid"
+
+#: includes/class/arta-appointment-form.php:241
+msgid "شماره تماس باید با 09 شروع شود و 11 رقم باشد"
+msgstr "Phone number must start with 09 and be 11 digits"
+
+#: includes/class/arta-appointment-form.php:278
+msgid "نوبت یافت نشد"
+msgstr "Appointment not found"
+
+#: includes/class/arta-appointment-form.php:280
+msgid "نوبت موجود نیست"
+msgstr "Appointment not available"
+
+#: includes/class/arta-appointment-form.php:283
+msgid "درخواست مشاوره - %s"
+msgstr "Consultation Request - %s"
+
+#: includes/class/arta-appointment-form.php:317
+msgid "درخواست شما با موفقیت ثبت شد"
+msgstr "Your request has been registered successfully"
+
+#: includes/class/arta-appointment-form.php:326
+msgid "اطلاعات نوبت"
+msgstr "Appointment Information"
+
+#: includes/class/arta-appointment-form.php:330
+msgid "تاریخ نوبت:"
+msgstr "Appointment Date:"
+
+#: includes/class/arta-appointment-form.php:333
+msgid "ساعت نوبت:"
+msgstr "Appointment Time:"
+
+#: includes/class/arta-appointment-form.php:336
+msgid "اطلاعات شخصی"
+msgstr "Personal Information"
+
+#: includes/class/arta-appointment-form.php:337
+msgid "نام و نام خانوادگی:"
+msgstr "Full Name:"
+
+#: includes/class/arta-appointment-form.php:338
+msgid "جنسیت:"
+msgstr "Gender:"
+
+#: includes/class/arta-appointment-form.php:338
+msgid "مرد"
+msgstr "Male"
+
+#: includes/class/arta-appointment-form.php:338
+msgid "زن"
+msgstr "Female"
+
+#: includes/class/arta-appointment-form.php:339
+msgid "تاریخ تولد:"
+msgstr "Birth Date:"
+
+#: includes/class/arta-appointment-form.php:342
+msgid "قد:"
+msgstr "Height:"
+
+#: includes/class/arta-appointment-form.php:342
+msgid " سانتی‌متر"
+msgstr " cm"
+
+#: includes/class/arta-appointment-form.php:345
+msgid "وزن:"
+msgstr "Weight:"
+
+#: includes/class/arta-appointment-form.php:345
+msgid " کیلوگرم"
+msgstr " kg"
+
+#: includes/class/arta-appointment-form.php:348
+msgid "ایمیل:"
+msgstr "Email:"
+
+#: includes/class/arta-appointment-form.php:349
+msgid "شماره تماس:"
+msgstr "Phone Number:"
+
+#: includes/class/arta-appointment-form.php:353
+msgid "اطلاعات پزشکی"
+msgstr "Medical Information"
+
+#: includes/class/arta-appointment-form.php:356
+msgid "بیماری‌های مزمن:"
+msgstr "Chronic Diseases:"
+
+#: includes/class/arta-appointment-form.php:359
+msgid "داروهای مصرفی:"
+msgstr "Current Medications:"
+
+#: includes/class/arta-appointment-form.php:362
+msgid "سوابق درمانی:"
+msgstr "Medical History:"
+
+#: includes/class/arta-appointment-form.php:367
+msgid "هدف از برنامه"
+msgstr "Program Goal"
+
+#: includes/class/arta-appointment-form.php:371
+msgid "تایید مشاوره پزشکی"
+msgstr "Medical Consultation Confirmation"
+
+#: includes/class/arta-appointment-form.php:372
+msgid "تایید شده"
+msgstr "Confirmed"
+
+#: includes/class/arta-appointment-form.php:372
+msgid "تایید نشده"
+msgstr "Not Confirmed"
+
+#: includes/class/arta-appointment-form.php:431
+msgid "تایید رزرو نوبت مشاوره"
+msgstr "Confirm Consultation Appointment Booking"
+
+#: includes/class/arta-appointment-form.php:435
+msgid "نامشخص"
+msgstr "Unknown"
+
+#: includes/class/arta-appointment-form.php:523
+msgid "کاربر لاگین نشده"
+msgstr "User not logged in"
+
+#: includes/class/arta-appointment-form.php:594
+msgid "خطای امنیتی"
+msgstr "Security Error"
+
+#: includes/class/arta-appointment-form.php:600
+msgid "لطفاً وارد شوید"
+msgstr "Please log in"
+
+#: includes/class/arta-appointment-form.php:611
+msgid "اطلاعات ناقص است"
+msgstr "Incomplete information"
+
+#: includes/class/arta-appointment-form.php:618
+msgid "درخواست یافت نشد"
+msgstr "Request not found"
+
+#: includes/class/arta-appointment-form.php:623
+msgid "شما دسترسی به این درخواست ندارید"
+msgstr "You do not have access to this request"
+
+#: includes/class/arta-appointment-form.php:636
+msgid "این برنامه قبلاً به درخواست اضافه شده است"
+msgstr "This program has already been added to the request"
+
+#: includes/class/arta-appointment-form.php:644
+msgid "برنامه با موفقیت به درخواست شما اضافه شد"
+msgstr "Program successfully added to your request"
+
+#: includes/class/arta-appointment-form.php:653
+msgid "این محصول قبلاً به درخواست اضافه شده است"
+msgstr "This product has already been added to the request"
+
+#: includes/class/arta-appointment-form.php:661
+msgid "محصول با موفقیت به درخواست شما اضافه شد"
+msgstr "Product successfully added to your request"
+
+#: includes/class/arta-appointment-form.php:663
+msgid "نوع آیتم نامعتبر است"
+msgstr "Invalid item type"
+
+#: includes/class/arta-my-account.php:54
+msgid "درخواست‌های من"
+msgstr "My Requests"
+
+#: includes/class/arta-my-account.php:155
+msgid "برای مشاهده درخواست‌های خود باید وارد شوید."
+msgstr "You must log in to view your requests."
+
+#: includes/class/arta-my-account.php:175
+msgid "درخواست‌های مشاوره من"
+msgstr "My Consultation Requests"
+
+#: includes/class/arta-my-account.php:179
+msgid "شما هنوز درخواست مشاوره‌ای ثبت نکرده‌اید."
+msgstr "You have not registered any consultation requests yet."
+
+#: includes/class/arta-my-account.php:219
+msgid "در انتظار بررسی"
+msgstr "Pending Review"
+
+#: includes/class/arta-my-account.php:220
+msgid "تایید شده"
+msgstr "Approved"
+
+#: includes/class/arta-my-account.php:221
+msgid "رد شده"
+msgstr "Rejected"
+
+#: includes/class/arta-my-account.php:231
+msgid "درخواست #%s"
+msgstr "Request #%s"
+
+#: includes/class/arta-my-account.php:234
+msgid "تاریخ درخواست:"
+msgstr "Request Date:"
+
+#: includes/class/arta-my-account.php:238
+msgid "تاریخ نوبت:"
+msgstr "Appointment Date:"
+
+#: includes/class/arta-my-account.php:261
+msgid "پزشک:"
+msgstr "Doctor:"
+
+#: includes/class/arta-my-account.php:268
+msgid "برنامه‌ها:"
+msgstr "Programs:"
+
+#: includes/class/arta-my-account.php:275
+msgid " برنامه"
+msgstr " program"
+
+#: includes/class/arta-my-account.php:282
+msgid "محصولات:"
+msgstr "Products:"
+
+#: includes/class/arta-my-account.php:289
+msgid " محصول"
+msgstr " product"
+
+#: includes/class/arta-my-account.php:252
+msgid "مشاهده"
+msgstr "View"
+
+#: includes/class/arta-post-types.php:43
+msgid "برنامه‌ها"
+msgstr "Programs"
+
+#: includes/class/arta-post-types.php:44
+msgid "برنامه"
+msgstr "Program"
+
+#: includes/class/arta-post-types.php:45
+msgid "برنامه‌ها"
+msgstr "Programs"
+
+#: includes/class/arta-post-types.php:46
+msgid "برنامه"
+msgstr "Program"
+
+#: includes/class/arta-post-types.php:47
+msgid "افزودن جدید"
+msgstr "Add New"
+
+#: includes/class/arta-post-types.php:48
+msgid "افزودن برنامه جدید"
+msgstr "Add New Program"
+
+#: includes/class/arta-post-types.php:49
+msgid "برنامه جدید"
+msgstr "New Program"
+
+#: includes/class/arta-post-types.php:50
+msgid "ویرایش برنامه"
+msgstr "Edit Program"
+
+#: includes/class/arta-post-types.php:51
+msgid "مشاهده برنامه"
+msgstr "View Program"
+
+#: includes/class/arta-post-types.php:52
+msgid "همه برنامه‌ها"
+msgstr "All Programs"
+
+#: includes/class/arta-post-types.php:53
+msgid "جستجوی برنامه‌ها"
+msgstr "Search Programs"
+
+#: includes/class/arta-post-types.php:54
+msgid "برنامه والد:"
+msgstr "Parent Program:"
+
+#: includes/class/arta-post-types.php:55
+msgid "برنامه‌ای یافت نشد."
+msgstr "No programs found."
+
+#: includes/class/arta-post-types.php:56
+msgid "هیچ برنامه‌ای در سطل زباله یافت نشد."
+msgstr "No programs found in trash."
+
+#: includes/class/arta-post-types.php:57
+msgid "تصویر شاخص برنامه"
+msgstr "Program Featured Image"
+
+#: includes/class/arta-post-types.php:58
+msgid "تنظیم تصویر شاخص"
+msgstr "Set Featured Image"
+
+#: includes/class/arta-post-types.php:59
+msgid "حذف تصویر شاخص"
+msgstr "Remove Featured Image"
+
+#: includes/class/arta-post-types.php:60
+msgid "استفاده به عنوان تصویر شاخص"
+msgstr "Use as Featured Image"
+
+#: includes/class/arta-post-types.php:61
+msgid "آرشیو برنامه‌ها"
+msgstr "Programs Archive"
+
+#: includes/class/arta-post-types.php:62
+msgid "درج در برنامه"
+msgstr "Insert into Program"
+
+#: includes/class/arta-post-types.php:63
+msgid "آپلود شده در این برنامه"
+msgstr "Uploaded to this Program"
+
+#: includes/class/arta-post-types.php:64
+msgid "فیلتر لیست برنامه‌ها"
+msgstr "Filter Programs List"
+
+#: includes/class/arta-post-types.php:65
+msgid "ناوبری لیست برنامه‌ها"
+msgstr "Programs List Navigation"
+
+#: includes/class/arta-post-types.php:66
+msgid "لیست برنامه‌ها"
+msgstr "Programs List"
+
+#: includes/class/arta-post-types.php:70
+msgid "برنامه‌ها"
+msgstr "Programs"
+
+#: includes/class/arta-post-types.php:105
+msgid "درخواست‌های مشاوره"
+msgstr "Consultation Requests"
+
+#: includes/class/arta-post-types.php:106
+msgid "درخواست مشاوره"
+msgstr "Consultation Request"
+
+#: includes/class/arta-post-types.php:107
+msgid "درخواست‌های مشاوره"
+msgstr "Consultation Requests"
+
+#: includes/class/arta-post-types.php:108
+msgid "درخواست مشاوره"
+msgstr "Consultation Request"
+
+#: includes/class/arta-post-types.php:109
+msgid "افزودن جدید"
+msgstr "Add New"
+
+#: includes/class/arta-post-types.php:110
+msgid "افزودن درخواست جدید"
+msgstr "Add New Request"
+
+#: includes/class/arta-post-types.php:111
+msgid "درخواست جدید"
+msgstr "New Request"
+
+#: includes/class/arta-post-types.php:112
+msgid "ویرایش درخواست"
+msgstr "Edit Request"
+
+#: includes/class/arta-post-types.php:113
+msgid "مشاهده درخواست"
+msgstr "View Request"
+
+#: includes/class/arta-post-types.php:114
+msgid "همه درخواست‌ها"
+msgstr "All Requests"
+
+#: includes/class/arta-post-types.php:115
+msgid "جستجوی درخواست‌ها"
+msgstr "Search Requests"
+
+#: includes/class/arta-post-types.php:116
+msgid "درخواست والد:"
+msgstr "Parent Request:"
+
+#: includes/class/arta-post-types.php:117
+msgid "درخواستی یافت نشد."
+msgstr "No requests found."
+
+#: includes/class/arta-post-types.php:118
+msgid "هیچ درخواستی در سطل زباله یافت نشد."
+msgstr "No requests found in trash."
+
+#: includes/class/arta-post-types.php:119
+msgid "تصویر شاخص درخواست"
+msgstr "Request Featured Image"
+
+#: includes/class/arta-post-types.php:120
+msgid "تنظیم تصویر شاخص"
+msgstr "Set Featured Image"
+
+#: includes/class/arta-post-types.php:121
+msgid "حذف تصویر شاخص"
+msgstr "Remove Featured Image"
+
+#: includes/class/arta-post-types.php:122
+msgid "استفاده به عنوان تصویر شاخص"
+msgstr "Use as Featured Image"
+
+#: includes/class/arta-post-types.php:123
+msgid "آرشیو درخواست‌ها"
+msgstr "Requests Archive"
+
+#: includes/class/arta-post-types.php:124
+msgid "درج در درخواست"
+msgstr "Insert into Request"
+
+#: includes/class/arta-post-types.php:125
+msgid "آپلود شده در این درخواست"
+msgstr "Uploaded to this Request"
+
+#: includes/class/arta-post-types.php:126
+msgid "فیلتر لیست درخواست‌ها"
+msgstr "Filter Requests List"
+
+#: includes/class/arta-post-types.php:127
+msgid "ناوبری لیست درخواست‌ها"
+msgstr "Requests List Navigation"
+
+#: includes/class/arta-post-types.php:128
+msgid "لیست درخواست‌ها"
+msgstr "Requests List"
+
+#: includes/class/arta-post-types.php:183
+msgid "جزئیات درخواست مشاوره"
+msgstr "Consultation Request Details"
+
+#: includes/class/arta-post-types.php:192
+msgid "وضعیت درخواست"
+msgstr "Request Status"
+
+#: includes/class/arta-post-types.php:232
+msgid "نامشخص"
+msgstr "Unknown"
+
+#: includes/Elementor/appointment-form-widget.php:30
+msgid "فرم رزرو نوبت مشاوره"
+msgstr "Consultation Appointment Booking Form"
+
+#: includes/Elementor/appointment-form-widget.php:62
+msgid "محتوای فرم"
+msgstr "Form Content"
+
+#: includes/Elementor/appointment-form-widget.php:71
+msgid "توضیحات فرم"
+msgstr "Form Description"
+
+#: includes/Elementor/appointment-form-widget.php:73
+msgid "توضیحات کوتاه در مورد فرم"
+msgstr "Short description about the form"
+
+#: includes/Elementor/appointment-form-widget.php:81
+msgid "تشخیص خودکار برنامه"
+msgstr "Auto Detect Program"
+
+#: includes/Elementor/appointment-form-widget.php:83
+msgid "فعال"
+msgstr "Active"
+
+#: includes/Elementor/appointment-form-widget.php:84
+msgid "غیرفعال"
+msgstr "Inactive"
+
+#: includes/Elementor/appointment-form-widget.php:87
+msgid "برنامه را از صفحه فعلی تشخیص دهد"
+msgstr "Detect program from current page"
+
+#: includes/Elementor/appointment-form-widget.php:96
+msgid "برنامه مرتبط"
+msgstr "Related Program"
+
+#: includes/Elementor/appointment-form-widget.php:100
+msgid "برنامه مرتبط با این فرم را انتخاب کنید"
+msgstr "Select the program related to this form"
+
+#: includes/Elementor/appointment-form-widget.php:113
+msgid "پیام نیاز به ورود"
+msgstr "Login Required Message"
+
+#: includes/Elementor/appointment-form-widget.php:121
+msgid "نیاز به ورود"
+msgstr "Require Login"
+
+#: includes/Elementor/appointment-form-widget.php:123
+msgid "بله"
+msgstr "Yes"
+
+#: includes/Elementor/appointment-form-widget.php:124
+msgid "خیر"
+msgstr "No"
+
+#: includes/Elementor/appointment-form-widget.php:127
+msgid "آیا کاربر باید وارد شده باشد تا بتواند فرم را پر کند؟"
+msgstr "Should the user be logged in to fill the form?"
+
+#: includes/Elementor/appointment-form-widget.php:134
+msgid "عنوان پیام"
+msgstr "Message Title"
+
+#: includes/Elementor/appointment-form-widget.php:136
+msgid "برای رزرو نوبت باید وارد شوید"
+msgstr "You must log in to book an appointment"
+
+#: includes/Elementor/appointment-form-widget.php:146
+msgid "متن پیام"
+msgstr "Message Text"
+
+#: includes/Elementor/appointment-form-widget.php:148
+msgid "لطفاً ابتدا وارد حساب کاربری خود شوید تا بتوانید نوبت مشاوره رزرو کنید."
+msgstr "Please first log into your account to book a consultation appointment."
+
+#: includes/Elementor/appointment-form-widget.php:159
+msgid "متن دکمه ورود"
+msgstr "Login Button Text"
+
+#: includes/Elementor/appointment-form-widget.php:161
+msgid "ورود"
+msgstr "Login"
+
+#: includes/Elementor/appointment-form-widget.php:171
+msgid "لینک دکمه ورود"
+msgstr "Login Button Link"
+
+#: includes/Elementor/appointment-form-widget.php:187
+msgid "باز کردن در تب جدید"
+msgstr "Open in New Tab"
+
+#: includes/Elementor/appointment-form-widget.php:202
+msgid "افزودن nofollow"
+msgstr "Add nofollow"
+
+#: includes/Elementor/appointment-form-widget.php:209
+msgid "برای لینک‌های خارجی توصیه می‌شود"
+msgstr "Recommended for external links"
+
+#: includes/Elementor/appointment-form-widget.php:221
+msgid "فیلدهای فرم"
+msgstr "Form Fields"
+
+#: includes/Elementor/appointment-form-widget.php:230
+msgid "نمایش اطلاعات شخصی"
+msgstr "Show Personal Information"
+
+#: includes/Elementor/appointment-form-widget.php:232
+msgid "نمایش"
+msgstr "Show"
+
+#: includes/Elementor/appointment-form-widget.php:233
+msgid "مخفی"
+msgstr "Hide"
+
+#: includes/Elementor/appointment-form-widget.php:242
+msgid "فیلدهای اجباری"
+msgstr "Required Fields"
+
+#: includes/Elementor/appointment-form-widget.php:246
+msgid "نام و نام خانوادگی"
+msgstr "Full Name"
+
+#: includes/Elementor/appointment-form-widget.php:247
+msgid "جنسیت"
+msgstr "Gender"
+
+#: includes/Elementor/appointment-form-widget.php:248
+msgid "تاریخ تولد"
+msgstr "Birth Date"
+
+#: includes/Elementor/appointment-form-widget.php:249
+msgid "ایمیل"
+msgstr "Email"
+
+#: includes/Elementor/appointment-form-widget.php:250
+msgid "شماره تماس"
+msgstr "Phone Number"
+
+#: includes/Elementor/appointment-form-widget.php:251
+msgid "هدف از برنامه"
+msgstr "Program Goal"
+
+#: includes/Elementor/appointment-form-widget.php:252
+msgid "تایید مشاوره پزشکی"
+msgstr "Medical Consultation Confirmation"
+
+#: includes/Elementor/appointment-form-widget.php:264
+msgid "متن تایید مشاوره پزشکی"
+msgstr "Medical Consultation Confirmation Text"
+
+#: includes/Elementor/appointment-form-widget.php:266
+msgid "تایید مشاوره پزشکی"
+msgstr "Medical Consultation Confirmation"
+
+#: includes/Elementor/appointment-form-widget.php:267
+msgid "متن چک‌باکس تایید مشاوره پزشکی را وارد کنید"
+msgstr "Enter the medical consultation confirmation checkbox text"
+
+#: includes/Elementor/appointment-form-widget.php:278
+msgid "نمایش اطلاعات پزشکی"
+msgstr "Show Medical Information"
+
+#: includes/Elementor/appointment-form-widget.php:291
+msgid "نمایش انتخاب پزشک"
+msgstr "Show Doctor Selection"
+
+#: includes/Elementor/appointment-form-widget.php:303
+msgid "نمایش انتخاب زمان"
+msgstr "Show Time Selection"
+
+#: includes/Elementor/appointment-form-widget.php:320
+msgid "دکمه‌ها"
+msgstr "Buttons"
+
+#: includes/Elementor/appointment-form-widget.php:328
+msgid "متن دکمه شروع"
+msgstr "Start Button Text"
+
+#: includes/Elementor/appointment-form-widget.php:330
+msgid "رزرو نوبت مشاوره"
+msgstr "Book Consultation Appointment"
+
+#: includes/Elementor/appointment-form-widget.php:337
+msgid "متن دکمه بعدی"
+msgstr "Next Button Text"
+
+#: includes/Elementor/appointment-form-widget.php:339
+msgid "بعدی"
+msgstr "Next"
+
+#: includes/Elementor/appointment-form-widget.php:347
+msgid "متن دکمه قبلی"
+msgstr "Previous Button Text"
+
+#: includes/Elementor/appointment-form-widget.php:349
+msgid "قبلی"
+msgstr "Previous"
+
+#: includes/Elementor/appointment-form-widget.php:355
+msgid "متن دکمه ارسال"
+msgstr "Submit Button Text"
+
+#: includes/Elementor/appointment-form-widget.php:357
+msgid "ثبت درخواست"
+msgstr "Submit Request"
+
+#: includes/Elementor/appointment-form-widget.php:367
+msgid "پیام‌های عدم وجود داده"
+msgstr "No Data Messages"
+
+#: includes/Elementor/appointment-form-widget.php:375
+msgid "متن انتخاب پزشک و تاریخ"
+msgstr "Doctor and Date Selection Text"
+
+#: includes/Elementor/appointment-form-widget.php:377
+msgid "لطفاً ابتدا پزشک و تاریخ را انتخاب کنید"
+msgstr "Please first select doctor and date"
+
+#: includes/Elementor/appointment-form-widget.php:378
+msgid "پیامی که وقتی پزشک و تاریخ انتخاب نشده نمایش داده می‌شود"
+msgstr "Message displayed when doctor and date are not selected"
+
+#: includes/Elementor/appointment-form-widget.php:385
+msgid "متن عدم وجود زمان خالی"
+msgstr "No Available Time Text"
+
+#: includes/Elementor/appointment-form-widget.php:387
+msgid "هیچ زمان خالی برای این تاریخ وجود ندارد"
+msgstr "No available time slots for this date"
+
+#: includes/Elementor/appointment-form-widget.php:388
+msgid "پیامی که وقتی زمانی خالی نیست نمایش داده می‌شود"
+msgstr "Message displayed when no time slots are available"
+
+#: includes/Elementor/appointment-form-widget.php:398
+msgid "پیام موفقیت"
+msgstr "Success Message"
+
+#: includes/Elementor/appointment-form-widget.php:408
+msgid "عنوان پیام موفقیت"
+msgstr "Success Message Title"
+
+#: includes/Elementor/appointment-form-widget.php:410
+msgid "درخواست شما با موفقیت ثبت شد!"
+msgstr "Your request has been registered successfully!"
+
+#: includes/Elementor/appointment-form-widget.php:417
+msgid "متن پیام موفقیت"
+msgstr "Success Message Text"
+
+#: includes/Elementor/appointment-form-widget.php:419
+msgid "درخواست مشاوره شما با موفقیت ثبت شد. به زودی با شما تماس خواهیم گرفت."
+msgstr "Your consultation request has been registered successfully. We will contact you soon."
+
+#: includes/Elementor/appointment-form-widget.php:427
+msgid "متن دکمه بازگشت"
+msgstr "Return Button Text"
+
+#: includes/Elementor/appointment-form-widget.php:429
+msgid "بازگشت به صفحه اصلی"
+msgstr "Return to Home Page"
+
+#: includes/Elementor/appointment-form-widget.php:436
+msgid "لینک دکمه بازگشت"
+msgstr "Return Button Link"
+
+#: includes/Elementor/appointment-form-widget.php:451
+msgid "استایل فرم"
+msgstr "Form Style"
+
+#: includes/Elementor/appointment-form-widget.php:460
+msgid "پس‌زمینه فرم"
+msgstr "Form Background"
+
+#: includes/Elementor/appointment-form-widget.php:470
+msgid "حاشیه فرم"
+msgstr "Form Border"
+
+#: includes/Elementor/appointment-form-widget.php:478
+msgid "شعاع حاشیه"
+msgstr "Border Radius"
+
+#: includes/Elementor/appointment-form-widget.php:490
+msgid "فاصله داخلی"
+msgstr "Padding"
+
+#: includes/Elementor/appointment-form-widget.php:1200
+msgid "متن مرحله اول"
+msgstr "Step 1 Text"
+
+#: includes/Elementor/appointment-form-widget.php:1202
+msgid "اطلاعات شخصی"
+msgstr "Personal Information"
+
+#: includes/Elementor/appointment-form-widget.php:1210
+msgid "متن مرحله دوم"
+msgstr "Step 2 Text"
+
+#: includes/Elementor/appointment-form-widget.php:1212
+msgid "انتخاب پزشک"
+msgstr "Select Doctor"
+
+#: includes/Elementor/appointment-form-widget.php:1220
+msgid "متن مرحله سوم"
+msgstr "Step 3 Text"
+
+#: includes/Elementor/appointment-form-widget.php:1222
+msgid "انتخاب زمان"
+msgstr "Select Time"
+
+#: includes/Elementor/appointment-form-widget.php:1227
+msgid "رنگ پس‌زمینه مرحله"
+msgstr "Step Background Color"
+
+#: includes/Elementor/appointment-form-widget.php:1238
+msgid "رنگ متن مرحله"
+msgstr "Step Text Color"
+
+# Additional strings for consultation meta box and columns
+#: includes/class/arta-post-types.php:344
+msgid "هیچ برنامه‌ای ثبت نشده"
+msgstr "No programs registered"
+
+#: includes/class/arta-post-types.php:348
+msgid "هیچ محصولی ثبت نشده"
+msgstr "No products registered"
+
+#: includes/class/arta-post-types.php:821
+msgid "برنامه"
+msgstr "program"
+
+#: includes/class/arta-post-types.php:842
+msgid "محصول"
+msgstr "product"
+
+#: includes/class/arta-post-types.php:909
+msgid "تایید"
+msgstr "Approve"
+
+#: includes/class/arta-post-types.php:910
+msgid "رد"
+msgstr "Reject"
+
+#: includes/class/arta-post-types.php:964
+msgid "همه وضعیت‌ها"
+msgstr "All Statuses"
+
+#: includes/class/arta-post-types.php:1112
+msgid "درخواست به تکمیل شده تغییر یافت"
+msgstr "Request changed to completed"
+
+#: includes/class/arta-post-types.php:1046
+msgid "درخواست با موفقیت تایید شد"
+msgstr "Request approved successfully"
+
+#: includes/class/arta-post-types.php:1080
+msgid "درخواست رد شد و نوبت آزاد شد"
+msgstr "Request rejected and appointment freed"
+
+#: includes/class/arta-post-types.php:1232
+msgid "خطا در تغییر وضعیت"
+msgstr "Error changing status"
+
+#: includes/class/arta-post-types.php:1180
+msgid "در حال پردازش..."
+msgstr "Processing..."
+
+#: includes/class/arta-post-types.php:739
+msgid "شماره درخواست"
+msgstr "Request ID"
+
+#: includes/class/arta-post-types.php:740
+msgid "نام بیمار"
+msgstr "Patient Name"
+
+#: includes/class/arta-post-types.php:741
+msgid "تاریخ نوبت"
+msgstr "Appointment Date"
+
+#: includes/class/arta-post-types.php:742
+msgid "ساعت نوبت"
+msgstr "Appointment Time"
+
+#: includes/class/arta-post-types.php:743
+msgid "پزشک"
+msgstr "Doctor"
+
+#: includes/class/arta-post-types.php:744
+msgid "برنامه‌ها"
+msgstr "Programs"
+
+#: includes/class/arta-post-types.php:745
+msgid "محصولات"
+msgstr "Products"
+
+#: includes/class/arta-post-types.php:746
+msgid "وضعیت"
+msgstr "Status"
+
+#: includes/class/arta-post-types.php:747
+msgid "تایید/رد"
+msgstr "Approve/Reject"
+
+#: includes/class/arta-post-types.php:748
+msgid "تاریخ ثبت"
+msgstr "Registration Date"
+
+# Additional meta box strings
+#: includes/class/arta-post-types.php:324
+msgid "اطلاعات نوبت"
+msgstr "Appointment Information"
+
+#: includes/class/arta-post-types.php:327
+msgid "تاریخ نوبت:"
+msgstr "Appointment Date:"
+
+#: includes/class/arta-post-types.php:331
+msgid "ساعت نوبت:"
+msgstr "Appointment Time:"
+
+#: includes/class/arta-post-types.php:337
+msgid "پزشک:"
+msgstr "Doctor:"
+
+#: includes/class/arta-post-types.php:355
+msgid "اطلاعات شخصی"
+msgstr "Personal Information"
+
+#: includes/class/arta-post-types.php:358
+msgid "نام و نام خانوادگی:"
+msgstr "Full Name:"
+
+#: includes/class/arta-post-types.php:362
+msgid "جنسیت:"
+msgstr "Gender:"
+
+#: includes/class/arta-post-types.php:371
+msgid "تاریخ تولد:"
+msgstr "Birth Date:"
+
+#: includes/class/arta-post-types.php:375
+msgid "قد (سانتی‌متر):"
+msgstr "Height (cm):"
+
+#: includes/class/arta-post-types.php:381
+msgid "وزن (کیلوگرم):"
+msgstr "Weight (kg):"
+
+#: includes/class/arta-post-types.php:385
+msgid "تأیید مشاوره پزشکی:"
+msgstr "Medical Consultation Confirmation:"
+
+#: includes/class/arta-post-types.php:396
+msgid "اطلاعات تماس"
+msgstr "Contact Information"
+
+#: includes/class/arta-post-types.php:399
+msgid "ایمیل:"
+msgstr "Email:"
+
+#: includes/class/arta-post-types.php:403
+msgid "شماره تماس:"
+msgstr "Phone Number:"
+
+#: includes/class/arta-post-types.php:411
+msgid "اطلاعات پزشکی"
+msgstr "Medical Information"
+
+#: includes/class/arta-post-types.php:413
+msgid "بیماری‌های مزمن:"
+msgstr "Chronic Diseases:"
+
+#: includes/class/arta-post-types.php:417
+msgid "داروهای مصرفی:"
+msgstr "Current Medications:"
+
+#: includes/class/arta-post-types.php:421
+msgid "سوابق درمانی:"
+msgstr "Medical History:"
+
+#: includes/class/arta-post-types.php:425
+msgid "هدف از برنامه:"
+msgstr "Program Goal:"
+
+#: includes/class/arta-post-types.php:597
+msgid "دلیل رد:"
+msgstr "Rejection Reason:"
+
+#: includes/class/arta-post-types.php:343
+msgid "برنامه‌ها (%d برنامه):"
+msgstr "Programs (%d program):"
+
+#: includes/class/arta-post-types.php:347
+msgid "محصولات (%d محصول):"
+msgstr "Products (%d product):"
+
+# Meta boxes for Program post type
+#: includes/class/arta-meta-boxes.php:35
+msgid "جزئیات برنامه"
+msgstr "Program Details"
+
+#: includes/class/arta-meta-boxes.php:44
+msgid "توضیحات اهداف"
+msgstr "Goals Description"
+
+#: includes/class/arta-meta-boxes.php:53
+msgid "توضیحات مزایا"
+msgstr "Benefits Description"
+
+#: includes/class/arta-meta-boxes.php:151
+msgid "انتخاب پزشک‌ها"
+msgstr "Select Doctors"
+
+#: includes/class/arta-meta-boxes.php:153
+msgid "پزشک را انتخاب کنید..."
+msgstr "Select a doctor..."
+
+#: includes/class/arta-meta-boxes.php:177
+msgid "پزشک‌های مسئول این برنامه را انتخاب کنید."
+msgstr "Select the doctors responsible for this program."
+
+#: includes/class/arta-meta-boxes.php:184
+msgid "محصولات مرتبط"
+msgstr "Related Products"
+
+#: includes/class/arta-meta-boxes.php:186
+msgid "محصول را انتخاب کنید..."
+msgstr "Select a product..."
+
+#: includes/class/arta-meta-boxes.php:210
+msgid "محصولات مرتبط با این برنامه را انتخاب کنید."
+msgstr "Select products related to this program."
+
+#: includes/class/arta-meta-boxes.php:343
+msgid "توضیحات اهداف"
+msgstr "Goals Description"
+
+#: includes/class/arta-meta-boxes.php:357
+msgid "اهداف و مقاصد این برنامه را به تفصیل شرح دهید."
+msgstr "Describe the goals and objectives of this program in detail."
+
+#: includes/class/arta-meta-boxes.php:379
+msgid "توضیحات مزایا"
+msgstr "Benefits Description"
+
+#: includes/class/arta-meta-boxes.php:393
+msgid "مزایا و فواید این برنامه را به تفصیل شرح دهید."
+msgstr "Describe the benefits and advantages of this program in detail."
+
+# Additional error and validation messages
+#: includes/class/arta-appointment-form.php:85
+msgid "تایید مشاوره پزشکی الزامی است"
+msgstr "Medical consultation confirmation is required"
+
+#: includes/class/arta-appointment-form.php:86
+msgid "لطفاً ابتدا پزشک و تاریخ را انتخاب کنید"
+msgstr "Please first select doctor and date"
+
+#: includes/class/arta-appointment-form.php:87
+msgid "هیچ زمان خالی برای این تاریخ وجود ندارد"
+msgstr "No available time slots for this date"
+
+# Field labels for appointment form widget (without colon)
+#: includes/class/arta-appointment-form.php:67
+msgid "قد (سانتی‌متر)"
+msgstr "Height (cm)"
+
+#: includes/class/arta-appointment-form.php:68
+msgid "وزن (کیلوگرم)"
+msgstr "Weight (kg)"
+
+#: includes/class/arta-appointment-form.php:71
+msgid "بیماری‌های مزمن"
+msgstr "Chronic Diseases"
+
+#: includes/class/arta-appointment-form.php:72
+msgid "داروهای مصرفی"
+msgstr "Current Medications"
+
+#: includes/class/arta-appointment-form.php:73
+msgid "سوابق درمانی"
+msgstr "Medical History"
+
+#: includes/class/arta-appointment-form.php:81
+msgid "این فیلد اجباری است"
+msgstr "This field is required"
+
+# Additional strings from arta-appointment-form.php
+#: includes/class/arta-appointment-form.php:76
+msgid "لیست پزشکان در حال بارگذاری..."
+msgstr "Loading doctors list..."
+
+#: includes/class/arta-appointment-form.php:80
+msgid "انتخاب زمان نوبت"
+msgstr "Select Appointment Time"
+
+#: includes/class/arta-appointment-form.php:83
+msgid "در حال جستجو..."
+msgstr "Searching..."
+
+# Additional default values from Elementor widget
+#: includes/Elementor/appointment-form-widget.php:136
+msgid "برای رزرو نوبت باید وارد شوید"
+msgstr "You must log in to book an appointment"
+
+#: includes/Elementor/appointment-form-widget.php:148
+msgid "لطفاً ابتدا وارد حساب کاربری خود شوید تا بتوانید نوبت مشاوره رزرو کنید."
+msgstr "Please first log in to your account to book a consultation appointment."
+
+#: includes/Elementor/appointment-form-widget.php:161
+msgid "ورود"
+msgstr "Login"
+
+#: includes/Elementor/appointment-form-widget.php:266
+msgid "تایید مشاوره پزشکی"
+msgstr "Medical Consultation Confirmation"
+
+#: includes/Elementor/appointment-form-widget.php:410
+msgid "درخواست شما با موفقیت ثبت شد!"
+msgstr "Your request has been registered successfully!"
+
+#: includes/Elementor/appointment-form-widget.php:419
+msgid "درخواست مشاوره شما با موفقیت ثبت شد. به زودی با شما تماس خواهیم گرفت."
+msgstr "Your consultation request has been registered successfully. We will contact you soon."
+
+#: includes/Elementor/appointment-form-widget.php:429
+msgid "بازگشت به صفحه اصلی"
+msgstr "Return to Home Page"
+
+#: includes/Elementor/appointment-form-widget.php:1202
+msgid "اطلاعات شخصی"
+msgstr "Personal Information"
+
+#: includes/Elementor/appointment-form-widget.php:1211
+msgid "انتخاب پزشک"
+msgstr "Select Doctor"
+
+#: includes/Elementor/appointment-form-widget.php:1220
+msgid "انتخاب زمان"
+msgstr "Select Time"
+
+#: includes/Elementor/appointment-form-widget.php:3414
+msgid "انتخاب زمان نوبت"
+msgstr "Select Appointment Time"
+
+#: includes/Elementor/appointment-form-widget.php:2218
+msgid "شما قبلاً نوبت رزرو کرده‌اید"
+msgstr "You have already booked an appointment"
+
+#: includes/Elementor/appointment-form-widget.php:2228
+msgid "شما در تاریخ"
+msgstr "You on date"
+
+#: includes/Elementor/appointment-form-widget.php:2237
+msgid "ساعت"
+msgstr "Time"
+
+#: includes/Elementor/appointment-form-widget.php:2246
+msgid "با دکتر"
+msgstr "with Doctor"
+
+#: includes/Elementor/appointment-form-widget.php:2264
+msgid "شما نمی‌توانید نوبت جدید رزرو کنید، اما می‌توانید {item_type} را به درخواست قبلی خود اضافه کنید."
+msgstr "You cannot book a new appointment, but you can add {item_type} to your previous request."
+
+#: includes/Elementor/appointment-form-widget.php:2274
+msgid "این برنامه"
+msgstr "This Program"
+
+#: includes/Elementor/appointment-form-widget.php:2283
+msgid "این محصول"
+msgstr "This Product"
+
+#: includes/Elementor/appointment-form-widget.php:2292
+msgid "افزودن به درخواست قبلی"
+msgstr "Add to Previous Request"
+
+#: includes/Elementor/appointment-form-widget.php:2301
+msgid "در حال افزودن..."
+msgstr "Adding..."
+
+#: includes/Elementor/appointment-form-widget.php:2310
+msgid "این برنامه قبلاً به درخواست شما اضافه شده است."
+msgstr "This program has already been added to your request."
+
+#: includes/Elementor/appointment-form-widget.php:2319
+msgid "این محصول قبلاً به درخواست شما اضافه شده است."
+msgstr "This product has already been added to your request."
+
+# JavaScript strings - These need to be localized via wp_localize_script
+# All JS hardcoded Persian strings should be moved to PHP localization
+
+#: includes/class/arta-buy-button.php:71
+msgid "WooCommerce is required for this feature."
+msgstr "WooCommerce is required for this feature."
+
+#: includes/class/arta-buy-button.php:78
+msgid "خرید"
+msgstr "Buy"
+
+#: includes/class/arta-buy-button.php:104
+msgid "هیچ محصولی برای این برنامه تعریف نشده است."
+msgstr "No product has been defined for this program."
+
+#: includes/class/arta-buy-button.php:110
+msgid "محصولی یافت نشد."
+msgstr "No product found."
+
+#: includes/class/arta-buy-button.php:115
+msgid "این محصول قابل خرید نیست."
+msgstr "This product is not purchasable."
+
+#: includes/class/arta-buy-button.php:143
+msgid "خطای امنیتی"
+msgstr "Security Error"
+
+#: includes/class/arta-buy-button.php:149
+msgid "WooCommerce فعال نیست"
+msgstr "WooCommerce is not active"
+
+#: includes/class/arta-buy-button.php:157
+msgid "محصولی انتخاب نشده است"
+msgstr "No product has been selected"
+
+#: includes/class/arta-buy-button.php:164
+msgid "این محصول قابل خرید نیست"
+msgstr "This product is not purchasable"
+
+#: includes/class/arta-buy-button.php:185
+msgid "نوع محصول در دسترس نیست"
+msgstr "Product variation is not available"
+
+#: includes/class/arta-buy-button.php:198
+msgid "محصول با موفقیت به سبد خرید اضافه شد"
+msgstr "Product has been successfully added to cart"
+
+#: includes/class/arta-buy-button.php:203
+msgid "خطا در افزودن محصول به سبد خرید"
+msgstr "Error adding product to cart"
+
+#: includes/class/arta-buy-button.php:57
+msgid "در حال پردازش..."
+msgstr "Processing..."
+
+#: includes/class/arta-buy-button.php:58
+msgid "خطایی رخ داد"
+msgstr "An error occurred"
+
+#: includes/class/arta-buy-button.php:59
+msgid "خطا در ارتباط با سرور"
+msgstr "Error connecting to server"
+
+#: includes/class/arta-checkout-fields.php:77
+msgid "جنسیت"
+msgstr "Gender"
+
+#: includes/class/arta-checkout-fields.php:78
+msgid "جنسیت را انتخاب کنید"
+msgstr "Select gender"
+
+#: includes/class/arta-checkout-fields.php:83
+msgid "انتخاب کنید"
+msgstr "Select"
+
+#: includes/class/arta-checkout-fields.php:84
+msgid "مرد"
+msgstr "Male"
+
+#: includes/class/arta-checkout-fields.php:85
+msgid "زن"
+msgstr "Female"
+
+#: includes/class/arta-checkout-fields.php:92
+msgid "تاریخ تولد"
+msgstr "Birth Date"
+
+#: includes/class/arta-checkout-fields.php:93
+msgid "YYYY-MM-DD"
+msgstr "YYYY-MM-DD"
+
+#: includes/class/arta-checkout-fields.php:102
+msgid "قد (سانتی‌متر)"
+msgstr "Height (cm)"
+
+#: includes/class/arta-checkout-fields.php:103
+msgid "قد خود را وارد کنید"
+msgstr "Enter your height"
+
+#: includes/class/arta-checkout-fields.php:112
+msgid "وزن (کیلوگرم)"
+msgstr "Weight (kg)"
+
+#: includes/class/arta-checkout-fields.php:113
+msgid "وزن خود را وارد کنید"
+msgstr "Enter your weight"
+
+#: includes/class/arta-checkout-fields.php:122
+msgid "بیماری‌های مزمن"
+msgstr "Chronic Diseases"
+
+#: includes/class/arta-checkout-fields.php:123
+msgid "بیماری‌های مزمن خود را وارد کنید"
+msgstr "Enter your chronic diseases"
+
+#: includes/class/arta-checkout-fields.php:132
+msgid "داروهای مصرفی فعلی"
+msgstr "Current Medications"
+
+#: includes/class/arta-checkout-fields.php:133
+msgid "داروهای مصرفی فعلی خود را وارد کنید"
+msgstr "Enter your current medications"
+
+#: includes/class/arta-checkout-fields.php:142
+msgid "سوابق پزشکی"
+msgstr "Medical History"
+
+#: includes/class/arta-checkout-fields.php:143
+msgid "سوابق پزشکی خود را وارد کنید"
+msgstr "Enter your medical history"
+
+#: includes/class/arta-checkout-fields.php:152
+msgid "هدف از برنامه"
+msgstr "Program Goal"
+
+#: includes/class/arta-checkout-fields.php:153
+msgid "هدف خود از این برنامه را وارد کنید"
+msgstr "Enter your program goal"
+
+#: includes/class/arta-checkout-fields.php:162
+msgid "آلرژی‌ها"
+msgstr "Allergies"
+
+#: includes/class/arta-checkout-fields.php:163
+msgid "آلرژی‌های خود را وارد کنید"
+msgstr "Enter your allergies"
+
+#: includes/class/arta-checkout-fields.php:205
+msgid "قد"
+msgstr "Height"
+
+#: includes/class/arta-checkout-fields.php:206
+msgid "وزن"
+msgstr "Weight"
+
+#: includes/class/arta-checkout-fields.php:214
+msgid "%s الزامی است."
+msgstr "%s is required."
+
+#: includes/class/arta-checkout-fields.php:223
+msgid "قد باید یک عدد باشد."
+msgstr "Height must be a number."
+
+#: includes/class/arta-checkout-fields.php:230
+msgid "وزن باید یک عدد باشد."
+msgstr "Weight must be a number."
+
+#: includes/class/arta-checkout-fields.php:309
+#: includes/class/arta-checkout-fields.php:342
+#: includes/class/arta-checkout-fields.php:351
+#: includes/class/arta-checkout-fields.php:382
+msgid "اطلاعات پزشکی"
+msgstr "Medical Information"
+
+#: includes/class/arta-guide.php:32
+#: includes/class/arta-guide.php:33
+msgid "راهنمای استفاده"
+msgstr "User Guide"
+
+#: includes/class/arta-guide.php:46
+msgid "راهنمای استفاده از سیستم مشاوره پزشکی"
+msgstr "Medical Consultation System User Guide"
+
+#: includes/class/arta-guide.php:162
+msgid "معرفی افزونه"
+msgstr "Plugin Introduction"
+
+#: includes/class/arta-guide.php:165
+msgid "به سیستم جامع مشاوره پزشکی و نوبت‌دهی خوش آمدید. این افزونه ابزاری قدرتمند برای مدیریت نوبت‌ها، پزشکان و بیماران است که با رابط کاربری ساده و کاربردی طراحی شده است."
+msgstr "Welcome to the comprehensive medical consultation and appointment system. This plugin is a powerful tool for managing appointments, doctors, and patients with a simple and functional user interface."
+
+#: includes/class/arta-guide.php:167
+msgid "این افزونه با ووکامرس کاملاً سازگار است و امکان پرداخت هزینه مشاوره را از طریق درگاه‌های پرداخت ووکامرس فراهم می‌کند."
+msgstr "This plugin is fully compatible with WooCommerce and provides the ability to pay consultation fees through WooCommerce payment gateways."
+
+#: includes/class/arta-guide.php:176
+msgid "راه‌اندازی اولیه"
+msgstr "Initial Setup"
+
+#: includes/class/arta-guide.php:182
+msgid "تعریف پزشکان"
+msgstr "Define Doctors"
+
+#: includes/class/arta-guide.php:183
+msgid "ابتدا از منوی \"لیست پزشکان\"، پزشکان متخصص خود را تعریف کنید. برای هر پزشک می‌توانید نام کاربری، رمز عبور و تخصص مشخص کنید."
+msgstr "First, define your specialist doctors from the \"Doctors List\" menu. For each doctor, you can specify username, password, and specialty."
+
+#: includes/class/arta-guide.php:189
+msgid "ایجاد برنامه نوبت‌دهی"
+msgstr "Create Appointment Schedule"
+
+#: includes/class/arta-guide.php:190
+msgid "از منوی \"تعریف نوبت\"، برای پزشکان در بازه‌های زمانی مشخص (مثلاً یک ماه) نوبت ایجاد کنید. می‌توانید فاصله بین نوبت‌ها را تعیین کنید."
+msgstr "From the \"Define Appointment\" menu, create appointments for doctors in specific time periods (e.g., one month). You can set the interval between appointments."
+
+#: includes/class/arta-guide.php:196
+msgid "نمایش در سایت"
+msgstr "Display on Site"
+
+#: includes/class/arta-guide.php:197
+msgid "با استفاده از شورتکدها، فرم نوبت‌دهی را در صفحات سایت خود نمایش دهید تا بیماران بتوانند نوبت رزرو کنند."
+msgstr "Use shortcodes to display the appointment form on your site pages so patients can book appointments."
+
+#: includes/class/arta-guide.php:207
+msgid "یکپارچگی با ووکامرس"
+msgstr "WooCommerce Integration"
+
+#: includes/class/arta-guide.php:210
+msgid "این افزونه قابلیت‌های ویژه‌ای به صفحه پرداخت ووکامرس اضافه می‌کند:"
+msgstr "This plugin adds special features to the WooCommerce checkout page:"
+
+#: includes/class/arta-guide.php:212
+msgid "فیلدهای اضافی پزشکی"
+msgstr "Additional Medical Fields"
+
+#: includes/class/arta-guide.php:213
+msgid "در صفحه پرداخت (Checkout)، فیلدهای زیر برای دریافت اطلاعات تکمیلی بیمار اضافه شده‌اند:"
+msgstr "On the checkout page, the following fields have been added to collect additional patient information:"
+
+#: includes/class/arta-guide.php:215
+msgid "اطلاعات فردی:"
+msgstr "Personal Information:"
+
+#: includes/class/arta-guide.php:215
+msgid "جنسیت، تاریخ تولد، قد، وزن (اجباری)"
+msgstr "Gender, Date of Birth, Height, Weight (Required)"
+
+#: includes/class/arta-guide.php:216
+msgid "سوابق پزشکی:"
+msgstr "Medical History:"
+
+#: includes/class/arta-guide.php:216
+msgid "بیماری‌های مزمن، سوابق پزشکی، آلرژی‌ها (اختیاری)"
+msgstr "Chronic Diseases, Medical History, Allergies (Optional)"
+
+#: includes/class/arta-guide.php:217
+msgid "دارو و درمان:"
+msgstr "Medications & Treatment:"
+
+#: includes/class/arta-guide.php:217
+msgid "داروهای مصرفی فعلی، هدف از برنامه (اختیاری)"
+msgstr "Current Medications, Program Goal (Optional)"
+
+#: includes/class/arta-guide.php:219
+msgid "این اطلاعات در جزئیات سفارش، ایمیل‌های ارسالی و پروفایل کاربری ذخیره و نمایش داده می‌شوند."
+msgstr "This information is saved and displayed in order details, sent emails, and user profiles."
+
+#: includes/class/arta-guide.php:227
+msgid "شورتکدها (Shortcodes)"
+msgstr "Shortcodes"
+
+#: includes/class/arta-guide.php:230
+msgid "برای نمایش فرم‌های مختلف در سایت از کدهای کوتاه زیر استفاده کنید:"
+msgstr "Use the following shortcodes to display various forms on your site:"
+
+#: includes/class/arta-guide.php:233
+msgid "1. دکمه خرید مستقیم (اتصال به ووکامرس)"
+msgstr "1. Direct Buy Button (WooCommerce Integration)"
+
+#: includes/class/arta-guide.php:235
+msgid "این دکمه سبد خرید کاربر را خالی کرده و محصول انتخابی را به آن اضافه می‌کند و کاربر را مستقیماً به صفحه پرداخت هدایت می‌کند."
+msgstr "This button empties the user's cart, adds the selected product to it, and redirects the user directly to the checkout page."
+
+#: includes/class/arta-guide.php:239
+msgid "پارامتر"
+msgstr "Parameter"
+
+#: includes/class/arta-guide.php:240
+msgid "توضیحات"
+msgstr "Description"
+
+#: includes/class/arta-guide.php:241
+msgid "مثال"
+msgstr "Example"
+
+#: includes/class/arta-guide.php:247
+msgid "شناسه محصول ووکامرس (اجباری اگر program_id نباشد)"
+msgstr "WooCommerce Product ID (Required if program_id is not provided)"
+
+#: includes/class/arta-guide.php:252
+msgid "شناسه پست برنامه (محصول مرتبط را پیدا می‌کند)"
+msgstr "Program Post ID (Finds the related product)"
+
+#: includes/class/arta-guide.php:257
+msgid "متن روی دکمه"
+msgstr "Button Text"
+
+#: includes/class/arta-guide.php:265
+msgid "2. دکمه مشاوره واتساپ (مخصوص صفحه پرداخت)"
+msgstr "2. WhatsApp Consultation Button (For Checkout Page)"
+
+#: includes/class/arta-guide.php:267
+msgid "این دکمه معمولاً در صفحه پرداخت نمایش داده می‌شود تا کاربر بتواند قبل از خرید مشاوره بگیرد."
+msgstr "This button is usually displayed on the checkout page so users can get consultation before purchase."
+
+#: includes/class/arta-guide.php:272
+msgid "پیش‌فرض"
+msgstr "Default"
+
+#: includes/class/arta-guide.php:279
+msgid "شماره موبایل گیرنده پیام (با کد کشور)"
+msgstr "Recipient Mobile Number (With Country Code)"
+
+#: includes/class/arta-guide.php:284
+msgid "متن پیش‌فرض پیام"
+msgstr "Default Message Text"
+
+#: includes/class/arta-guide.php:290
+msgid "شروع مشاوره"
+msgstr "Start Consultation"
+
+#: includes/class/arta-guide.php:297
+msgid "3. فرم رزرو نوبت"
+msgstr "3. Appointment Booking Form"
+
+#: includes/class/arta-guide.php:299
+msgid "نمایش تقویم و فرم رزرو نوبت برای پزشک خاص."
+msgstr "Display calendar and appointment booking form for a specific doctor."
+
+#: includes/class/arta-guide.php:303
+msgid "4. لیست نوبت‌های من"
+msgstr "4. My Appointments List"
+
+#: includes/class/arta-guide.php:305
+msgid "نمایش نوبت‌های رزرو شده کاربر جاری در پنل کاربری."
+msgstr "Display booked appointments of the current user in the user panel."
+
+#: includes/class/arta-guide.php:314
+msgid "سوالات متداول و رفع اشکال"
+msgstr "Frequently Asked Questions & Troubleshooting"
+
+#: includes/class/arta-guide.php:318
+msgid "چرا دکمه خرید کار نمی‌کند؟"
+msgstr "Why doesn't the buy button work?"
+
+#: includes/class/arta-guide.php:319
+msgid "مطمئن شوید که ووکامرس نصب و فعال است و شناسه محصول (product_id) وارد شده صحیح است و محصول قابلیت خرید دارد."
+msgstr "Make sure WooCommerce is installed and active, the product ID (product_id) entered is correct, and the product is purchasable."
+
+#: includes/class/arta-guide.php:323
+msgid "چرا فیلدهای پزشکی در صفحه پرداخت دیده نمی‌شوند؟"
+msgstr "Why are medical fields not visible on the checkout page?"
+
+#: includes/class/arta-guide.php:324
+msgid "این فیلدها به صورت خودکار توسط افزونه به صفحه Checkout ووکامرس اضافه می‌شوند. اگر از قالب‌های غیرستاندارد یا افزونه‌های ویرایشگر صفحه پرداخت استفاده می‌کنید، ممکن است تداخلی وجود داشته باشد."
+msgstr "These fields are automatically added to the WooCommerce Checkout page by the plugin. If you are using non-standard themes or checkout page editor plugins, there may be a conflict."
+
+#: includes/class/arta-guide.php:331
+msgid "نسخه افزونه: %s"
+msgstr "Plugin Version: %s"
+
+#: includes/class/arta-guide.php:331
+msgid "طراحی و توسعه توسط تیم آرتا"
+msgstr "Designed and Developed by Arta Team"
+
+#: includes/class/arta-checkout-whatsapp-button.php:53
+msgid "لطفاً تمام فیلدهای اجباری را پر کنید"
+msgstr "Please fill in all required fields"
+
+#: includes/class/arta-checkout-whatsapp-button.php:72
+msgid "درخواست مشاوره دارم"
+msgstr "I have a consultation request"
+
+#: includes/class/arta-checkout-whatsapp-button.php:73
+msgid "شروع مشاوره"
+msgstr "Start Consultation"
+
+#: includes/class/arta-checkout-whatsapp-button.php:108
+msgid "نام"
+msgstr "First Name"
+
+#: includes/class/arta-checkout-whatsapp-button.php:109
+msgid "نام خانوادگی"
+msgstr "Last Name"
+
+#: includes/class/arta-checkout-whatsapp-button.php:110
+msgid "نام شرکت"
+msgstr "Company Name"
+
+#: includes/class/arta-checkout-whatsapp-button.php:111
+msgid "کشور"
+msgstr "Country"
+
+#: includes/class/arta-checkout-whatsapp-button.php:112
+msgid "آدرس"
+msgstr "Address"
+
+#: includes/class/arta-checkout-whatsapp-button.php:113
+msgid "آدرس (خط دوم)"
+msgstr "Address (Line 2)"
+
+#: includes/class/arta-checkout-whatsapp-button.php:114
+msgid "شهر"
+msgstr "City"
+
+#: includes/class/arta-checkout-whatsapp-button.php:115
+msgid "استان"
+msgstr "State/Province"
+
+#: includes/class/arta-checkout-whatsapp-button.php:116
+msgid "کد پستی"
+msgstr "Postal Code"
+
+#: includes/class/arta-checkout-whatsapp-button.php:117
+msgid "شماره تماس"
+msgstr "Phone Number"
+
+#: includes/class/arta-checkout-whatsapp-button.php:118
+msgid "ایمیل"
+msgstr "Email"
+
+#: includes/class/arta-prescription.php:74
+msgid "متن نسخه"
+msgstr "Prescription Text"
+
+#: includes/class/arta-prescription.php:75
+msgid "متن نسخه را وارد کنید..."
+msgstr "Enter prescription text..."
+
+#: includes/class/arta-prescription.php:76
+msgid "متن نسخه را وارد کنید. می‌توانید از فیلدهای داینامیک استفاده کنید. برای مشاهده فیلدهای موجود، به راهنمای زیر مراجعه کنید."
+msgstr "Enter the prescription text. You can use dynamic fields. To see available fields, refer to the guide below."
+
+#: includes/class/arta-prescription.php:84
+msgid "فیلدهای داینامیک موجود:"
+msgstr "Available Dynamic Fields:"
+
+#: includes/class/arta-prescription.php:94
+msgid "برای استفاده از فیلدها، نام فیلد را داخل آکولاد قرار دهید، مثلاً: {billing_first_name}"
+msgstr "To use fields, place the field name inside curly braces, e.g.: {billing_first_name}"
+
+#: includes/class/arta-prescription.php:101
+msgid "مهر پزشک"
+msgstr "Doctor Stamp"
+
+#: includes/class/arta-prescription.php:117
+msgid "انتخاب تصویر"
+msgstr "Select Image"
+
+#: includes/class/arta-prescription.php:58
+#: includes/class/arta-prescription.php:119
+#: includes/class/arta-prescription.php:126
+msgid "حذف تصویر"
+msgstr "Remove Image"
+
+#: includes/class/arta-prescription.php:122
+msgid "تصویر مهر پزشک را انتخاب کنید"
+msgstr "Select doctor stamp image"
+
+#: includes/class/arta-prescription.php:137
+msgid "نام"
+msgstr "First Name"
+
+#: includes/class/arta-prescription.php:138
+msgid "نام خانوادگی"
+msgstr "Last Name"
+
+#: includes/class/arta-prescription.php:139
+msgid "نام شرکت"
+msgstr "Company Name"
+
+#: includes/class/arta-prescription.php:140
+msgid "کشور"
+msgstr "Country"
+
+#: includes/class/arta-prescription.php:141
+msgid "آدرس"
+msgstr "Address"
+
+#: includes/class/arta-prescription.php:142
+msgid "آدرس (خط دوم)"
+msgstr "Address (Line 2)"
+
+#: includes/class/arta-prescription.php:143
+msgid "شهر"
+msgstr "City"
+
+#: includes/class/arta-prescription.php:144
+msgid "استان"
+msgstr "State"
+
+#: includes/class/arta-prescription.php:145
+msgid "کد پستی"
+msgstr "Postal Code"
+
+#: includes/class/arta-prescription.php:146
+msgid "شماره تماس"
+msgstr "Phone Number"
+
+#: includes/class/arta-prescription.php:147
+msgid "ایمیل"
+msgstr "Email"
+
+#: includes/class/arta-prescription.php:150
+msgid "جنسیت"
+msgstr "Gender"
+
+#: includes/class/arta-prescription.php:151
+msgid "تاریخ تولد"
+msgstr "Birth Date"
+
+#: includes/class/arta-prescription.php:152
+msgid "قد (سانتی‌متر)"
+msgstr "Height (cm)"
+
+#: includes/class/arta-prescription.php:153
+msgid "وزن (کیلوگرم)"
+msgstr "Weight (kg)"
+
+#: includes/class/arta-prescription.php:154
+msgid "بیماری‌های مزمن"
+msgstr "Chronic Diseases"
+
+#: includes/class/arta-prescription.php:155
+msgid "داروهای مصرفی فعلی"
+msgstr "Current Medications"
+
+#: includes/class/arta-prescription.php:156
+msgid "سوابق پزشکی"
+msgstr "Medical History"
+
+#: includes/class/arta-prescription.php:157
+msgid "هدف از برنامه"
+msgstr "Program Goal"
+
+#: includes/class/arta-prescription.php:158
+msgid "آلرژی‌ها"
+msgstr "Allergies"
+
+#: includes/class/arta-prescription.php:299
+msgid "مرد"
+msgstr "Male"
+
+#: includes/class/arta-prescription.php:300
+msgid "زن"
+msgstr "Female"
+
+#: includes/class/arta-prescription.php:56
+msgid "انتخاب مهر پزشک"
+msgstr "Select Doctor Stamp"
+
+#: includes/class/arta-prescription.php:57
+msgid "استفاده از این تصویر"
+msgstr "Use This Image"
+
+#: includes/class/arta-prescription.php:398
+msgid "دانلود نسخه PDF"
+msgstr "Download Prescription PDF"
+
+#: includes/class/arta-prescription.php:421
+msgid "سفارش یافت نشد"
+msgstr "Order not found"
+
+#: includes/class/arta-prescription.php:430
+msgid "شما مجوز دسترسی به این نسخه را ندارید"
+msgstr "You do not have permission to access this prescription"
+
+#: includes/class/arta-prescription.php:446
+msgid "نسخه‌ای برای این محصول یافت نشد"
+msgstr "No prescription found for this product"
+
+#: includes/class/arta-prescription.php:469
+msgid "متن نسخه یافت نشد"
+msgstr "Prescription text not found"
+
+#: includes/class/arta-prescription.php:505
+#: includes/class/arta-prescription.php:506
+#: includes/class/arta-prescription.php:571
+msgid "نسخه پزشکی"
+msgstr "Medical Prescription"
+
+#: includes/class/arta-prescription.php:586
+msgid "Date:"
+msgstr "Date:"
+
+#: includes/class/arta-prescription.php:586
+msgid "Time:"
+msgstr "Time:"
+
+#: includes/class/arta-prescription.php:556
+msgid "Medical Prescription"
+msgstr "Medical Prescription"
+
+#: includes/class/arta-prescription.php:640
+#: includes/class/arta-prescription.php:777
+msgid "Doctor Stamp"
+msgstr "Doctor Stamp"
+

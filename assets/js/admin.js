@@ -18,27 +18,28 @@ jQuery(document).ready(function($) {
     // Initialize Select2
     function initializeSelect2() {
         if ($.fn.select2) {
-            $('.arta-select2').each(function() {
-                if (!$(this).hasClass('select2-hidden-accessible')) {
-                    $(this).select2({
-                        placeholder: 'انتخاب کنید...',
-                        allowClear: true,
-                        dir: 'rtl',
-                        width: '100%',
-                        language: {
-                            noResults: function() {
-                                return "نتیجه‌ای یافت نشد";
-                            },
-                            searching: function() {
-                                return "در حال جستجو...";
-                            },
-                            loadingMore: function() {
-                                return "بارگذاری بیشتر...";
-                            }
+                    $('.arta-select2').each(function() {
+                        if (!$(this).hasClass('select2-hidden-accessible')) {
+                            var select2Strings = typeof arta_admin !== 'undefined' && arta_admin.strings ? arta_admin.strings : {};
+                            $(this).select2({
+                                placeholder: select2Strings.select_placeholder || 'Select...',
+                                allowClear: true,
+                                dir: 'rtl',
+                                width: '100%',
+                                language: {
+                                    noResults: function() {
+                                        return select2Strings.no_results || "No results found";
+                                    },
+                                    searching: function() {
+                                        return select2Strings.searching || "Searching...";
+                                    },
+                                    loadingMore: function() {
+                                        return select2Strings.loading_more || "Loading more...";
+                                    }
+                                }
+                            });
                         }
                     });
-                }
-            });
         }
     }
 
@@ -47,7 +48,8 @@ jQuery(document).ready(function($) {
 
     // Re-initialize when new content is added
     $(document).on('select2:open', function() {
-        $('.select2-search__field').attr('placeholder', 'جستجو...');
+        var select2Strings = typeof arta_admin !== 'undefined' && arta_admin.strings ? arta_admin.strings : {};
+        $('.select2-search__field').attr('placeholder', select2Strings.search || 'Search...');
     });
 
     // Force re-initialization after a short delay to ensure DOM is ready
@@ -265,7 +267,8 @@ jQuery(document).ready(function($) {
                 showNotice(arta_admin.strings.error, 'error');
             },
             complete: function() {
-                submitBtn.prop('disabled', false).val('ایجاد نوبت‌ها');
+                var strings = typeof arta_admin !== 'undefined' && arta_admin.strings ? arta_admin.strings : {};
+                submitBtn.prop('disabled', false).val(strings.create_appointments || 'Create Appointments');
             }
         });
     });
@@ -286,7 +289,8 @@ jQuery(document).ready(function($) {
         
         if (!isValid) {
             e.preventDefault();
-            showNotice('لطفاً تمام فیلدهای الزامی را پر کنید.', 'error');
+            var strings = typeof arta_admin !== 'undefined' && arta_admin.strings ? arta_admin.strings : {};
+            showNotice(strings.fill_required_fields || 'Please fill in all required fields.', 'error');
         }
     });
 
@@ -371,6 +375,106 @@ jQuery(document).ready(function($) {
     if ($.fn.tooltip) {
         $('[data-tooltip]').tooltip();
     }
+
+    // Calendar day click to filter appointments
+    $(document).on('click', '.arta-calendar-day', function(e) {
+        e.preventDefault();
+        var selectedDate = $(this).data('date');
+        
+        console.log('Calendar day clicked:', selectedDate);
+        
+        // Remove active class from all days
+        $('.arta-calendar-day').removeClass('arta-day-selected');
+        
+        // Add active class to clicked day
+        $(this).addClass('arta-day-selected');
+        
+        // Filter appointments table by date
+        filterAppointmentsByDate(selectedDate);
+        
+        // Show reset button
+        $('#arta-reset-date-filter').show();
+    });
+    
+    // Function to filter appointments by date
+    function filterAppointmentsByDate(date) {
+        console.log('Filtering appointments for date:', date);
+        
+        var $rows = $('#arta-appointments-list table tbody tr');
+        var visibleCount = 0;
+        
+        if (!date) {
+            // Show all appointments if no date selected
+            $rows.show();
+            visibleCount = $rows.length;
+            
+            // Hide reset button
+            $('#arta-reset-date-filter').hide();
+        } else {
+            // Filter appointments by date
+            $rows.each(function() {
+                var $row = $(this);
+                var rowDateText = $row.find('td:first strong').text().trim();
+                
+                // Convert date format from Y/m/d to Y-m-d for comparison
+                var rowDate = rowDateText.replace(/\//g, '-');
+                
+                console.log('Comparing row date:', rowDate, 'with filter date:', date);
+                
+                if (rowDate === date) {
+                    $row.show();
+                    visibleCount++;
+                } else {
+                    $row.hide();
+                }
+            });
+            
+            // Show reset button
+            $('#arta-reset-date-filter').show();
+        }
+        
+        console.log('Visible appointments:', visibleCount);
+        
+        // Update list title to show filtered date or all
+        var $listTitle = $('#arta-appointments-list').closest('.arta-section').find('h2');
+        var resetBtn = $('#arta-reset-date-filter');
+        
+        if (date && visibleCount > 0) {
+            var dateObj = new Date(date);
+            var formattedDate = dateObj.toLocaleDateString('fa-IR');
+            $listTitle.html('لیست نوبت‌ها - ' + date + ' (' + visibleCount + ' نوبت)' + resetBtn.prop('outerHTML'));
+        } else if (date && visibleCount === 0) {
+            $listTitle.html('لیست نوبت‌ها - ' + date + ' (هیچ نوبتی یافت نشد)' + resetBtn.prop('outerHTML'));
+        } else {
+            $listTitle.html('لیست نوبت‌ها' + resetBtn.prop('outerHTML'));
+        }
+    }
+    
+    // Reset date filter button click
+    $(document).on('click', '#arta-reset-date-filter', function(e) {
+        e.preventDefault();
+        
+        console.log('Reset button clicked - showing all appointments');
+        
+        // Remove active class from all days
+        $('.arta-calendar-day').removeClass('arta-day-selected');
+        
+        // Show all appointments
+        filterAppointmentsByDate(null);
+    });
+    
+    // Double-click on calendar day to reset filter (show all appointments)
+    $(document).on('dblclick', '.arta-calendar-day', function(e) {
+        e.preventDefault();
+        
+        console.log('Calendar day double-clicked - resetting filter');
+        
+        // Remove active class from all days
+        $('.arta-calendar-day').removeClass('arta-day-selected');
+        
+        // Show all appointments
+        filterAppointmentsByDate(null);
+    });
 
     // Auto-refresh appointments list every 30 seconds
     if ($('#arta-appointments-list').length) {

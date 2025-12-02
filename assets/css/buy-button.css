@@ -1,0 +1,85 @@
+/**
+ * Arta Buy Button Styles
+ *
+ * @package Arta_Consult_RX
+ * @since 1.0.0
+ */
+
+ .arta-buy-button-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.arta-buy-button-quantity {
+    width: 70px !important;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    text-align: center;
+    -moz-appearance: textfield;
+}
+
+.arta-buy-button-quantity::-webkit-outer-spin-button,
+.arta-buy-button-quantity::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.arta-buy-button-quantity:focus {
+    outline: none;
+    border-color: #0073aa;
+    box-shadow: 0 0 0 2px rgba(0, 115, 170, 0.1);
+}
+
+.arta-buy-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #d4af37 !important;
+    color: #ffffff !important;
+    border: none;
+    border-radius: 4px !important;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    line-height: 1.5;
+}
+
+.arta-buy-button:hover {
+    background-color: #005a87;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 115, 170, 0.3);
+}
+
+.arta-buy-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 115, 170, 0.2);
+}
+
+.arta-buy-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.arta-buy-button:disabled:hover {
+    background-color: #cccccc;
+    transform: none;
+    box-shadow: none;
+}
+
+/* RTL Support */
+.rtl .arta-buy-button-wrapper {
+    direction: rtl;
+}
+
+.rtl .arta-buy-button {
+    direction: rtl;
+}
+

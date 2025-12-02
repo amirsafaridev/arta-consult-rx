@@ -7,11 +7,30 @@
 
 .arta-admin {
     font-family: 'Roboto', 'Segoe UI', Tahoma, Arial, sans-serif;
-    direction: rtl;
-    text-align: right;
     line-height: 1.6;
     color: #212121;
     background: #fafafa;
+}
+
+/* RTL/LTR Support - Dynamic based on language */
+.arta-admin.arta-rtl,
+.arta-admin[dir="rtl"],
+[dir="rtl"] .arta-admin,
+[dir="rtl"].arta-admin,
+body.rtl .arta-admin,
+body[dir="rtl"] .arta-admin {
+    direction: rtl !important;
+    text-align: right;
+}
+
+.arta-admin.arta-ltr,
+.arta-admin[dir="ltr"],
+[dir="ltr"] .arta-admin,
+[dir="ltr"].arta-admin,
+body.ltr .arta-admin,
+body[dir="ltr"] .arta-admin {
+    direction: ltr !important;
+    text-align: left;
 }
 
 /* Material Design Color Palette */
@@ -385,8 +404,19 @@ body.rtl .select2-container--default .select2-selection--multiple .select2-selec
     text-transform: uppercase;
     letter-spacing: 0.5px;
     padding: 16px;
-    text-align: right;
     border-bottom: 1px solid var(--arta-divider);
+}
+
+.arta-admin.arta-rtl .arta-table th,
+[dir="rtl"] .arta-admin .arta-table th,
+body.rtl .arta-admin .arta-table th {
+    text-align: right;
+}
+
+.arta-admin.arta-ltr .arta-table th,
+[dir="ltr"] .arta-admin .arta-table th,
+body.ltr .arta-admin .arta-table th {
+    text-align: left;
 }
 
 .arta-table td {
@@ -588,7 +618,7 @@ body.rtl .select2-container--default .select2-selection--multiple .select2-selec
 
 .arta-calendar-day.arta-today .arta-day-number {
     background: var(--arta-primary);
-    color: var(--arta-on-primary);
+    color: var(--arta-on-primary) !important;
     border-radius: 50%;
     width: 24px;
     height: 24px;
@@ -745,7 +775,7 @@ body.rtl .select2-container--default .select2-selection--multiple .select2-selec
 }
 
 .arta-help-box:before {
-    content: '💡';
+    content: 'Ã°Å¸â€™Â¡';
     position: absolute;
     top: 20px;
     right: 20px;
@@ -1571,6 +1601,31 @@ body.rtl .arta-multi-select-tags {
     background: #e3f2fd;
 }
 
+.arta-calendar-day.arta-day-selected {
+    /* background: #b8b8b8 !important; */
+    border: 2px solid #500eed !important;
+    box-shadow: 0 0 8px rgba(104, 159, 56, 0.3);
+}
+
+.arta-calendar-day.arta-day-selected .arta-day-number {
+    color: #33691e;
+    font-weight: 600;
+}
+
+.arta-calendar-day {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.arta-calendar-day:hover {
+    background: #ffffff !important;
+    /* transform: scale(1.02); */
+}
+
+.arta-calendar-day.arta-other-month:hover {
+    background: #f0f0f0;
+}
+
 .arta-day-number {
     font-weight: 500;
     margin-bottom: 5px;
@@ -1611,10 +1666,16 @@ body.rtl .arta-multi-select-tags {
 }
 
 .arta-table th,
-.arta-table td {
-    padding: 12px;
+.arta-admin.arta-rtl .arta-table td,
+[dir="rtl"] .arta-admin .arta-table td,
+body.rtl .arta-admin .arta-table td {
     text-align: right;
-    border-bottom: 1px solid #ddd;
+}
+
+.arta-admin.arta-ltr .arta-table td,
+[dir="ltr"] .arta-admin .arta-table td,
+body.ltr .arta-admin .arta-table td {
+    text-align: left;
 }
 
 .arta-table th {
@@ -2281,4 +2342,145 @@ body.rtl .arta-multi-select-tags {
 #arta-rejection-modal button:hover {
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Settings Page Styles */
+.arta-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.arta-radio-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    border: 2px solid var(--arta-divider);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: var(--arta-surface);
+}
+
+.arta-radio-item:hover {
+    border-color: var(--arta-primary-light);
+    background: rgba(25, 118, 210, 0.04);
+}
+
+.arta-radio-item input[type="radio"] {
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    accent-color: var(--arta-primary);
+    cursor: pointer;
+}
+
+.arta-radio-item input[type="radio"]:checked + .arta-radio-label {
+    color: var(--arta-primary);
+}
+
+.arta-radio-item:has(input[type="radio"]:checked) {
+    border-color: var(--arta-primary);
+    background: rgba(25, 118, 210, 0.08);
+}
+
+.arta-radio-label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    cursor: pointer;
+}
+
+.arta-radio-label strong {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--arta-on-surface);
+}
+
+.arta-radio-label small {
+    font-size: 14px;
+    color: rgba(33, 33, 33, 0.6);
+    line-height: 1.4;
+}
+
+.arta-info-box {
+    background: rgba(33, 150, 243, 0.08);
+    border: 1px solid rgba(33, 150, 243, 0.2);
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 16px;
+}
+
+.arta-info-box h4 {
+    margin: 0 0 12px 0;
+    color: var(--arta-info);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.arta-info-box ul {
+    margin: 0;
+    padding-right: 20px;
+    list-style: none;
+}
+
+.arta-info-box li {
+    position: relative;
+    margin-bottom: 8px;
+    color: rgba(33, 33, 33, 0.8);
+    line-height: 1.5;
+}
+
+.arta-info-box li:before {
+    content: "•";
+    color: var(--arta-info);
+    font-weight: bold;
+    position: absolute;
+    right: -16px;
+}
+
+.arta-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+.arta-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    background: rgba(33, 33, 33, 0.02);
+    border-radius: 8px;
+    border: 1px solid var(--arta-divider);
+}
+
+.arta-info-item strong {
+    font-size: 14px;
+    color: rgba(33, 33, 33, 0.6);
+    font-weight: 500;
+}
+
+.arta-info-item span {
+    font-size: 16px;
+    color: var(--arta-on-surface);
+    font-weight: 500;
+}
+
+/* Responsive Design for Settings */
+@media (max-width: 768px) {
+    .arta-radio-group {
+        gap: 12px;
+    }
+    
+    .arta-radio-item {
+        padding: 12px;
+    }
+    
+    .arta-info-grid {
+        grid-template-columns: 1fr;
+    }
 }

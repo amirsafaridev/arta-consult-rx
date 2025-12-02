@@ -1,5 +1,67 @@
 /* Appointment Form Modal Styles - Modern & Clean Design */
 
+/* RTL/LTR Support - Dynamic based on language */
+.arta-modal-content.arta-rtl,
+.arta-modal-content[dir="rtl"],
+[dir="rtl"] .arta-modal-content,
+[dir="rtl"].arta-modal-content,
+body.rtl .arta-modal-content,
+body[dir="rtl"] .arta-modal-content {
+    direction: rtl !important;
+    text-align: right;
+}
+
+.arta-modal-content.arta-ltr,
+.arta-modal-content[dir="ltr"],
+[dir="ltr"] .arta-modal-content,
+[dir="ltr"].arta-modal-content,
+body.ltr .arta-modal-content,
+body[dir="ltr"] .arta-modal-content {
+    direction: ltr !important;
+    text-align: left;
+}
+
+.arta-appointment-form.arta-rtl,
+.arta-appointment-form[dir="rtl"],
+[dir="rtl"] .arta-appointment-form,
+[dir="rtl"].arta-appointment-form,
+body.rtl .arta-appointment-form,
+body[dir="rtl"] .arta-appointment-form {
+    direction: rtl !important;
+    text-align: right;
+}
+
+.arta-appointment-form.arta-ltr,
+.arta-appointment-form[dir="ltr"],
+[dir="ltr"] .arta-appointment-form,
+[dir="ltr"].arta-appointment-form,
+body.ltr .arta-appointment-form,
+body[dir="ltr"] .arta-appointment-form {
+    direction: ltr !important;
+    text-align: left;
+}
+
+/* Direct Form RTL/LTR Support */
+.arta-appointment-form-direct.arta-rtl,
+.arta-appointment-form-direct[dir="rtl"],
+[dir="rtl"] .arta-appointment-form-direct,
+[dir="rtl"].arta-appointment-form-direct,
+body.rtl .arta-appointment-form-direct,
+body[dir="rtl"] .arta-appointment-form-direct {
+    direction: rtl !important;
+    text-align: right;
+}
+
+.arta-appointment-form-direct.arta-ltr,
+.arta-appointment-form-direct[dir="ltr"],
+[dir="ltr"] .arta-appointment-form-direct,
+[dir="ltr"].arta-appointment-form-direct,
+body.ltr .arta-appointment-form-direct,
+body[dir="ltr"] .arta-appointment-form-direct {
+    direction: ltr !important;
+    text-align: left;
+}
+
 /* Modal Overlay */
 .arta-modal {
     position: fixed;
@@ -29,7 +91,6 @@
     position: relative;
     background: #ffffff;
     border-radius: 16px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
     max-width: 900px;
     width: 100%;
     max-height: 95vh;
@@ -111,7 +172,7 @@
 }
 
 .arta-progress-fill {
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    /* background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); */
     height: 100%;
     border-radius: 3px;
     transition: width 0.3s ease;
@@ -121,6 +182,25 @@
     display: flex;
     justify-content: space-between;
     position: relative;
+}
+
+/* RTL/LTR Support for progress steps */
+.arta-appointment-form-direct.arta-rtl .arta-progress-steps,
+.arta-appointment-form-direct[dir="rtl"] .arta-progress-steps,
+[dir="rtl"] .arta-appointment-form-direct .arta-progress-steps,
+.arta-modal-content.arta-rtl .arta-progress-steps,
+.arta-modal-content[dir="rtl"] .arta-progress-steps,
+[dir="rtl"] .arta-modal-content .arta-progress-steps {
+    flex-direction: row-reverse;
+}
+
+.arta-appointment-form-direct.arta-ltr .arta-progress-steps,
+.arta-appointment-form-direct[dir="ltr"] .arta-progress-steps,
+[dir="ltr"] .arta-appointment-form-direct .arta-progress-steps,
+.arta-modal-content.arta-ltr .arta-progress-steps,
+.arta-modal-content[dir="ltr"] .arta-progress-steps,
+[dir="ltr"] .arta-modal-content .arta-progress-steps {
+    flex-direction: row;
 }
 
 .arta-step {
@@ -136,9 +216,9 @@
 }
 
 .arta-step.active {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    transform: scale(1.05);
+    transform: scale(1.05); */
 }
 
 /* Form Styles */
@@ -146,7 +226,6 @@
     background: white;
     border-radius: 12px;
     padding: 32px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .arta-form-step {
@@ -219,7 +298,6 @@
 .arta-form-group textarea:focus {
     outline: none;
     border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     transform: translateY(-1px);
 }
 
@@ -236,8 +314,7 @@
     margin-bottom: 20px;
     padding: 16px 20px;
     background: #ffffff;
-    border: 2px solid #e9ecef;
-    border-radius: 12px;
+    
     transition: all 0.3s ease;
     gap: 16px;
     position: relative;
@@ -246,25 +323,22 @@
 
 .arta-checkbox-label::before {
     content: '';
-    position: absolute;
+    /* position: absolute;
     top: 0;
     left: 0;
     width: 4px;
     height: 100%;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     transform: scaleY(0);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease; */
 }
 
 .arta-checkbox-label:hover {
-    border-color: #667eea;
-    background: #f8f9ff;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.1);
+    /* background: #f8f9fa; */
 }
 
 .arta-checkbox-label:hover::before {
-    transform: scaleY(1);
+    /* transform: scaleY(1); */
 }
 
 .arta-checkbox-label input[type="checkbox"] {
@@ -278,12 +352,11 @@
 }
 
 .arta-checkbox-label:has(input[type="checkbox"]:checked) {
-    border-color: #667eea;
-    background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
+    border: none;
 }
 
 .arta-checkbox-label:has(input[type="checkbox"]:checked)::before {
-    transform: scaleY(1);
+    display: none;
 }
 
 .arta-checkbox-label input[type="checkbox"]:checked + .arta-checkbox-text {
@@ -307,8 +380,15 @@
     gap: 16px;
     margin-top: 16px;
 }
-
+.arta-doctor-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50% !important;
+}
 .arta-doctor-item {
+    display: flex;
+    gap: 20px;
     background: white;
     border: 2px solid #e9ecef;
     border-radius: 12px;
@@ -321,17 +401,12 @@
 }
 
 .arta-doctor-item:hover {
-    border-color: #667eea;
+    
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
 }
 
 .arta-doctor-item.selected {
-    border-color: #667eea;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
 }
 
 .arta-doctor-avatar {
@@ -387,7 +462,6 @@
 
 .arta-time-slot.selected {
     border-color: #667eea;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
 }
 
@@ -429,7 +503,6 @@
 
 .arta-btn-primary:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 }
 
 .arta-btn-secondary {
@@ -449,7 +522,7 @@
 }
 
 /* Error Messages */
-.arta-error-message {
+.arta-error {
     background: #f8d7da;
     border: 1px solid #f5c6cb;
     color: #721c24;
@@ -466,18 +539,18 @@
     flex-shrink: 0;
 }
 
-.arta-error-message h4 {
+.arta-error h4 {
     margin: 0 0 8px 0;
     font-size: 16px;
     font-weight: 600;
 }
 
-.arta-error-message ul {
+.arta-error ul {
     margin: 0;
     padding-right: 20px;
 }
 
-.arta-error-message li {
+.arta-error li {
     margin-bottom: 4px;
     font-size: 14px;
 }
@@ -527,6 +600,45 @@
     color: #6c757d;
     font-size: 16px;
     margin: 0 0 12px 0;
+}
+
+/* Loading State */
+.arta-form-loading {
+    opacity: 0.5;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.arta-form-step.arta-form-loading {
+    opacity: 0.5;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Loading Animation */
+.arta-loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.arta-loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 20px;
+    color: #6c757d;
+    font-size: 14px;
 }
 
 /* No Doctors Message */

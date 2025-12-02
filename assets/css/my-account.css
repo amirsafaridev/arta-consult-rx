@@ -3,6 +3,27 @@
  * Using WooCommerce design patterns
  */
 
+/* RTL/LTR Support - Dynamic based on language */
+.arta-my-requests.arta-rtl,
+.arta-my-requests[dir="rtl"],
+[dir="rtl"] .arta-my-requests,
+[dir="rtl"].arta-my-requests,
+body.rtl .arta-my-requests,
+body[dir="rtl"] .arta-my-requests {
+    direction: rtl !important;
+    text-align: right;
+}
+
+.arta-my-requests.arta-ltr,
+.arta-my-requests[dir="ltr"],
+[dir="ltr"] .arta-my-requests,
+[dir="ltr"].arta-my-requests,
+body.ltr .arta-my-requests,
+body[dir="ltr"] .arta-my-requests {
+    direction: ltr !important;
+    text-align: left;
+}
+
 .arta-my-requests {
     margin: 0;
 }
@@ -70,26 +91,52 @@
 }
 
 .arta-view-details-btn {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
     margin-top: 0.5em;
-    background: #0073aa;
-    color: #fff;
-    border: none;
-    padding: 0.5em 1em;
-    border-radius: 3px;
-    font-size: 0.8em;
-    font-weight: 600;
+    background: transparent;
+    color: #6b7280;
+    border: 1px solid #e5e7eb;
+    padding: 0.75em 1.25em;
+    border-radius: 8px;
+    font-size: 0.875em;
+    font-weight: 500;
     cursor: pointer;
-    transition: background 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     width: 100%;
+    outline: none;
+    position: relative;
+    overflow: hidden;
 }
 
 .arta-view-details-btn:hover {
-    background: #005a87;
+    background: #f8fafc;
+    color: #374151;
+    border-color: #d1d5db;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.arta-view-details-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .arta-view-details-btn.active {
-    background: #666;
+    background: #fef3c7;
+    color: #92400e;
+    border-color: #fbbf24;
+}
+
+.arta-btn-icon {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+}
+
+.arta-view-details-btn.active .arta-btn-icon {
+    transform: rotate(180deg);
 }
 
 /* Request Header */
@@ -197,6 +244,40 @@
 .arta-detail-row span {
     color: #666;
     font-size: 0.9em;
+}
+
+/* Program and Product Lists */
+.arta-program-list,
+.arta-product-list {
+    flex: 1;
+}
+
+.arta-program-list ul,
+.arta-product-list ul {
+    margin: 0;
+    padding: 0 0 0 20px;
+    list-style: disc;
+}
+
+.arta-program-list li,
+.arta-product-list li {
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 0.25em;
+}
+
+.arta-program-list small,
+.arta-product-list small {
+    display: block;
+    margin-top: 0.5em;
+    font-style: italic;
+}
+
+.arta-detail-row .arta-program-list,
+.arta-detail-row .arta-product-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
 }
 
 /* Additional Details */
@@ -328,8 +409,16 @@
     }
     
     .arta-request-meta {
-        flex-direction: row;
+        flex-direction: column;
         gap: 15px;
+    }
+    .arta-request-status{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5em;
+        flex-wrap: nowrap;
+        justify-content: center;
     }
     
     .arta-detail-row {

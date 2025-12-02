@@ -81,9 +81,15 @@ class Arta_Consult_RX {
         include_once ARTA_CONSULT_RX_ABSPATH . 'includes/class/arta-meta-boxes.php';
         include_once ARTA_CONSULT_RX_ABSPATH . 'includes/class/arta-database.php';
         include_once ARTA_CONSULT_RX_ABSPATH . 'includes/class/arta-admin.php';
+        include_once ARTA_CONSULT_RX_ABSPATH . 'includes/class/arta-guide.php';
         include_once ARTA_CONSULT_RX_ABSPATH . 'includes/class/arta-appointment-form.php';
         include_once ARTA_CONSULT_RX_ABSPATH . 'includes/class/arta-my-account.php';
-        include_once ARTA_CONSULT_RX_ABSPATH . 'includes/helpers/arta-doctor-helper.php';
+        include_once ARTA_CONSULT_RX_ABSPATH . 'includes/class/arta-buy-button.php';
+        include_once ARTA_CONSULT_RX_ABSPATH . 'includes/class/arta-checkout-fields.php';
+        include_once ARTA_CONSULT_RX_ABSPATH . 'includes/class/arta-checkout-whatsapp-button.php';
+        include_once ARTA_CONSULT_RX_ABSPATH . 'includes/class/arta-cart-single-item.php';
+        include_once ARTA_CONSULT_RX_ABSPATH . 'includes/class/arta-prescription.php';
+         include_once ARTA_CONSULT_RX_ABSPATH . 'includes/helpers/arta-doctor-helper.php';
     }
 
     /**
@@ -142,6 +148,7 @@ class Arta_Consult_RX {
         // Initialize admin
         if (is_admin()) {
             new Arta_Admin();
+            new Arta_Guide();
         }
         
         // Initialize appointment form
@@ -149,6 +156,18 @@ class Arta_Consult_RX {
         
         // Initialize my account
         new Arta_My_Account();
+        
+        // Initialize buy button
+        new Arta_Buy_Button();
+        
+        // Initialize checkout fields (only if WooCommerce is active)
+        if (class_exists('WooCommerce')) {
+            new Arta_Checkout_Fields();
+            new Arta_Checkout_WhatsApp_Button();
+            new Arta_Cart_Single_Item();
+            new Arta_Prescription();
+        }
+      
     }
 
     /**
@@ -205,6 +224,9 @@ class Arta_Consult_RX {
         
         // Set flag to flush rewrite rules for WooCommerce endpoints
         update_option('arta_my_requests_flush_rewrite_rules', true);
+        
+        // Flush rewrite rules to register post types with Elementor support
+        flush_rewrite_rules();
     }
 
     /**
